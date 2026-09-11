@@ -1,721 +1,2137 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dinasty Sulung Teknik - Presisi Engineering</title>
-    <!-- Menggunakan Font Google untuk tampilan yang lebih baik -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-    <style>
-        /* --- Reset & Variabel Dasar --- */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dinasty Sulung Teknik — Precision Engineering</title>
+<meta name="description" content="Bengkel bubut presisi tinggi untuk komponen industri kritis. Toleransi sub-mikron, material lengkap, pengerjaan profesional.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   RESET & VARIABEL
+   ============================================================ */
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
 
-        :root {
-            --primary-blue: #112a45;
-            --secondary-blue: #1a3b5c;
-            --accent-green: #3d7a4b;
-            --accent-green-hover: #2e5c39;
-            --text-dark: #333333;
-            --text-light: #ffffff;
-            --bg-light: #f8f9fa;
-            --border-color: #e0e0e0;
-        }
+:root{
+  --navy-900:#0a1628;
+  --navy-800:#0f2036;
+  --navy-700:#152a45;
+  --navy-600:#1d3858;
+  --steel-500:#3a5a7a;
+  --steel-300:#7f9cb8;
+  --steel-100:#dbe6f0;
+  --gold-500:#d4af37;
+  --gold-400:#e5c158;
+  --gold-600:#b8952b;
+  --green-600:#2f7d4f;
+  --green-500:#3d9a62;
+  --green-400:#4fb377;
+  --ink-900:#0d1622;
+  --ink-700:#2a3546;
+  --ink-500:#5a6779;
+  --ink-300:#9aa5b5;
+  --paper:#f6f8fb;
+  --white:#ffffff;
+  --line:#e2e8f0;
+  --shadow-sm:0 1px 2px rgba(10,22,40,.06), 0 1px 3px rgba(10,22,40,.08);
+  --shadow-md:0 4px 12px rgba(10,22,40,.08), 0 2px 4px rgba(10,22,40,.06);
+  --shadow-lg:0 12px 32px rgba(10,22,40,.12), 0 4px 12px rgba(10,22,40,.08);
+  --shadow-xl:0 24px 56px rgba(10,22,40,.16);
+  --radius:14px;
+  --radius-sm:8px;
+  --transition:.3s cubic-bezier(.4,0,.2,1);
+}
 
-        body {
-            font-family: 'Open Sans', sans-serif;
-            color: var(--text-dark);
-            background-color: #e5e5e5; /* Latar belakang luar */
-            display: flex;
-            justify-content: center;
-            padding: 10px 0;
-        }
+html { scroll-behavior:smooth; }
 
-        /* --- Kontainer Utama --- */
-        .website-container {
-            max-width: 1100px;
-            width: 100%;
-            background-color: #ffffff;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            border-radius: 8px;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-        }
+body{
+  font-family:'Inter', system-ui, -apple-system, sans-serif;
+  color:var(--ink-700);
+  background:var(--paper);
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
 
-        /* --- Header (Hanya Logo, Tanpa Menu) --- */
-        header {
-            background-color: var(--primary-blue);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            color: var(--text-light);
-            border-bottom: 2px solid var(--accent-green);
-        }
+h1,h2,h3,h4{
+  font-family:'Space Grotesk', 'Inter', sans-serif;
+  color:var(--navy-900);
+  line-height:1.2;
+  letter-spacing:-.02em;
+}
 
-        .logo-area {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
+a { text-decoration:none; color:inherit; }
+img { max-width:100%; display:block; }
+button { font-family:inherit; cursor:pointer; border:none; background:none; }
 
-        /* --- CSS untuk Gambar Logo (DIPERBESAR) --- */
-        .logo-icon {
-            width: 60px;  /* Dari 40px menjadi 60px */
-            height: 60px;
-            object-fit: contain;
-            background-color: transparent;
-        }
+.container{
+  max-width:1180px;
+  margin:0 auto;
+  padding:0 24px;
+}
 
-        .logo-text h1 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 22px; /* Sedikit diperbesar agar seimbang */
-            font-weight: 700;
-            line-height: 1.1;
-            color: #ffffff;
-        }
+/* ============================================================
+   TOP BAR
+   ============================================================ */
+.topbar{
+  background:var(--navy-900);
+  color:var(--steel-300);
+  font-size:13px;
+  padding:9px 0;
+}
+.topbar .container{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:16px;
+  flex-wrap:wrap;
+}
+.topbar-left{ display:flex; gap:22px; align-items:center; flex-wrap:wrap; }
+.topbar-item{ display:flex; align-items:center; gap:7px; }
+.topbar-item svg{ width:14px; height:14px; fill:var(--gold-500); flex-shrink:0; }
+.topbar-item a:hover{ color:var(--white); }
+.topbar-right{ display:flex; gap:14px; align-items:center; font-size:12px; }
+.topbar-right .badge{
+  background:rgba(212,175,55,.12);
+  color:var(--gold-400);
+  padding:3px 10px;
+  border-radius:20px;
+  font-weight:500;
+  letter-spacing:.02em;
+  border:1px solid rgba(212,175,55,.2);
+}
 
-        .logo-text p {
-            font-size: 10px;
-            letter-spacing: 1px;
-            color: #a0b4c7;
-            margin-top: 2px;
-        }
+/* ============================================================
+   HEADER / NAV
+   ============================================================ */
+header.site-header{
+  position:sticky;
+  top:0;
+  z-index:1000;
+  background:rgba(255,255,255,.92);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line);
+  transition:box-shadow var(--transition);
+}
+header.site-header.scrolled{ box-shadow:var(--shadow-md); }
 
-        /* --- Hero Section --- */
-        .hero {
-            position: relative;
-            height: 380px;
-            background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3SoHZnR35VPBSM_5Bm43W0vpLuWAD-kp0BFm4Natahw&s=10');
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            align-items: flex-end;
-            justify-content: center;
-        }
+.nav-wrap{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:14px 0;
+  gap:24px;
+}
 
-        .hero-overlay {
-            background: linear-gradient(to top, rgba(17, 42, 69, 0.95) 0%, rgba(17, 42, 69, 0.8) 50%, rgba(17, 42, 69, 0) 100%);
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            align-items: center;
-            padding: 0 15px 40px 15px;
-            text-align: center;
-        }
+.brand{ display:flex; align-items:center; gap:13px; }
+.brand-logo{
+  width:50px; height:50px;
+  border-radius:11px;
+  object-fit:cover;
+  box-shadow:var(--shadow-sm);
+  border:1px solid var(--line);
+  flex-shrink:0;
+}
+.brand-text h1{
+  font-size:19px;
+  font-weight:700;
+  color:var(--navy-900);
+  line-height:1.1;
+  letter-spacing:-.03em;
+}
+.brand-text span{
+  font-size:9.5px;
+  letter-spacing:.16em;
+  color:var(--steel-500);
+  font-weight:600;
+  text-transform:uppercase;
+}
 
-        .hero h2 {
-            font-family: 'Montserrat', sans-serif;
-            color: #d4af37;
-            font-size: 32px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 5px rgba(0,0,0,0.6);
-            line-height: 1.2;
-        }
+.nav-menu{
+  display:flex;
+  gap:4px;
+  align-items:center;
+  list-style:none;
+}
+.nav-link{
+  padding:9px 15px;
+  font-size:14px;
+  font-weight:500;
+  color:var(--ink-700);
+  border-radius:var(--radius-sm);
+  transition:all var(--transition);
+  position:relative;
+  display:block;
+}
+.nav-link:hover{ color:var(--navy-800); background:var(--steel-100); }
+.nav-link.active{ color:var(--navy-900); font-weight:600; }
+.nav-link.active::after{
+  content:'';
+  position:absolute;
+  bottom:3px; left:50%;
+  transform:translateX(-50%);
+  width:18px; height:2.5px;
+  background:var(--gold-500);
+  border-radius:2px;
+}
 
-        .hero p {
-            color: #e0e0e0;
-            font-size: 14px;
-            margin-bottom: 20px;
-            max-width: 700px;
-        }
+.nav-cta{
+  background:var(--green-600);
+  color:var(--white) !important;
+  padding:10px 20px !important;
+  font-weight:600 !important;
+  box-shadow:0 3px 10px rgba(47,125,79,.28);
+}
+.nav-cta:hover{
+  background:var(--green-500) !important;
+  transform:translateY(-1px);
+  box-shadow:0 6px 16px rgba(47,125,79,.34);
+}
 
-        .btn-primary {
-            background-color: var(--accent-green);
-            color: white;
-            padding: 12px 25px;
-            text-decoration: none;
-            border-radius: 4px;
-            font-weight: 600;
-            font-size: 15px;
-            transition: background 0.3s, transform 0.2s;
-            border: 1px solid #4c8a5b;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
-        }
+.hamburger{
+  display:none;
+  flex-direction:column;
+  gap:5px;
+  padding:9px;
+  border-radius:var(--radius-sm);
+  background:var(--paper);
+}
+.hamburger span{
+  width:22px; height:2.2px;
+  background:var(--navy-800);
+  border-radius:2px;
+  transition:var(--transition);
+}
+.hamburger.open span:nth-child(1){ transform:translateY(7.2px) rotate(45deg); }
+.hamburger.open span:nth-child(2){ opacity:0; }
+.hamburger.open span:nth-child(3){ transform:translateY(-7.2px) rotate(-45deg); }
 
-        .btn-primary:hover {
-            background-color: var(--accent-green-hover);
-            transform: translateY(-2px);
-        }
+/* ============================================================
+   PAGE SYSTEM (multi-page SPA)
+   ============================================================ */
+.page{ display:none; animation:pageIn .5s cubic-bezier(.4,0,.2,1); }
+.page.active{ display:block; }
+@keyframes pageIn{
+  from{ opacity:0; transform:translateY(14px); }
+  to{ opacity:1; transform:translateY(0); }
+}
 
-        /* --- Capabilities & Materials Section --- */
-        .features-section {
-            display: flex;
-            padding: 40px 20px;
-            gap: 40px;
-            background-color: var(--bg-light);
-        }
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero{
+  position:relative;
+  min-height:560px;
+  display:flex;
+  align-items:center;
+  overflow:hidden;
+  background:var(--navy-900);
+}
+.hero-bg{
+  position:absolute; inset:0;
+  background-image:url('https://images.unsplash.com/photo-1565043666747-69f6646db940?q=80&w=1600&auto=format&fit=crop');
+  background-size:cover;
+  background-position:center;
+  opacity:.32;
+  transform:scale(1.04);
+}
+.hero::after{
+  content:'';
+  position:absolute; inset:0;
+  background:
+    linear-gradient(105deg, rgba(10,22,40,.96) 0%, rgba(10,22,40,.82) 45%, rgba(10,22,40,.55) 100%),
+    radial-gradient(ellipse at 85% 20%, rgba(212,175,55,.14), transparent 55%);
+}
+.hero-grid{
+  position:absolute; inset:0;
+  background-image:
+    linear-gradient(rgba(127,156,184,.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(127,156,184,.06) 1px, transparent 1px);
+  background-size:56px 56px;
+  mask-image:radial-gradient(ellipse at 50% 50%, #000 30%, transparent 78%);
+  -webkit-mask-image:radial-gradient(ellipse at 50% 50%, #000 30%, transparent 78%);
+}
+.hero-inner{
+  position:relative;
+  z-index:2;
+  padding:100px 0 110px;
+  max-width:760px;
+}
+.hero-eyebrow{
+  display:inline-flex;
+  align-items:center;
+  gap:9px;
+  background:rgba(212,175,55,.1);
+  border:1px solid rgba(212,175,55,.28);
+  color:var(--gold-400);
+  font-size:12px;
+  font-weight:600;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  padding:7px 16px;
+  border-radius:24px;
+  margin-bottom:26px;
+}
+.hero-eyebrow::before{
+  content:'';
+  width:6px; height:6px;
+  border-radius:50%;
+  background:var(--gold-500);
+  box-shadow:0 0 0 3px rgba(212,175,55,.2);
+  animation:pulse 2.4s infinite;
+}
+@keyframes pulse{
+  0%,100%{ box-shadow:0 0 0 3px rgba(212,175,55,.2); }
+  50%{ box-shadow:0 0 0 7px rgba(212,175,55,.05); }
+}
+.hero h2{
+  font-size:clamp(2.1rem, 5vw, 3.6rem);
+  color:var(--white);
+  font-weight:700;
+  margin-bottom:22px;
+  line-height:1.08;
+  letter-spacing:-.035em;
+}
+.hero h2 .accent{
+  background:linear-gradient(135deg, var(--gold-400), var(--gold-600));
+  -webkit-background-clip:text;
+  background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+.hero p.lead{
+  font-size:17px;
+  color:var(--steel-300);
+  max-width:580px;
+  margin-bottom:38px;
+  line-height:1.75;
+}
+.hero-actions{ display:flex; gap:14px; flex-wrap:wrap; }
 
-        .capabilities, .materials {
-            flex: 1;
-        }
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:9px;
+  padding:14px 28px;
+  border-radius:var(--radius-sm);
+  font-size:14.5px;
+  font-weight:600;
+  letter-spacing:.01em;
+  transition:all var(--transition);
+  border:1.5px solid transparent;
+  white-space:nowrap;
+}
+.btn svg{ width:16px; height:16px; fill:currentColor; transition:transform var(--transition); }
+.btn:hover svg{ transform:translateX(3px); }
 
-        .features-section h3 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 20px;
-            color: var(--primary-blue);
-            margin-bottom: 25px;
-            text-align: center;
-            position: relative;
-            padding-bottom: 10px;
-        }
+.btn-primary{
+  background:var(--green-600);
+  color:var(--white);
+  box-shadow:0 6px 18px rgba(47,125,79,.32);
+}
+.btn-primary:hover{
+  background:var(--green-500);
+  transform:translateY(-2px);
+  box-shadow:0 10px 26px rgba(47,125,79,.4);
+}
 
-        .features-section h3::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 50px;
-            height: 3px;
-            background-color: var(--accent-green);
-        }
+.btn-ghost{
+  background:rgba(255,255,255,.06);
+  color:var(--white);
+  border-color:rgba(255,255,255,.22);
+  backdrop-filter:blur(6px);
+}
+.btn-ghost:hover{
+  background:rgba(255,255,255,.13);
+  border-color:rgba(255,255,255,.4);
+  transform:translateY(-2px);
+}
 
-        /* Grid Kapabilitas */
-        .cap-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px 10px;
-            text-align: center;
-        }
+.btn-outline{
+  background:transparent;
+  color:var(--navy-800);
+  border-color:var(--line);
+}
+.btn-outline:hover{
+  border-color:var(--navy-700);
+  background:var(--navy-900);
+  color:var(--white);
+  transform:translateY(-2px);
+}
 
-        .cap-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+.btn-gold{
+  background:linear-gradient(135deg, var(--gold-500), var(--gold-600));
+  color:var(--navy-900);
+  box-shadow:0 6px 18px rgba(212,175,55,.3);
+}
+.btn-gold:hover{
+  transform:translateY(-2px);
+  box-shadow:0 10px 26px rgba(212,175,55,.42);
+}
 
-        .cap-icon {
-            width: 50px;
-            height: 50px;
-            background-color: #cbdbe8;
-            border-radius: 10px;
-            margin-bottom: 10px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: var(--primary-blue);
-            font-size: 24px;
-            transition: background 0.3s;
-        }
+/* Hero stats strip */
+.hero-stats{
+  position:relative;
+  z-index:3;
+  margin-top:-52px;
+  margin-bottom:0;
+}
+.stats-grid{
+  display:grid;
+  grid-template-columns:repeat(4, 1fr);
+  background:var(--white);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow-xl);
+  overflow:hidden;
+  border:1px solid var(--line);
+}
+.stat{
+  padding:28px 22px;
+  text-align:center;
+  border-right:1px solid var(--line);
+  transition:background var(--transition);
+}
+.stat:last-child{ border-right:none; }
+.stat:hover{ background:var(--paper); }
+.stat-num{
+  font-family:'Space Grotesk', sans-serif;
+  font-size:30px;
+  font-weight:700;
+  color:var(--navy-800);
+  line-height:1;
+  margin-bottom:7px;
+  letter-spacing:-.03em;
+}
+.stat-num .unit{ color:var(--gold-500); font-size:19px; }
+.stat-label{
+  font-size:11.5px;
+  color:var(--ink-500);
+  font-weight:600;
+  letter-spacing:.07em;
+  text-transform:uppercase;
+}
 
-        .cap-item:hover .cap-icon {
-            background-color: var(--accent-green);
-            color: white;
-        }
+/* ============================================================
+   SECTION GENERIC
+   ============================================================ */
+.section{ padding:88px 0; }
+.section-alt{ background:var(--white); }
+.section-dark{
+  background:var(--navy-900);
+  color:var(--steel-300);
+  position:relative;
+  overflow:hidden;
+}
+.section-dark h2, .section-dark h3, .section-dark h4{ color:var(--white); }
 
-        /* CSS untuk Gambar Ikon Kapabilitas */
-        .cap-img {
-            width: 35px;
-            height: 35px;
-            object-fit: contain;
-        }
+.section-head{
+  text-align:center;
+  max-width:680px;
+  margin:0 auto 58px;
+}
+.section-head.left{ text-align:left; margin-left:0; }
+.eyebrow{
+  display:inline-block;
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--green-600);
+  margin-bottom:14px;
+  position:relative;
+  padding-left:30px;
+}
+.eyebrow::before{
+  content:'';
+  position:absolute;
+  left:0; top:50%;
+  transform:translateY(-50%);
+  width:20px; height:2px;
+  background:var(--gold-500);
+}
+.section-dark .eyebrow{ color:var(--gold-400); }
 
-        .cap-item h4 {
-            font-size: 12px;
-            font-weight: 700;
-            color: var(--primary-blue);
-            margin-bottom: 4px;
-        }
+.section-head h2{
+  font-size:clamp(1.7rem, 3.4vw, 2.5rem);
+  margin-bottom:16px;
+  font-weight:700;
+}
+.section-head p{
+  font-size:16px;
+  color:var(--ink-500);
+  line-height:1.75;
+}
+.section-dark .section-head p{ color:var(--steel-300); }
 
-        .cap-item p {
-            font-size: 9px;
-            color: #666;
-            line-height: 1.3;
-            padding: 0 2px;
-        }
+/* ============================================================
+   CARDS / CAPABILITIES
+   ============================================================ */
+.cards-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(270px, 1fr));
+  gap:24px;
+}
 
-        /* Grid Material */
-        .mat-grid {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            text-align: center;
-            gap: 15px;
-        }
+.card{
+  background:var(--white);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  padding:32px 28px;
+  transition:all var(--transition);
+  position:relative;
+  overflow:hidden;
+}
+.card::before{
+  content:'';
+  position:absolute;
+  top:0; left:0; right:0;
+  height:3px;
+  background:linear-gradient(90deg, var(--green-500), var(--gold-500));
+  transform:scaleX(0);
+  transform-origin:left;
+  transition:transform var(--transition);
+}
+.card:hover{
+  transform:translateY(-6px);
+  box-shadow:var(--shadow-lg);
+  border-color:transparent;
+}
+.card:hover::before{ transform:scaleX(1); }
 
-        .mat-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 60px; /* Lebar tetap agar rapi */
-        }
+.card-icon{
+  width:56px; height:56px;
+  border-radius:13px;
+  background:linear-gradient(135deg, var(--navy-800), var(--navy-600));
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin-bottom:22px;
+  transition:all var(--transition);
+  box-shadow:0 4px 14px rgba(21,42,69,.22);
+}
+.card-icon svg{ width:26px; height:26px; fill:var(--gold-400); transition:transform var(--transition); }
+.card:hover .card-icon{
+  background:linear-gradient(135deg, var(--green-600), var(--green-500));
+  box-shadow:0 8px 22px rgba(47,125,79,.3);
+}
+.card:hover .card-icon svg{ fill:var(--white); transform:scale(1.08); }
 
-        .mat-swatch {
-            width: 50px;
-            height: 50px;
-            border-radius: 6px;
-            margin-bottom: 8px;
-            box-shadow: inset 0 0 8px rgba(0,0,0,0.3), 0 2px 4px rgba(0,0,0,0.1);
-        }
+.card h3{
+  font-size:18px;
+  margin-bottom:10px;
+  font-weight:600;
+}
+.card p{
+  font-size:14px;
+  color:var(--ink-500);
+  line-height:1.7;
+}
 
-        /* CSS untuk Gambar Ikon Material */
-        .mat-img {
-            width: 50px;
-            height: 50px;
-            border-radius: 6px;
-            object-fit: cover;
-            margin-bottom: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
+/* ============================================================
+   MATERIAL GRID
+   ============================================================ */
+.mat-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(180px, 1fr));
+  gap:20px;
+}
+.mat-card{
+  background:var(--white);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  overflow:hidden;
+  transition:all var(--transition);
+  text-align:center;
+}
+.mat-card:hover{
+  transform:translateY(-6px);
+  box-shadow:var(--shadow-lg);
+  border-color:transparent;
+}
+.mat-visual{
+  height:140px;
+  background-size:cover;
+  background-position:center;
+  position:relative;
+}
+.mat-visual::after{
+  content:'';
+  position:absolute; inset:0;
+  background:linear-gradient(to top, rgba(10,22,40,.55), transparent 60%);
+}
+.mat-body{ padding:18px 14px 22px; }
+.mat-body h4{
+  font-size:15.5px;
+  margin-bottom:6px;
+  font-weight:600;
+}
+.mat-body span{
+  font-size:11.5px;
+  color:var(--ink-300);
+  letter-spacing:.05em;
+  text-transform:uppercase;
+  font-weight:600;
+}
 
-        /* Warna Material (Gradasi Logam) */
-        .swatch-steel { background: linear-gradient(135deg, #a0a0a0, #707070); }
-        .swatch-stainless { background: linear-gradient(135deg, #d0d0d0, #a0a0a0); }
-        .swatch-alum { background: linear-gradient(135deg, #e0e0e0, #b0b0b0); }
-        .swatch-brass { background: linear-gradient(135deg, #e5c07b, #c19a4b); }
-        .swatch-bronze { background: linear-gradient(135deg, #cd7f32, #a05a1c); }
+/* ============================================================
+   PRECISION / SPLIT SECTION
+   ============================================================ */
+.split{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:0;
+  border-radius:var(--radius);
+  overflow:hidden;
+  box-shadow:var(--shadow-lg);
+  background:var(--white);
+}
+.split-media{
+  min-height:420px;
+  background-size:cover;
+  background-position:center;
+  position:relative;
+}
+.split-media::after{
+  content:'';
+  position:absolute; inset:0;
+  background:linear-gradient(135deg, rgba(10,22,40,.18), transparent 60%);
+}
+.split-body{
+  padding:52px 48px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  background:var(--navy-900);
+  color:var(--steel-300);
+  position:relative;
+}
+.split-body::before{
+  content:'';
+  position:absolute;
+  top:0; left:0; bottom:0;
+  width:4px;
+  background:linear-gradient(180deg, var(--gold-500), var(--green-500));
+}
+.split-body h3{
+  font-size:clamp(1.4rem, 2.6vw, 1.9rem);
+  color:var(--white);
+  margin-bottom:16px;
+  font-weight:700;
+}
+.split-body h3 .accent{
+  background:linear-gradient(135deg, var(--gold-400), var(--gold-600));
+  -webkit-background-clip:text;
+  background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+.split-body p{
+  font-size:14.5px;
+  line-height:1.8;
+  margin-bottom:16px;
+  color:var(--steel-300);
+}
+.split-list{
+  list-style:none;
+  margin:8px 0 26px;
+  display:grid;
+  gap:11px;
+}
+.split-list li{
+  display:flex;
+  align-items:flex-start;
+  gap:11px;
+  font-size:13.5px;
+  color:var(--steel-100);
+}
+.split-list li::before{
+  content:'';
+  width:18px; height:18px;
+  border-radius:50%;
+  background:rgba(61,154,98,.18);
+  border:1.5px solid var(--green-500);
+  flex-shrink:0;
+  margin-top:2px;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%233d9a62' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E");
+  background-size:11px;
+  background-position:center;
+  background-repeat:no-repeat;
+}
 
-        .mat-item h4 {
-            font-size: 10px;
-            font-weight: 700;
-            color: var(--primary-blue);
-            line-height: 1.2;
-        }
+/* ============================================================
+   PROCESS / TIMELINE
+   ============================================================ */
+.process-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(230px, 1fr));
+  gap:26px;
+  counter-reset:step;
+}
+.process-item{
+  position:relative;
+  padding-top:14px;
+}
+.process-num{
+  font-family:'Space Grotesk', sans-serif;
+  font-size:44px;
+  font-weight:700;
+  color:var(--steel-100);
+  line-height:1;
+  margin-bottom:10px;
+  letter-spacing:-.04em;
+  transition:color var(--transition);
+}
+.process-item:hover .process-num{ color:var(--gold-500); }
+.process-item h4{
+  font-size:16.5px;
+  margin-bottom:8px;
+  font-weight:600;
+}
+.process-item p{
+  font-size:13.5px;
+  color:var(--ink-500);
+  line-height:1.7;
+}
 
-        /* --- Precision Section --- */
-        .precision-section {
-            display: flex;
-            background-color: #ffffff;
-            padding: 40px 20px;
-            gap: 30px;
-            align-items: center;
-        }
+/* ============================================================
+   CTA BANNER
+   ============================================================ */
+.cta-banner{
+  background:linear-gradient(120deg, var(--navy-900) 0%, var(--navy-700) 60%, var(--navy-600) 100%);
+  border-radius:var(--radius);
+  padding:60px 48px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:36px;
+  position:relative;
+  overflow:hidden;
+  box-shadow:var(--shadow-xl);
+}
+.cta-banner::before{
+  content:'';
+  position:absolute;
+  right:-80px; top:-80px;
+  width:320px; height:320px;
+  border-radius:50%;
+  background:radial-gradient(circle, rgba(212,175,55,.18), transparent 70%);
+}
+.cta-banner::after{
+  content:'';
+  position:absolute;
+  left:40%; bottom:-100px;
+  width:260px; height:260px;
+  border-radius:50%;
+  background:radial-gradient(circle, rgba(61,154,98,.14), transparent 70%);
+}
+.cta-text{ position:relative; z-index:2; max-width:620px; }
+.cta-text h3{
+  color:var(--white);
+  font-size:clamp(1.4rem, 2.8vw, 1.95rem);
+  margin-bottom:12px;
+  font-weight:700;
+}
+.cta-text p{ color:var(--steel-300); font-size:15px; }
+.cta-banner .btn{ position:relative; z-index:2; flex-shrink:0; }
 
-        .precision-image {
-            flex: 1;
-            height: 250px;
-            background-image: url('https://images.unsplash.com/photo-1581092160562-40aa08e78837?q=80&w=800&auto=format&fit=crop');
-            background-size: cover;
-            background-position: center;
-            border-radius: 6px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-            width: 100%;
-        }
+/* ============================================================
+   FORM
+   ============================================================ */
+.form-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px;
+}
+.form-field{ display:flex; flex-direction:column; gap:7px; }
+.form-field.full{ grid-column:1 / -1; }
+.form-field label{
+  font-size:13px;
+  font-weight:600;
+  color:var(--navy-800);
+}
+.form-field label .req{ color:var(--green-500); }
+.form-field input,
+.form-field select,
+.form-field textarea{
+  font-family:inherit;
+  font-size:14px;
+  padding:13px 15px;
+  border:1.5px solid var(--line);
+  border-radius:var(--radius-sm);
+  background:var(--white);
+  color:var(--ink-700);
+  transition:all var(--transition);
+  outline:none;
+  width:100%;
+}
+.form-field textarea{ resize:vertical; min-height:120px; }
+.form-field input:focus,
+.form-field select:focus,
+.form-field textarea:focus{
+  border-color:var(--green-500);
+  box-shadow:0 0 0 4px rgba(61,154,98,.12);
+}
 
-        .precision-content {
-            flex: 1;
-            background-color: var(--primary-blue);
-            color: white;
-            padding: 30px;
-            border-radius: 8px;
-            position: relative;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-            width: 100%;
-        }
+/* ============================================================
+   CONTACT INFO
+   ============================================================ */
+.contact-grid{
+  display:grid;
+  grid-template-columns:1fr 1.25fr;
+  gap:36px;
+  align-items:start;
+}
+.contact-card{
+  background:var(--navy-900);
+  border-radius:var(--radius);
+  padding:40px 34px;
+  color:var(--steel-300);
+  position:relative;
+  overflow:hidden;
+}
+.contact-card::before{
+  content:'';
+  position:absolute;
+  top:-60px; right:-60px;
+  width:200px; height:200px;
+  border-radius:50%;
+  background:radial-gradient(circle, rgba(212,175,55,.16), transparent 70%);
+}
+.contact-card h3{
+  color:var(--white);
+  font-size:20px;
+  margin-bottom:26px;
+  position:relative;
+}
+.contact-item{
+  display:flex;
+  gap:15px;
+  margin-bottom:24px;
+  position:relative;
+}
+.contact-item:last-of-type{ margin-bottom:0; }
+.contact-icon{
+  width:42px; height:42px;
+  border-radius:11px;
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.1);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-shrink:0;
+}
+.contact-icon svg{ width:18px; height:18px; fill:var(--gold-400); }
+.contact-item h4{
+  color:var(--white);
+  font-size:13.5px;
+  margin-bottom:4px;
+  font-weight:600;
+}
+.contact-item p{
+  font-size:13px;
+  line-height:1.65;
+  color:var(--steel-300);
+}
+.contact-item a{ color:var(--steel-100); transition:color var(--transition); }
+.contact-item a:hover{ color:var(--gold-400); }
 
-        .precision-content::before {
-            content: '';
-            position: absolute;
-            left: -20px;
-            top: 50%;
-            transform: translateY(-50%);
-            border-width: 20px 20px 20px 0;
-            border-style: solid;
-            border-color: transparent var(--primary-blue) transparent transparent;
-        }
+.form-panel{
+  background:var(--white);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  padding:40px 36px;
+  box-shadow:var(--shadow-md);
+}
+.form-panel h3{
+  font-size:21px;
+  margin-bottom:8px;
+}
+.form-panel > p{
+  font-size:14px;
+  color:var(--ink-500);
+  margin-bottom:26px;
+}
 
-        .precision-content h3 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 22px;
-            color: #d4af37;
-            margin-bottom: 12px;
-            line-height: 1.3;
-        }
+/* ============================================================
+   MAP / GALLERY
+   ============================================================ */
+.gallery-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(230px, 1fr));
+  gap:16px;
+}
+.gallery-item{
+  aspect-ratio:4/3;
+  border-radius:var(--radius);
+  overflow:hidden;
+  position:relative;
+  background-size:cover;
+  background-position:center;
+  transition:all var(--transition);
+  cursor:pointer;
+}
+.gallery-item::after{
+  content:'';
+  position:absolute; inset:0;
+  background:linear-gradient(to top, rgba(10,22,40,.72), transparent 55%);
+  opacity:0;
+  transition:opacity var(--transition);
+}
+.gallery-item:hover{ transform:scale(1.025); box-shadow:var(--shadow-lg); }
+.gallery-item:hover::after{ opacity:1; }
+.gallery-caption{
+  position:absolute;
+  bottom:16px; left:18px; right:18px;
+  color:var(--white);
+  font-size:14px;
+  font-weight:600;
+  z-index:2;
+  opacity:0;
+  transform:translateY(8px);
+  transition:all var(--transition);
+}
+.gallery-item:hover .gallery-caption{ opacity:1; transform:translateY(0); }
 
-        .precision-content p {
-            font-size: 13px;
-            line-height: 1.6;
-            margin-bottom: 20px;
-            color: #cbdbe8;
-        }
+.map-embed{
+  border-radius:var(--radius);
+  overflow:hidden;
+  box-shadow:var(--shadow-md);
+  border:1px solid var(--line);
+  height:360px;
+}
+.map-embed iframe{ width:100%; height:100%; border:0; display:block; }
 
-        .btn-small {
-            background-color: var(--accent-green);
-            color: white;
-            padding: 10px 20px;
-            text-decoration: none;
-            border-radius: 4px;
-            font-size: 13px;
-            font-weight: 600;
-            display: inline-block;
-            transition: background 0.3s;
-            border: none;
-            cursor: pointer;
-        }
+/* ============================================================
+   VALUES / ABOUT
+   ============================================================ */
+.about-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:56px;
+  align-items:center;
+}
+.about-media{
+  position:relative;
+  border-radius:var(--radius);
+  overflow:hidden;
+  box-shadow:var(--shadow-xl);
+  aspect-ratio:4/3;
+  background-image:url('https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?q=80&w=1200&auto=format&fit=crop');
+  background-size:cover;
+  background-position:center;
+}
+.about-media::after{
+  content:'';
+  position:absolute; inset:0;
+  background:linear-gradient(135deg, rgba(10,22,40,.28), transparent 55%);
+}
+.about-badge{
+  position:absolute;
+  bottom:24px; left:24px;
+  background:var(--white);
+  border-radius:var(--radius-sm);
+  padding:16px 22px;
+  box-shadow:var(--shadow-lg);
+  z-index:2;
+}
+.about-badge strong{
+  display:block;
+  font-family:'Space Grotesk', sans-serif;
+  font-size:24px;
+  color:var(--navy-900);
+  line-height:1;
+  margin-bottom:4px;
+}
+.about-badge span{
+  font-size:11.5px;
+  color:var(--ink-500);
+  font-weight:600;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+}
+.about-text h2{
+  font-size:clamp(1.6rem, 3vw, 2.2rem);
+  margin-bottom:18px;
+}
+.about-text p{
+  font-size:15px;
+  color:var(--ink-500);
+  line-height:1.8;
+  margin-bottom:16px;
+}
+.value-list{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px;
+  margin-top:30px;
+}
+.value-item{
+  padding:20px;
+  background:var(--paper);
+  border-radius:var(--radius-sm);
+  border-left:3px solid var(--green-500);
+}
+.value-item h4{
+  font-size:14.5px;
+  margin-bottom:6px;
+  font-weight:600;
+}
+.value-item p{
+  font-size:12.5px;
+  color:var(--ink-500);
+  line-height:1.6;
+  margin:0;
+}
 
-        .btn-small:hover {
-            background-color: var(--accent-green-hover);
-        }
+/* ============================================================
+   FOOTER
+   ============================================================ */
+footer.site-footer{
+  background:var(--navy-900);
+  color:var(--steel-300);
+  padding:64px 0 0;
+  position:relative;
+  overflow:hidden;
+}
+footer.site-footer::before{
+  content:'';
+  position:absolute;
+  top:0; left:0; right:0;
+  height:1px;
+  background:linear-gradient(90deg, transparent, rgba(212,175,55,.4), transparent);
+}
+.footer-grid{
+  display:grid;
+  grid-template-columns:1.6fr 1fr 1fr 1.2fr;
+  gap:40px;
+  padding-bottom:48px;
+}
+.footer-brand .brand-logo{
+  width:54px; height:54px;
+  margin-bottom:16px;
+  border-color:rgba(255,255,255,.1);
+}
+.footer-brand h1{
+  color:var(--white);
+  font-size:18px;
+  margin-bottom:4px;
+}
+.footer-brand > span{
+  font-size:9.5px;
+  letter-spacing:.16em;
+  color:var(--steel-500);
+  font-weight:600;
+  text-transform:uppercase;
+  display:block;
+  margin-bottom:18px;
+}
+.footer-brand p{
+  font-size:13px;
+  line-height:1.75;
+  color:var(--steel-300);
+}
+.footer-col h4{
+  color:var(--white);
+  font-size:14px;
+  margin-bottom:20px;
+  font-weight:600;
+  position:relative;
+  padding-bottom:10px;
+}
+.footer-col h4::after{
+  content:'';
+  position:absolute;
+  bottom:0; left:0;
+  width:26px; height:2px;
+  background:var(--gold-500);
+}
+.footer-col ul{ list-style:none; display:grid; gap:11px; }
+.footer-col ul li a{
+  font-size:13.5px;
+  color:var(--steel-300);
+  transition:all var(--transition);
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+}
+.footer-col ul li a::before{
+  content:'';
+  width:4px; height:4px;
+  border-radius:50%;
+  background:var(--steel-500);
+  transition:background var(--transition);
+}
+.footer-col ul li a:hover{ color:var(--white); transform:translateX(3px); }
+.footer-col ul li a:hover::before{ background:var(--gold-500); }
 
-        /* --- Footer --- */
-        footer {
-            background-color: #0d1f33;
-            color: #a0b4c7;
-            padding: 40px 20px;
-            display: grid;
-            grid-template-columns: 1.5fr 1fr 1fr 1fr;
-            gap: 25px;
-            font-size: 12px;
-        }
+.footer-col p{ font-size:13.5px; line-height:1.75; margin-bottom:10px; }
+.footer-col p strong{ color:var(--white); font-weight:600; }
+.footer-col a{ color:var(--steel-100); transition:color var(--transition); }
+.footer-col a:hover{ color:var(--gold-400); }
 
-        .footer-logo .logo-icon {
-            margin-bottom: 10px;
-            width: 55px;  /* Logo footer sedikit lebih besar */
-            height: 55px;
-        }
+.footer-bottom{
+  border-top:1px solid rgba(255,255,255,.08);
+  padding:24px 0;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:16px;
+  flex-wrap:wrap;
+  font-size:12.5px;
+  color:var(--steel-500);
+}
+.footer-bottom a{ color:var(--steel-300); }
+.footer-bottom a:hover{ color:var(--gold-400); }
 
-        .footer-logo h1 {
-            font-family: 'Montserrat', sans-serif;
-            color: #ffffff;
-            font-size: 16px;
-            margin-bottom: 2px;
-        }
+/* ============================================================
+   WHATSAPP FLOAT
+   ============================================================ */
+.wa-float{
+  position:fixed;
+  bottom:26px; right:26px;
+  width:56px; height:56px;
+  border-radius:50%;
+  background:linear-gradient(135deg, #25D366, #128C7E);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-shadow:0 8px 24px rgba(37,211,102,.4);
+  z-index:900;
+  transition:all var(--transition);
+  animation:waPulse 2.6s infinite;
+}
+.wa-float:hover{ transform:scale(1.09); box-shadow:0 12px 32px rgba(37,211,102,.5); }
+.wa-float svg{ width:28px; height:28px; fill:var(--white); }
+@keyframes waPulse{
+  0%,100%{ box-shadow:0 8px 24px rgba(37,211,102,.4), 0 0 0 0 rgba(37,211,102,.45); }
+  60%{ box-shadow:0 8px 24px rgba(37,211,102,.4), 0 0 0 14px rgba(37,211,102,0); }
+}
 
-        .footer-logo p {
-            font-size: 9px;
-            letter-spacing: 1px;
-            margin-bottom: 15px;
-        }
+/* ============================================================
+   REVEAL ON SCROLL
+   ============================================================ */
+.reveal{
+  opacity:0;
+  transform:translateY(26px);
+  transition:opacity .7s cubic-bezier(.4,0,.2,1), transform .7s cubic-bezier(.4,0,.2,1);
+}
+.reveal.visible{ opacity:1; transform:translateY(0); }
 
-        .footer-col h4 {
-            color: #d4af37;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 13px;
-            margin-bottom: 15px;
-        }
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width:1024px){
+  .footer-grid{ grid-template-columns:1fr 1fr; gap:32px; }
+  .contact-grid{ grid-template-columns:1fr; }
+  .about-grid{ grid-template-columns:1fr; gap:36px; }
+}
 
-        .footer-col ul {
-            list-style: none;
-        }
+@media (max-width:860px){
+  .nav-menu{
+    position:fixed;
+    top:0; right:-100%;
+    width:min(320px, 86vw);
+    height:100vh;
+    background:var(--white);
+    flex-direction:column;
+    align-items:stretch;
+    padding:84px 22px 32px;
+    gap:6px;
+    box-shadow:-12px 0 40px rgba(10,22,40,.18);
+    transition:right .38s cubic-bezier(.4,0,.2,1);
+    z-index:1001;
+  }
+  .nav-menu.open{ right:0; }
+  .nav-link{ padding:14px 18px; font-size:15px; border-radius:10px; }
+  .nav-link.active::after{ display:none; }
+  .nav-link.active{ background:var(--paper); }
+  .nav-cta{ text-align:center; margin-top:12px; }
+  .hamburger{ display:flex; z-index:1002; }
 
-        .footer-col ul li {
-            margin-bottom: 8px;
-        }
+  .hero{ min-height:520px; }
+  .hero-inner{ padding:80px 0 100px; }
+  .stats-grid{ grid-template-columns:repeat(2, 1fr); }
+  .stat{ border-bottom:1px solid var(--line); }
+  .stat:nth-child(2){ border-right:none; }
+  .stat:nth-child(3), .stat:nth-child(4){ border-bottom:none; }
 
-        .footer-col ul li a {
-            color: #a0b4c7;
-            text-decoration: none;
-            transition: color 0.2s;
-        }
+  .split{ grid-template-columns:1fr; }
+  .split-media{ min-height:260px; }
+  .split-body{ padding:40px 32px; }
 
-        .footer-col ul li a:hover {
-            color: #ffffff;
-        }
+  .cta-banner{ flex-direction:column; text-align:center; padding:48px 32px; }
+  .cta-text{ max-width:100%; }
 
-        .footer-col p {
-            line-height: 1.6;
-            margin-bottom: 8px;
-        }
+  .form-grid{ grid-template-columns:1fr; }
+  .value-list{ grid-template-columns:1fr; }
+}
 
-        .footer-col .btn-small {
-            margin-top: 8px;
-            font-size: 11px;
-            padding: 6px 15px;
-        }
+@media (max-width:600px){
+  .container{ padding:0 18px; }
+  .section{ padding:64px 0; }
+  .topbar{ font-size:12px; }
+  .topbar-left{ gap:14px; }
+  .topbar-item.hide-mobile{ display:none; }
+  .topbar-right{ display:none; }
 
-        /* =========================================
-           MEDIA QUERIES (MOBILE FRIENDLY)
-           ========================================= */
+  .brand-logo{ width:44px; height:44px; }
+  .brand-text h1{ font-size:16px; }
+  .brand-text span{ font-size:8.5px; letter-spacing:.12em; }
 
-        /* Tablet / Layar Sedang (Max 900px) */
-        @media (max-width: 900px) {
-            .logo-icon { 
-                width: 55px;  /* Ukuran tablet */
-                height: 55px; 
-            }
-            .features-section { 
-                flex-direction: column; 
-                padding: 30px 20px; 
-                gap: 30px; 
-            }
-            .cap-grid { 
-                grid-template-columns: repeat(3, 1fr); 
-            }
-            .mat-grid { 
-                gap: 15px; 
-            }
-            .precision-section { 
-                flex-direction: column; 
-                padding: 30px 20px; 
-            }
-            .precision-content::before { 
-                display: none; /* Hilangkan segitiga di layar kecil */
-            }
-            .precision-content { 
-                padding: 25px; 
-            }
-            footer { 
-                grid-template-columns: 1fr 1fr; 
-                padding: 30px 20px; 
-            }
-        }
+  .hero{ min-height:480px; }
+  .hero-inner{ padding:64px 0 90px; }
+  .hero p.lead{ font-size:15px; }
+  .hero-actions{ flex-direction:column; align-items:stretch; }
+  .hero-actions .btn{ width:100%; }
 
-        /* HP / Layar Kecil (Max 600px) */
-        @media (max-width: 600px) {
-            body { 
-                padding: 0; /* Hilangkan padding luar agar full screen */
-            }
-            .website-container { 
-                border-radius: 0; /* Hilangkan sudut melengkung di HP */
-            }
-            header { 
-                padding: 15px; 
-            }
-            .logo-icon { 
-                width: 45px;  /* Ukuran HP */
-                height: 45px; 
-            }
-            .logo-text h1 { 
-                font-size: 16px; 
-            }
-            .logo-text p { 
-                font-size: 8px; 
-            }
-            
-            /* Hero di HP */
-            .hero { 
-                height: 320px; 
-            }
-            .hero h2 { 
-                font-size: 24px; 
-                letter-spacing: 0px;
-            }
-            .hero p { 
-                font-size: 12px; 
-                padding: 0 10px;
-            }
-            .btn-primary {
-                padding: 10px 20px;
-                font-size: 14px;
-            }
+  .stats-grid{ grid-template-columns:1fr; }
+  .stat{ border-right:none; border-bottom:1px solid var(--line); }
+  .stat:last-child{ border-bottom:none; }
 
-            /* Kapabilitas di HP - Dibuat 2 Kolom agar Ringkas */
-            .cap-grid { 
-                grid-template-columns: repeat(2, 1fr); 
-                gap: 15px;
-            }
-            .cap-icon {
-                width: 45px;
-                height: 45px;
-                font-size: 20px;
-            }
-            .cap-img {
-                width: 30px;
-                height: 30px;
-            }
-            .cap-item h4 {
-                font-size: 11px;
-            }
-            .cap-item p {
-                font-size: 9px;
-            }
+  .section-head{ margin-bottom:40px; }
+  .card{ padding:26px 22px; }
+  .split-body{ padding:34px 24px; }
+  .form-panel{ padding:30px 22px; }
+  .contact-card{ padding:32px 24px; }
 
-            /* Material di HP */
-            .mat-item {
-                width: 50px;
-            }
-            .mat-swatch {
-                width: 45px;
-                height: 45px;
-            }
-            .mat-img {
-                width: 45px;
-                height: 45px;
-            }
-            .mat-item h4 {
-                font-size: 9px;
-            }
+  .footer-grid{ grid-template-columns:1fr; gap:32px; }
+  .footer-bottom{ justify-content:center; text-align:center; }
 
-            /* Precision di HP */
-            .precision-image { 
-                height: 180px; 
-            }
-            .precision-content h3 { 
-                font-size: 18px; 
-            }
-            .precision-content p {
-                font-size: 12px;
-            }
+  .cta-banner{ padding:40px 24px; }
+  .wa-float{ width:50px; height:50px; bottom:20px; right:20px; }
+  .wa-float svg{ width:24px; height:24px; }
 
-            /* Footer di HP - 1 Kolom */
-            footer { 
-                grid-template-columns: 1fr; 
-                text-align: center;
-                padding: 30px 15px;
-            }
-            .footer-logo .logo-icon {
-                width: 50px;
-                height: 50px;
-                margin: 0 auto 10px auto;
-            }
-            .footer-col h4 {
-                margin-top: 10px;
-                margin-bottom: 10px;
-            }
-        }
-    </style>
+  .gallery-grid{ grid-template-columns:1fr 1fr; gap:10px; }
+}
+</style>
 </head>
 <body>
 
-    <div class="website-container">
-        
-        <!-- Header (Hanya Logo, Tanpa Menu Navigasi) -->
-        <header>
-            <div class="logo-area">
-                <!-- Gambar logo dari GitHub -->
-                <img src="https://raw.githubusercontent.com/miftah9go-ux/Bulilin/refs/heads/main/Img.jpg" alt="Logo Dinasty Sulung" class="logo-icon">
-                <div class="logo-text">
-                    <h1>Dinasty Sulung</h1>
-                    <p>TEKNIK - PRECISION ENGINEERING</p>
-                </div>
-            </div>
-        </header>
+<!-- ============================================================
+     TOP BAR
+     ============================================================ -->
+<div class="topbar">
+  <div class="container">
+    <div class="topbar-left">
+      <div class="topbar-item">
+        <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.5.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.5.1.3 0 .7-.2 1l-2.2 2.3z"/></svg>
+        <span>0882 1461 2468</span>
+      </div>
+      <div class="topbar-item hide-mobile">
+        <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+        <span>dinastysulungtechnikbengkel@gmail.com</span>
+      </div>
+      <div class="topbar-item hide-mobile">
+        <svg viewBox="0 0 24 24"><path d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5c-1.4 0-2.5-1.1-2.5-2.5S10.6 6.5 12 6.5s2.5 1.1 2.5 2.5S13.4 11.5 12 11.5z"/></svg>
+        <span>Pongangan, Manyar, Gresik</span>
+      </div>
+    </div>
+    <div class="topbar-right">
+      <span class="badge">● Buka Senin–Sabtu</span>
+    </div>
+  </div>
+</div>
 
-        <!-- Hero Section -->
-        <section class="hero">
-            <div class="hero-overlay">
-                <h2>Menguasai<br>Pembubutan Presisi</h2>
-                <p>Dinasty Sulung Teknik - Keunggulan Bengkel Bubut untuk Komponen Kritis Anda.</p>
-                <a href="#" class="btn-primary">Minta Penawaran</a>
-            </div>
-        </section>
+<!-- ============================================================
+     HEADER / NAVIGATION
+     ============================================================ -->
+<header class="site-header" id="siteHeader">
+  <div class="container">
+    <nav class="nav-wrap">
+      <a href="#" class="brand" data-nav="home">
+        <img src="https://raw.githubusercontent.com/miftah9go-ux/Bulilin/refs/heads/main/Img.jpg" alt="Logo Dinasty Sulung Teknik" class="brand-logo">
+        <div class="brand-text">
+          <h1>Dinasty Sulung</h1>
+          <span>Teknik · Precision Engineering</span>
+        </div>
+      </a>
 
-        <!-- Features Section (Capabilities & Materials) -->
-        <section class="features-section">
-            <!-- Capabilities -->
-            <div class="capabilities">
-                <h3>Kemampuan Bubut Kami</h3>
-                <div class="cap-grid">
-                    <!-- Internal Threading Menggunakan Gambar -->
-                    <div class="cap-item">
-                        <div class="cap-icon">
-                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-Mwm77YTva1mM8wU5bBpovDy5ODL_kf2M9fFHLlZvlQ&s=10" alt="Ulir Dalam" class="cap-img">
-                        </div>
-                        <h4>Ulir Dalam</h4>
-                        <p>Komponen bubut dan pembuatan ulir dalam.</p>
-                    </div>
-                    
-                    <!-- Taper Turning Menggunakan Gambar -->
-                    <div class="cap-item">
-                        <div class="cap-icon">
-                            <img src="https://d2qmpkxixrzf8g.cloudfront.net/Extres/Img/wp-content/uploads/2025/09/Step-Turning-1.jpg" alt="Pembubutan Tirus" class="cap-img">
-                        </div>
-                        <h4>Pembubutan Tirus</h4>
-                        <p>Pembubutan tirus atau pembentukan sudut.</p>
-                    </div>
-                    
-                    <div class="cap-item">
-                        <div class="cap-icon">🔩</div>
-                        <h4>Facing</h4>
-                        <p>Pengerjaan permukaan datar pada komponen.</p>
-                    </div>
-                    <div class="cap-item">
-                        <div class="cap-icon">📏</div>
-                        <h4>Pembubutan Tirus</h4>
-                        <p>Pembubutan tirus dan pembentukan konis.</p>
-                    </div>
-                    <div class="cap-item">
-                        <div class="cap-icon">🔄</div>
-                        <h4>Pembubutan</h4>
-                        <p>Pembentukan efektif untuk komponen internal.</p>
-                    </div>
-                    <div class="cap-item">
-                        <div class="cap-icon">✂️</div>
-                        <h4>Chamfering</h4>
-                        <p>Pembuatan sudut untuk komponen kritis.</p>
-                    </div>
-                </div>
-            </div>
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="#" class="nav-link active" data-nav="home">Beranda</a></li>
+        <li><a href="#" class="nav-link" data-nav="about">Tentang</a></li>
+        <li><a href="#" class="nav-link" data-nav="services">Layanan</a></li>
+        <li><a href="#" class="nav-link" data-nav="materials">Material</a></li>
+        <li><a href="#" class="nav-link" data-nav="gallery">Galeri</a></li>
+        <li><a href="#" class="nav-link nav-cta" data-nav="contact">Hubungi Kami</a></li>
+      </ul>
 
-            <!-- Materials -->
-            <div class="materials">
-                <h3>Keahlian Material</h3>
-                <div class="mat-grid">
-                    <!-- Steel Menggunakan Gambar -->
-                    <div class="mat-item">
-                        <img src="https://www.idealtata.co.id/wp-content/uploads/2025/08/4.-Keunggulan-Stainless-Steel-Dibanding-Besi.webp" alt="Baja" class="mat-img">
-                        <h4>Baja</h4>
-                    </div>
-                    
-                    <!-- Stainless Steel Menggunakan Gambar -->
-                    <div class="mat-item">
-                        <img src="https://cdn-ilcjahl.nitrocdn.com/rISTsRVCliZocmivdTDTSVrxrSNwkubX/assets/images/optimized/rev-e891a89/eagletube.com/wp-content/uploads/2015/07/Depositphotos_18849747_s-20151-300x300.jpg" alt="Stainless Steel" class="mat-img">
-                        <h4>Stainless<br>Steel</h4>
-                    </div>
-                    
-                    <!-- Aluminum Menggunakan Gambar -->
-                    <div class="mat-item">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdr_VJH75z9q8zFKAuXx87JG1KKIJmeswxb2OKvegNfntveR9Dza7CrZmW&s=10" alt="Aluminium" class="mat-img">
-                        <h4>Aluminium</h4>
-                    </div>
-                    
-                    <!-- Brass Menggunakan Gambar -->
-                    <div class="mat-item">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYINLxTyQP8-ZyV2b052N8p_vCx535u0WDw2S402iCylYhtq4JYl9cRvao&s=10" alt="Kuningan" class="mat-img">
-                        <h4>Kuningan</h4>
-                    </div>
-                    
-                    <!-- Bronze Menggunakan Gambar -->
-                    <div class="mat-item">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3SvLNATOhDQ3YiKrDOoIWZxeqFHKtmguBDQEKH9aVObjD6Khg6qyKk8Q&s=10" alt="Perunggu" class="mat-img">
-                        <h4>Perunggu</h4>
-                    </div>
-                </div>
-            </div>
-        </section>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </div>
+</header>
 
-        <!-- Precision Section -->
-        <section class="precision-section">
-            <div class="precision-image"></div>
-            <div class="precision-content">
-                <h3>Toleransi hingga<br>Presisi Sub-mikron</h3>
-                <p>Produk bubut yang dihasilkan mampu memenuhi standar kritis dengan toleransi hingga presisi sub-mikron, sesuai dengan ekspektasi dan kebutuhan komponen vital Anda.</p>
-                <a href="#" class="btn-small">Pelajari Lebih Lanjut</a>
-            </div>
-        </section>
+<!-- ============================================================
+     PAGE: BERANDA
+     ============================================================ -->
+<main id="page-home" class="page active">
 
-        <!-- Footer -->
-        <footer>
-            <div class="footer-logo">
-                <!-- Gambar logo di footer dari GitHub -->
-                <img src="https://raw.githubusercontent.com/miftah9go-ux/Bulilin/refs/heads/main/Img.jpg" alt="Logo Dinasty Sulung" class="logo-icon">
-                <h1>Dinasty Sulung</h1>
-                <p>TEKNIK - PRECISION ENGINEERING</p>
-            </div>
-            <div class="footer-col">
-                <h4>Info Kontak</h4>
-                <p><strong>Alamat</strong><br>Jalan raya KH.syafi'i no 2,<br>Pongangan - Manyar, Gresik</p>
-                <p><strong>Telepon</strong><br>088214612468<br>085396666209</p>
-                <p><strong>Email</strong><br>dinastysulungtechnikbengkel@gmail.com</p>
-            </div>
-            <div class="footer-col">
-                <h4>Tautan Cepat</h4>
-                <ul>
-                    <li><a href="#">Pekerjaan Bubut</a></li>
-                    <li><a href="#">Milling</a></li>
-                    <li><a href="#">Peralatan</a></li>
-                    <li><a href="#">Proyek</a></li>
-                    <li><a href="#">Kontak</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Teknologi Terbaru</h4>
-                <p>Teknologi Terbaru - pembaruan sistem, kualitas terjamin, dan komponen presisi tinggi untuk kebutuhan industri Anda.</p>
-                <a href="#" class="btn-small">Pelajari Lebih Lanjut</a>
-            </div>
-        </footer>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-grid"></div>
+    <div class="container">
+      <div class="hero-inner">
+        <div class="hero-eyebrow">Bengkel Bubut Presisi · Gresik</div>
+        <h2>Menguasai <span class="accent">Pembubutan Presisi</span> untuk Komponen Kritis</h2>
+        <p class="lead">
+          Dinasty Sulung Teknik menghadirkan keunggulan machining dengan toleransi hingga presisi sub-mikron.
+          Dipercaya industri untuk komponen vital, produksi terbatas, hingga part custom dengan hasil konsisten.
+        </p>
+        <div class="hero-actions">
+          <a href="#" class="btn btn-primary" data-nav="contact">
+            Minta Penawaran
+            <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a href="#" class="btn btn-ghost" data-nav="services">Lihat Layanan</a>
+        </div>
+      </div>
+    </div>
+  </section>
 
+  <!-- STATS -->
+  <div class="container hero-stats">
+    <div class="stats-grid">
+      <div class="stat reveal">
+        <div class="stat-num">15<span class="unit">+</span></div>
+        <div class="stat-label">Tahun Pengalaman</div>
+      </div>
+      <div class="stat reveal">
+        <div class="stat-num">500<span class="unit">+</span></div>
+        <div class="stat-label">Proyek Selesai</div>
+      </div>
+      <div class="stat reveal">
+        <div class="stat-num">0.001<span class="unit">mm</span></div>
+        <div class="stat-label">Toleransi Presisi</div>
+      </div>
+      <div class="stat reveal">
+        <div class="stat-num">98<span class="unit">%</span></div>
+        <div class="stat-label">Kepuasan Klien</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CAPABILITIES -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Kemampuan Kami</span>
+        <h2>Layanan Pembubutan Lengkap</h2>
+        <p>Dari pengerjaan dasar hingga proses kompleks, kami menangani berbagai kebutuhan machining presisi tinggi untuk industri Anda.</p>
+      </div>
+
+      <div class="cards-grid">
+        <div class="card reveal">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm0 3a7 7 0 110 14 7 7 0 010-14zm0 3a4 4 0 100 8 4 4 0 000-8z"/></svg>
+          </div>
+          <h3>Ulir Dalam &amp; Luar</h3>
+          <p>Pembuatan ulir presisi dengan standar metrik, inchi, hingga custom thread sesuai spesifikasi teknis komponen Anda.</p>
+        </div>
+
+        <div class="card reveal">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8v6h-2v-2.6l-6 6-4-4-4 4z"/></svg>
+          </div>
+          <h3>Pembubutan Tirus</h3>
+          <p>Pembubutan tirus dan pembentukan sudut dengan akurasi tinggi untuk komponen konis, nozzle, dan bagian mesin khusus.</p>
+        </div>
+
+        <div class="card reveal">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24"><path d="M4 4h16v2H4V4zm0 5h16v2H4V9zm0 5h16v2H4v-2zm0 5h10v2H4v-2z"/></svg>
+          </div>
+          <h3>Facing &amp; Permukaan Datar</h3>
+          <p>Pengerjaan permukaan datar pada ujung komponen untuk hasil rata sempurna, siap untuk proses lanjutan.</p>
+        </div>
+
+        <div class="card reveal">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2l3 6 6 .9-4.5 4.3 1 6.3-5.5-3-5.5 3 1-6.3L3 8.9 9 8z"/></svg>
+          </div>
+          <h3>Chamfering</h3>
+          <p>Pembuatan sudut untuk menghilangkan tajaman, memperkuat tepi, dan mempersiapkan komponen untuk assembly.</p>
+        </div>
+
+        <div class="card reveal">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm0 2a8 8 0 110 16 8 8 0 010-16zm0 3a5 5 0 100 10 5 5 0 000-10z"/></svg>
+          </div>
+          <h3>Pembubutan Internal</h3>
+          <p>Pengerjaan diameter dalam, boring, dan pembentukan profil internal untuk komponen silinder dan housing.</p>
+        </div>
+
+        <div class="card reveal">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 000-1.4l-1.6-1.6a1 1 0 00-1.4 0l-1.6 1.6a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l1.6-1.6zM3 17.2V21h3.8l11-11.1-3.8-3.8L3 17.2zM20.7 7a1 1 0 000-1.4l-2.3-2.3a1 1 0 00-1.4 0l-1.9 1.9 3.8 3.8L20.7 7z"/></svg>
+          </div>
+          <h3>Custom Machining</h3>
+          <p>Pengerjaan part custom sesuai gambar teknik atau sample, dari satu unit hingga produksi terbatas.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRECISION SPLIT -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="split reveal">
+        <div class="split-media" style="background-image:url('https://images.unsplash.com/photo-1581092160562-40aa08e78837?q=80&w=1200&auto=format&fit=crop')"></div>
+        <div class="split-body">
+          <span class="eyebrow">Standar Kualitas</span>
+          <h3>Toleransi hingga <span class="accent">Presisi Sub-mikron</span></h3>
+          <p>Produk bubut yang dihasilkan mampu memenuhi standar kritis dengan toleransi hingga presisi sub-mikron, sesuai dengan ekspektasi dan kebutuhan komponen vital Anda.</p>
+          <ul class="split-list">
+            <li>Kontrol kualitas berlapis di setiap tahap produksi</li>
+            <li>Pengukuran presisi dengan alat ukur terkalibrasi</li>
+            <li>Finishing surface sesuai standar industri</li>
+            <li>Dokumentasi hasil untuk kebutuhan traceability</li>
+          </ul>
+          <a href="#" class="btn btn-gold" data-nav="about">
+            Pelajari Lebih Lanjut
+            <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section">
+    <div class="container">
+      <div class="cta-banner reveal">
+        <div class="cta-text">
+          <h3>Punya komponen yang butuh presisi tinggi?</h3>
+          <p>Kirimkan gambar teknik atau sample Anda. Tim kami siap memberikan estimasi biaya dan waktu pengerjaan.</p>
+        </div>
+        <a href="#" class="btn btn-primary" data-nav="contact">
+          Konsultasi Sekarang
+          <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============================================================
+     PAGE: TENTANG
+     ============================================================ -->
+<main id="page-about" class="page">
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Tentang Kami</span>
+        <h2>Mitra Presisi untuk Industri Anda</h2>
+        <p>Dinasty Sulung Teknik adalah bengkel bubut yang berfokus pada pengerjaan komponen presisi untuk kebutuhan industri, manufaktur, dan maintenance.</p>
+      </div>
+
+      <div class="about-grid">
+        <div class="about-media reveal">
+          <div class="about-badge">
+            <strong>15+</strong>
+            <span>Tahun Pengalaman</span>
+          </div>
+        </div>
+        <div class="about-text reveal">
+          <h2>Dedikasi pada Kualitas &amp; Ketepatan</h2>
+          <p>Berbasis di Pongangan, Manyar, Gresik, kami melayani berbagai kebutuhan machining mulai dari komponen mesin, spare part industri, hingga part custom sesuai gambar teknik.</p>
+          <p>Setiap pengerjaan dilakukan dengan pendekatan teliti: mulai dari analisis gambar, pemilihan material, proses machining, hingga quality control. Kami percaya bahwa presisi bukan sekadar angka, tetapi komitmen.</p>
+
+          <div class="value-list">
+            <div class="value-item">
+              <h4>Presisi Tinggi</h4>
+              <p>Toleransi hingga sub-mikron untuk komponen kritis.</p>
+            </div>
+            <div class="value-item">
+              <h4>Tepat Waktu</h4>
+              <p>Produksi terencana dengan estimasi waktu yang jelas.</p>
+            </div>
+            <div class="value-item">
+              <h4>Material Lengkap</h4>
+              <p>Baja, stainless, aluminium, kuningan, hingga perunggu.</p>
+            </div>
+            <div class="value-item">
+              <h4>Pelayanan Responsif</h4>
+              <p>Konsultasi cepat dan komunikasi yang mudah.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROSES KERJA -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Alur Kerja</span>
+        <h2>Proses Pengerjaan yang Jelas</h2>
+        <p>Kami menjaga setiap tahap tetap transparan agar hasil akhir sesuai ekspektasi Anda.</p>
+      </div>
+
+      <div class="process-grid">
+        <div class="process-item reveal">
+          <div class="process-num">01</div>
+          <h4>Konsultasi &amp; Gambar</h4>
+          <p>Klien mengirimkan gambar teknik, sample, atau spesifikasi komponen yang dibutuhkan.</p>
+        </div>
+        <div class="process-item reveal">
+          <div class="process-num">02</div>
+          <h4>Estimasi &amp; Penawaran</h4>
+          <p>Kami menghitung kebutuhan material, waktu, dan biaya, lalu memberikan penawaran resmi.</p>
+        </div>
+        <div class="process-item reveal">
+          <div class="process-num">03</div>
+          <h4>Produksi Presisi</h4>
+          <p>Pengerjaan dilakukan oleh operator berpengalaman dengan kontrol kualitas berlapis.</p>
+        </div>
+        <div class="process-item reveal">
+          <div class="process-num">04</div>
+          <h4>QC &amp; Pengiriman</h4>
+          <p>Pengukuran akhir, finishing, pengemasan aman, lalu pengiriman ke lokasi Anda.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="cta-banner reveal">
+        <div class="cta-text">
+          <h3>Siap menjadi mitra presisi Anda</h3>
+          <p>Diskusikan kebutuhan komponen Anda bersama tim kami hari ini.</p>
+        </div>
+        <a href="#" class="btn btn-primary" data-nav="contact">
+          Hubungi Kami
+          <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============================================================
+     PAGE: LAYANAN
+     ============================================================ -->
+<main id="page-services" class="page">
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Layanan</span>
+        <h2>Solusi Machining untuk Berbagai Kebutuhan</h2>
+        <p>Kami menangani pengerjaan bubut untuk komponen industri, maintenance, hingga produksi terbatas.</p>
+      </div>
+
+      <div class="cards-grid">
+        <div class="card reveal">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm0 3a7 7 0 110 14 7 7 0 010-14zm0 3a4 4 0 100 8 4 4 0 000-8z"/></svg>
+          </div>
+          <h3>Pembubutan Silindris</h3>
+          <p>Pengerjaan diameter luar dan dalam dengan akurasi tinggi untuk poros, bushing, sleeve, dan komponen putar.</p>
+        </div>
+
+        <div class="card reveal">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8v6h-2v-2.6l-6 6-4-4-4 4z"/></svg>
+          </div>
+          <h3>Pembubutan Tirus</h3>
+          <p>Pembuatan profil konis dengan sudut presisi untuk nozzle, taper pin, dan komponen mesin khusus.</p>
+        </div>
+
+        <div class="card reveal">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24"><path d="M4 4h16v2H4V4zm0 5h16v2H4V9zm0 5h16v2H4v-2zm0 5h10v2H4v-2z"/></svg>
+          </div>
+          <h3>Facing</h3>
+          <p>Pengerjaan permukaan datar pada ujung benda kerja untuk mendapatkan kerataan dan dimensi yang tepat.</p>
+        </div>
+
+        <div class="card reveal">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2l3 6 6 .9-4.5 4.3 1 6.3-5.5-3-5.5 3 1-6.3L3 8.9 9 8z"/></svg>
+          </div>
+          <h3>Chamfering</h3>
+          <p>Pembuatan sudut tepi untuk keamanan, estetika, dan kesiapan assembly komponen.</p>
+        </div>
+
+        <div class="card reveal">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm0 2a8 8 0 110 16 8 8 0 010-16zm0 3a5 5 0 100 10 5 5 0 000-10z"/></svg>
+          </div>
+          <h3>Boring &amp; Internal</h3>
+          <p>Pengerjaan diameter dalam, pembesaran lubang, dan pembentukan profil internal dengan presisi.</p>
+        </div>
+
+        <div class="card reveal">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 000-1.4l-1.6-1.6a1 1 0 00-1.4 0l-1.6 1.6a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l1.6-1.6zM3 17.2V21h3.8l11-11.1-3.8-3.8L3 17.2zM20.7 7a1 1 0 000-1.4l-2.3-2.3a1 1 0 00-1.4 0l-1.9 1.9 3.8 3.8L20.7 7z"/></svg>
+          </div>
+          <h3>Part Custom</h3>
+          <p>Pengerjaan sesuai gambar teknik atau sample, dari 1 unit hingga produksi terbatas.</p>
+        </div>
+
+        <div class="card reveal">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24"><path d="M21 7H3V5h18v2zm0 4H3v2h18v-2zm0 6H3v2h18v-2zM8 2h8v2H8V2z"/></svg>
+          </div>
+          <h3>Ulir Metrik &amp; Inchi</h3>
+          <p>Pembuatan ulir dalam dan luar standar metrik, inchi, hingga ulir khusus sesuai kebutuhan.</p>
+        </div>
+
+        <div class="card reveal">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm0 2a8 8 0 110 16 8 8 0 010-16zm0 3a5 5 0 100 10 5 5 0 000-10z"/></svg>
+          </div>
+          <h3>Reparasi Komponen</h3>
+          <p>Perbaikan komponen mesin yang aus, retak, atau perlu re-machining agar dapat digunakan kembali.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Keunggulan</span>
+        <h2>Mengapa Memilih Kami</h2>
+      </div>
+      <div class="process-grid">
+        <div class="process-item reveal">
+          <div class="process-num">✓</div>
+          <h4>Operator Berpengalaman</h4>
+          <p>Ditangani langsung oleh tenaga ahli yang memahami karakter material dan geometri komponen.</p>
+        </div>
+        <div class="process-item reveal">
+          <div class="process-num">✓</div>
+          <h4>Perlengkapan Memadai</h4>
+          <p>Didukung mesin bubut dan alat ukur presisi untuk berbagai dimensi pengerjaan.</p>
+        </div>
+        <div class="process-item reveal">
+          <div class="process-num">✓</div>
+          <h4>Harga Kompetitif</h4>
+          <p>Penawaran transparan sesuai tingkat kesulitan dan volume pengerjaan.</p>
+        </div>
+        <div class="process-item reveal">
+          <div class="process-num">✓</div>
+          <h4>Garansi Pengerjaan</h4>
+          <p>Kami memastikan hasil sesuai spesifikasi yang disepakati di awal.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="cta-banner reveal">
+        <div class="cta-text">
+          <h3>Butuh layanan machining tertentu?</h3>
+          <p>Sampaikan kebutuhan Anda, kami bantu carikan solusi terbaiknya.</p>
+        </div>
+        <a href="#" class="btn btn-primary" data-nav="contact">
+          Minta Penawaran
+          <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============================================================
+     PAGE: MATERIAL
+     ============================================================ -->
+<main id="page-materials" class="page">
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Material</span>
+        <h2>Keahlian Material yang Kami Tangani</h2>
+        <p>Kami berpengalaman dalam pembubutan berbagai jenis logam, dari material umum hingga material dengan karakter khusus.</p>
+      </div>
+
+      <div class="mat-grid">
+        <div class="mat-card reveal">
+          <div class="mat-visual" style="background-image:url('https://www.idealtata.co.id/wp-content/uploads/2025/08/4.-Keunggulan-Stainless-Steel-Dibanding-Besi.webp')"></div>
+          <div class="mat-body">
+            <h4>Baja</h4>
+            <span>Carbon &amp; Alloy Steel</span>
+          </div>
+        </div>
+
+        <div class="mat-card reveal">
+          <div class="mat-visual" style="background-image:url('https://cdn-ilcjahl.nitrocdn.com/rISTsRVCliZocmivdTDTSVrxrSNwkubX/assets/images/optimized/rev-e891a89/eagletube.com/wp-content/uploads/2015/07/Depositphotos_18849747_s-20151-300x300.jpg')"></div>
+          <div class="mat-body">
+            <h4>Stainless Steel</h4>
+            <span>Tahan Korosi</span>
+          </div>
+        </div>
+
+        <div class="mat-card reveal">
+          <div class="mat-visual" style="background-image:url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdr_VJH75z9q8zFKAuXx87JG1KKIJmeswxb2OKvegNfntveR9Dza7CrZmW&s=10')"></div>
+          <div class="mat-body">
+            <h4>Aluminium</h4>
+            <span>Ringan &amp; Presisi</span>
+          </div>
+        </div>
+
+        <div class="mat-card reveal">
+          <div class="mat-visual" style="background-image:url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYINLxTyQP8-ZyV2b052N8p_vCx535u0WDw2S402iCylYhtq4JYl9cRvao&s=10')"></div>
+          <div class="mat-body">
+            <h4>Kuningan</h4>
+            <span>Brass</span>
+          </div>
+        </div>
+
+        <div class="mat-card reveal">
+          <div class="mat-visual" style="background-image:url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3SvLNATOhDQ3YiKrDOoIWZxeqFHKtmguBDQEKH9aVObjD6Khg6qyKk8Q&s=10')"></div>
+          <div class="mat-body">
+            <h4>Perunggu</h4>
+            <span>Bronze</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Pertimbangan Material</span>
+        <h2>Pemilihan Material yang Tepat</h2>
+        <p>Setiap aplikasi membutuhkan karakter material berbeda. Kami membantu memilih material yang sesuai dengan fungsi, beban, dan lingkungan kerja komponen.</p>
+      </div>
+
+      <div class="cards-grid">
+        <div class="card reveal">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5c-1.4 0-2.5-1.1-2.5-2.5S10.6 6.5 12 6.5s2.5 1.1 2.5 2.5S13.4 11.5 12 11.5z"/></svg>
+          </div>
+          <h3>Ketahanan Korosi</h3>
+          <p>Stainless steel menjadi pilihan untuk komponen yang terpapar kelembapan, bahan kimia, atau lingkungan outdoor.</p>
+        </div>
+        <div class="card reveal">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24"><path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z"/></svg>
+          </div>
+          <h3>Kekuatan &amp; Beban</h3>
+          <p>Baja karbon dan alloy dipilih untuk komponen dengan beban tinggi dan kebutuhan kekuatan struktural.</p>
+        </div>
+        <div class="card reveal">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 100 18 9 9 0 000-18zm0 2a7 7 0 110 14 7 7 0 010-14z"/></svg>
+          </div>
+          <h3>Berat Ringan</h3>
+          <p>Aluminium cocok untuk aplikasi yang membutuhkan bobot ringan tanpa mengorbankan kekuatan.</p>
+        </div>
+        <div class="card reveal">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2l3 6 6 .9-4.5 4.3 1 6.3-5.5-3-5.5 3 1-6.3L3 8.9 9 8z"/></svg>
+          </div>
+          <h3>Konduktivitas &amp; Gesekan</h3>
+          <p>Kuningan dan perunggu ideal untuk komponen yang membutuhkan sifat anti-gesek dan konduktif.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="cta-banner reveal">
+        <div class="cta-text">
+          <h3>Tidak yakin material mana yang tepat?</h3>
+          <p>Konsultasikan kebutuhan komponen Anda, kami bantu rekomendasikan material yang sesuai.</p>
+        </div>
+        <a href="#" class="btn btn-primary" data-nav="contact">
+          Konsultasi Material
+          <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============================================================
+     PAGE: GALERI
+     ============================================================ -->
+<main id="page-gallery" class="page">
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Galeri</span>
+        <h2>Hasil Pengerjaan &amp; Aktivitas Bengkel</h2>
+        <p>Sebagian dokumentasi pengerjaan komponen dan suasana kerja di bengkel kami.</p>
+      </div>
+
+      <div class="gallery-grid">
+        <div class="gallery-item reveal" style="background-image:url('https://images.unsplash.com/photo-1565043666747-69f6646db940?q=80&w=800&auto=format&fit=crop')">
+          <div class="gallery-caption">Pembubutan Poros</div>
+        </div>
+        <div class="gallery-item reveal" style="background-image:url('https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?q=80&w=800&auto=format&fit=crop')">
+          <div class="gallery-caption">Pengerjaan Komponen</div>
+        </div>
+        <div class="gallery-item reveal" style="background-image:url('https://images.unsplash.com/photo-1581092160562-40aa08e78837?q=80&w=800&auto=format&fit=crop')">
+          <div class="gallery-caption">Kontrol Presisi</div>
+        </div>
+        <div class="gallery-item reveal" style="background-image:url('https://images.unsplash.com/photo-1567789884554-0b844b597180?q=80&w=800&auto=format&fit=crop')">
+          <div class="gallery-caption">Proses Machining</div>
+        </div>
+        <div class="gallery-item reveal" style="background-image:url('https://images.unsplash.com/photo-1531297484001-80022131f5a1?q=80&w=800&auto=format&fit=crop')">
+          <div class="gallery-caption">Detail Komponen</div>
+        </div>
+        <div class="gallery-item reveal" style="background-image:url('https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=800&auto=format&fit=crop')">
+          <div class="gallery-caption">Part Custom</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Lokasi</span>
+        <h2>Kunjungi Bengkel Kami</h2>
+        <p>Kami berada di Pongangan, Manyar, Gresik. Silakan datang untuk konsultasi langsung atau melihat proses pengerjaan.</p>
+      </div>
+
+      <div class="map-embed reveal">
+        <iframe
+          src="https://www.google.com/maps?q=Pongangan,%20Manyar,%20Gresik&output=embed"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Lokasi Dinasty Sulung Teknik">
+        </iframe>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============================================================
+     PAGE: KONTAK
+     ============================================================ -->
+<main id="page-contact" class="page">
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Kontak</span>
+        <h2>Hubungi Dinasty Sulung Teknik</h2>
+        <p>Kirimkan kebutuhan Anda melalui form, telepon, atau WhatsApp. Kami akan merespons secepatnya.</p>
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-card reveal">
+          <h3>Informasi Kontak</h3>
+
+          <div class="contact-item">
+            <div class="contact-icon">
+              <svg viewBox="0 0 24 24"><path d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5c-1.4 0-2.5-1.1-2.5-2.5S10.6 6.5 12 6.5s2.5 1.1 2.5 2.5S13.4 11.5 12 11.5z"/></svg>
+            </div>
+            <div>
+              <h4>Alamat Bengkel</h4>
+              <p>Jalan Raya KH. Syafi'i No. 2,<br>Pongangan, Manyar, Gresik</p>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon">
+              <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.5.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.5.1.3 0 .7-.2 1l-2.2 2.3z"/></svg>
+            </div>
+            <div>
+              <h4>Telepon / WhatsApp</h4>
+              <p>
+                <a href="tel:088214612468">0882 1461 2468</a><br>
+                <a href="tel:085396666209">0853 9666 6209</a>
+              </p>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon">
+              <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+            </div>
+            <div>
+              <h4>Email</h4>
+              <p><a href="mailto:dinastysulungtechnikbengkel@gmail.com">dinastysulungtechnikbengkel@gmail.com</a></p>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon">
+              <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm0 2a8 8 0 110 16 8 8 0 010-16zm0 3a5 5 0 100 10 5 5 0 000-10z"/></svg>
+            </div>
+            <div>
+              <h4>Jam Operasional</h4>
+              <p>Senin – Sabtu: 08.00 – 17.00<br>Minggu / Hari Besar: Tutup</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-panel reveal">
+          <h3>Kirim Permintaan Penawaran</h3>
+          <p>Isi data di bawah ini, tim kami akan menghubungi Anda.</p>
+
+          <form id="contactForm" class="form-grid" onsubmit="handleSubmit(event)">
+            <div class="form-field">
+              <label>Nama <span class="req">*</span></label>
+              <input type="text" name="nama" required placeholder="Nama lengkap / perusahaan">
+            </div>
+            <div class="form-field">
+              <label>Telepon / WhatsApp <span class="req">*</span></label>
+              <input type="tel" name="telepon" required placeholder="08xx xxxx xxxx">
+            </div>
+            <div class="form-field full">
+              <label>Email</label>
+              <input type="email" name="email" placeholder="nama@email.com">
+            </div>
+            <div class="form-field full">
+              <label>Jenis Layanan</label>
+              <select name="layanan">
+                <option value="">— Pilih layanan —</option>
+                <option>Pembubutan Silindris</option>
+                <option>Pembubutan Tirus</option>
+                <option>Facing</option>
+                <option>Chamfering</option>
+                <option>Boring / Internal</option>
+                <option>Part Custom</option>
+                <option>Reparasi Komponen</option>
+                <option>Lainnya</option>
+              </select>
+            </div>
+            <div class="form-field full">
+              <label>Detail Kebutuhan <span class="req">*</span></label>
+              <textarea name="pesan" required placeholder="Jelaskan komponen, material, dimensi, jumlah, dan target waktu..."></textarea>
+            </div>
+            <div class="form-field full">
+              <button type="submit" class="btn btn-primary" style="width:100%;">
+                Kirim Permintaan
+                <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <div class="map-embed reveal">
+        <iframe
+          src="https://www.google.com/maps?q=Pongangan,%20Manyar,%20Gresik&output=embed"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Lokasi Dinasty Sulung Teknik">
+        </iframe>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="https://raw.githubusercontent.com/miftah9go-ux/Bulilin/refs/heads/main/Img.jpg" alt="Logo Dinasty Sulung Teknik" class="brand-logo">
+        <h1>Dinasty Sulung</h1>
+        <span>Teknik · Precision Engineering</span>
+        <p>Bengkel bubut presisi untuk komponen industri, maintenance, dan produksi terbatas. Berlokasi di Pongangan, Manyar, Gresik.</p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Navigasi</h4>
+        <ul>
+          <li><a href="#" data-nav="home">Beranda</a></li>
+          <li><a href="#" data-nav="about">Tentang</a></li>
+          <li><a href="#" data-nav="services">Layanan</a></li>
+          <li><a href="#" data-nav="materials">Material</a></li>
+          <li><a href="#" data-nav="gallery">Galeri</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Layanan</h4>
+        <ul>
+          <li><a href="#" data-nav="services">Pembubutan Silindris</a></li>
+          <li><a href="#" data-nav="services">Pembubutan Tirus</a></li>
+          <li><a href="#" data-nav="services">Facing</a></li>
+          <li><a href="#" data-nav="services">Part Custom</a></li>
+          <li><a href="#" data-nav="services">Reparasi Komponen</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Kontak</h4>
+        <p><strong>Alamat</strong><br>Jalan Raya KH. Syafi'i No. 2,<br>Pongangan, Manyar, Gresik</p>
+        <p><strong>Telepon</strong><br>
+          <a href="tel:088214612468">0882 1461 2468</a><br>
+          <a href="tel:085396666209">0853 9666 6209</a>
+        </p>
+        <p><strong>Email</strong><br>
+          <a href="mailto:dinastysulungtechnikbengkel@gmail.com">dinastysulungtechnikbengkel@gmail.com</a>
+        </p>
+      </div>
     </div>
 
+    <div class="footer-bottom">
+      <span>© <span id="year"></span> Dinasty Sulung Teknik. All rights reserved.</span>
+      <span>Precision Engineering · Gresik</span>
+    </div>
+  </div>
+</footer>
+
+<!-- WHATSAPP FLOAT -->
+<a href="https://wa.me/6288214612468" class="wa-float" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.1-1.7-.8-1.9-.9-.3-.1-.5-.1-.7.1-.2.3-.8.9-.9 1.1-.2.2-.3.2-.6.1-1.6-.8-2.6-1.4-3.7-3.2-.3-.5.3-.4.8-1.4.1-.2 0-.4 0-.5 0-.1-.7-1.7-.9-2.3-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5 1.8.8 2.5.9 3.4.7.5-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3zM12 2a10 10 0 00-8.6 15.1L2 22l5-1.3A10 10 0 1012 2z"/></svg>
+</a>
+
+<script>
+/* ============================================================
+   MULTI-PAGE NAVIGATION
+   ============================================================ */
+const pages = ['home','about','services','materials','gallery','contact'];
+
+function showPage(name){
+  if(!pages.includes(name)) name = 'home';
+
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  const target = document.getElementById('page-' + name);
+  if(target) target.classList.add('active');
+
+  document.querySelectorAll('.nav-link').forEach(link => {
+    link.classList.toggle('active', link.dataset.nav === name);
+  });
+
+  window.scrollTo({ top:0, behavior:'smooth' });
+  history.replaceState(null, '', '#' + name);
+
+  // re-trigger reveal animations for the new page
+  setTimeout(initReveal, 60);
+}
+
+document.addEventListener('click', e => {
+  const navEl = e.target.closest('[data-nav]');
+  if(navEl){
+    e.preventDefault();
+    const name = navEl.dataset.nav;
+    showPage(name);
+    closeMenu();
+  }
+});
+
+/* ============================================================
+   HAMBURGER MENU
+   ============================================================ */
+const hamburger = document.getElementById('hamburger');
+const navMenu = document.getElementById('navMenu');
+
+function closeMenu(){
+  navMenu.classList.remove('open');
+  hamburger.classList.remove('open');
+}
+
+hamburger.addEventListener('click', () => {
+  navMenu.classList.toggle('open');
+  hamburger.classList.toggle('open');
+});
+
+document.addEventListener('click', e => {
+  if(!navMenu.contains(e.target) && !hamburger.contains(e.target)){
+    closeMenu();
+  }
+});
+
+/* ============================================================
+   HEADER SHADOW ON SCROLL
+   ============================================================ */
+const header = document.getElementById('siteHeader');
+window.addEventListener('scroll', () => {
+  header.classList.toggle('scrolled', window.scrollY > 10);
+});
+
+/* ============================================================
+   REVEAL ON SCROLL
+   ============================================================ */
+let revealObserver;
+function initReveal(){
+  const items = document.querySelectorAll('.page.active .reveal');
+  if(revealObserver) revealObserver.disconnect();
+
+  revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add('visible');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold:0.12, rootMargin:'0px 0px -40px 0px' });
+
+  items.forEach((item, i) => {
+    item.style.transitionDelay = (i % 6) * 0.06 + 's';
+    revealObserver.observe(item);
+  });
+}
+
+/* ============================================================
+   CONTACT FORM
+   ============================================================ */
+function handleSubmit(e){
+  e.preventDefault();
+  const form = e.target;
+  const data = new FormData(form);
+
+  const nama    = data.get('nama')?.trim() || '-';
+  const telepon = data.get('telepon')?.trim() || '-';
+  const email   = data.get('email')?.trim() || '-';
+  const layanan = data.get('layanan')?.trim() || '-';
+  const pesan   = data.get('pesan')?.trim() || '-';
+
+  const text =
+    `Halo Dinasty Sulung Teknik,%0A%0A` +
+    `Nama: ${encodeURIComponent(nama)}%0A` +
+    `Telepon: ${encodeURIComponent(telepon)}%0A` +
+    `Email: ${encodeURIComponent(email)}%0A` +
+    `Layanan: ${encodeURIComponent(layanan)}%0A%0A` +
+    `Detail:%0A${encodeURIComponent(pesan)}`;
+
+  window.open(`https://wa.me/6288214612468?text=${text}`, '_blank');
+  form.reset();
+
+  const btn = form.querySelector('button[type="submit"]');
+  const original = btn.innerHTML;
+  btn.innerHTML = '✓ Terkirim — Membuka WhatsApp...';
+  btn.style.background = 'var(--green-500)';
+  setTimeout(() => {
+    btn.innerHTML = original;
+    btn.style.background = '';
+  }, 2600);
+}
+
+/* ============================================================
+   INIT
+   ============================================================ */
+document.getElementById('year').textContent = new Date().getFullYear();
+
+window.addEventListener('DOMContentLoaded', () => {
+  const hash = location.hash.replace('#','');
+  if(pages.includes(hash)) showPage(hash);
+  initReveal();
+});
+</script>
 </body>
 </html>
