@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dinasty Sulung Teknik — Precision Engineering & Service Pompa</title>
-<meta name="description" content="Bengkel bubut presisi, service pompa industri, dan instalasi elektrikal. Toleransi sub-mikron, material lengkap, pengerjaan profesional di Gresik.">
+<title>Dinasty Sulung Teknik — Bubut Presisi · Service Pompa · Elektrikal</title>
+<meta name="description" content="Bengkel bubut presisi, service pompa industri, dan instalasi elektrikal di Gresik. Toleransi sub-mikron, material lengkap, teknisi berpengalaman.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
@@ -152,19 +152,20 @@ header.site-header.scrolled{ box-shadow:var(--shadow-md); }
 
 .nav-menu{
   display:flex;
-  gap:4px;
+  gap:2px;
   align-items:center;
   list-style:none;
 }
 .nav-link{
-  padding:9px 15px;
-  font-size:14px;
+  padding:9px 12px;
+  font-size:13.5px;
   font-weight:500;
   color:var(--ink-700);
   border-radius:var(--radius-sm);
   transition:all var(--transition);
   position:relative;
   display:block;
+  white-space:nowrap;
 }
 .nav-link:hover{ color:var(--navy-800); background:var(--steel-100); }
 .nav-link.active{ color:var(--navy-900); font-weight:600; }
@@ -181,9 +182,10 @@ header.site-header.scrolled{ box-shadow:var(--shadow-md); }
 .nav-cta{
   background:var(--green-600);
   color:var(--white) !important;
-  padding:10px 20px !important;
+  padding:10px 18px !important;
   font-weight:600 !important;
   box-shadow:0 3px 10px rgba(47,125,79,.28);
+  margin-left:6px;
 }
 .nav-cta:hover{
   background:var(--green-500) !important;
@@ -220,7 +222,91 @@ header.site-header.scrolled{ box-shadow:var(--shadow-md); }
 }
 
 /* ============================================================
-   HERO
+   PAGE HERO (untuk halaman dalam selain Home)
+   ============================================================ */
+.page-hero{
+  position:relative;
+  padding:76px 0 68px;
+  background:linear-gradient(120deg, var(--navy-900) 0%, var(--navy-700) 65%, var(--navy-600) 100%);
+  overflow:hidden;
+  text-align:center;
+}
+.page-hero::before{
+  content:'';
+  position:absolute;
+  right:-120px; top:-120px;
+  width:420px; height:420px;
+  border-radius:50%;
+  background:radial-gradient(circle, rgba(212,175,55,.16), transparent 70%);
+}
+.page-hero::after{
+  content:'';
+  position:absolute;
+  left:-100px; bottom:-140px;
+  width:340px; height:340px;
+  border-radius:50%;
+  background:radial-gradient(circle, rgba(61,154,98,.14), transparent 70%);
+}
+.page-hero-inner{
+  position:relative;
+  z-index:2;
+  max-width:820px;
+  margin:0 auto;
+  padding:0 24px;
+}
+.page-hero .breadcrumb{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  font-size:12.5px;
+  color:var(--steel-300);
+  margin-bottom:20px;
+  letter-spacing:.04em;
+}
+.page-hero .breadcrumb a{ color:var(--gold-400); transition:color var(--transition); }
+.page-hero .breadcrumb a:hover{ color:var(--white); }
+.page-hero .breadcrumb .sep{ color:var(--steel-500); }
+
+.page-hero .ph-eyebrow{
+  display:inline-flex;
+  align-items:center;
+  gap:9px;
+  background:rgba(212,175,55,.1);
+  border:1px solid rgba(212,175,55,.28);
+  color:var(--gold-400);
+  font-size:11.5px;
+  font-weight:700;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  padding:6px 15px;
+  border-radius:24px;
+  margin-bottom:20px;
+}
+.page-hero .ph-eyebrow svg{ width:14px; height:14px; fill:var(--gold-400); }
+
+.page-hero h1{
+  color:var(--white);
+  font-size:clamp(1.9rem, 4.2vw, 3rem);
+  font-weight:700;
+  margin-bottom:16px;
+  letter-spacing:-.03em;
+}
+.page-hero h1 .accent{
+  background:linear-gradient(135deg, var(--gold-400), var(--gold-600));
+  -webkit-background-clip:text;
+  background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+.page-hero p{
+  color:var(--steel-300);
+  font-size:16.5px;
+  line-height:1.7;
+  max-width:680px;
+  margin:0 auto;
+}
+
+/* ============================================================
+   HERO (home)
    ============================================================ */
 .hero{
   position:relative;
@@ -310,7 +396,6 @@ header.site-header.scrolled{ box-shadow:var(--shadow-md); }
 }
 .hero-actions{ display:flex; gap:14px; flex-wrap:wrap; }
 
-/* Hero service chips */
 .hero-chips{
   display:flex;
   flex-wrap:wrap;
@@ -330,6 +415,7 @@ header.site-header.scrolled{ box-shadow:var(--shadow-md); }
   font-weight:500;
   backdrop-filter:blur(6px);
   transition:all var(--transition);
+  cursor:pointer;
 }
 .hero-chip:hover{
   background:rgba(212,175,55,.12);
@@ -595,6 +681,7 @@ header.site-header.scrolled{ box-shadow:var(--shadow-md); }
   align-items:center;
   gap:7px;
   transition:gap var(--transition), color var(--transition);
+  cursor:pointer;
 }
 .pillar:hover .pillar-cta{ gap:11px; color:var(--green-500); }
 
@@ -1187,6 +1274,7 @@ footer.site-footer::before{
   display:inline-flex;
   align-items:center;
   gap:8px;
+  cursor:pointer;
 }
 .footer-col ul li a::before{
   content:'';
@@ -1254,6 +1342,10 @@ footer.site-footer::before{
 /* ============================================================
    RESPONSIVE
    ============================================================ */
+@media (max-width:1100px){
+  .nav-link{ padding:8px 10px; font-size:13px; }
+}
+
 @media (max-width:1024px){
   .footer-grid{ grid-template-columns:1fr 1fr; gap:32px; }
   .contact-grid{ grid-template-columns:1fr; }
@@ -1261,26 +1353,27 @@ footer.site-footer::before{
   .pillars{ grid-template-columns:1fr; }
 }
 
-@media (max-width:860px){
+@media (max-width:900px){
   .nav-menu{
     position:fixed;
     top:0; right:-100%;
-    width:min(320px, 86vw);
+    width:min(340px, 88vw);
     height:100vh;
     background:var(--white);
     flex-direction:column;
     align-items:stretch;
     padding:84px 22px 32px;
-    gap:6px;
+    gap:4px;
     box-shadow:-12px 0 40px rgba(10,22,40,.18);
     transition:right .38s cubic-bezier(.4,0,.2,1);
     z-index:1001;
+    overflow-y:auto;
   }
   .nav-menu.open{ right:0; }
   .nav-link{ padding:14px 18px; font-size:15px; border-radius:10px; }
   .nav-link.active::after{ display:none; }
   .nav-link.active{ background:var(--paper); }
-  .nav-cta{ text-align:center; margin-top:12px; }
+  .nav-cta{ text-align:center; margin-top:14px; margin-left:0; }
   .hamburger{ display:flex; z-index:1002; }
 
   .hero{ min-height:560px; }
@@ -1304,6 +1397,7 @@ footer.site-footer::before{
 @media (max-width:600px){
   .container{ padding:0 18px; }
   .section{ padding:64px 0; }
+  .page-hero{ padding:56px 0 48px; }
   .topbar{ font-size:12px; }
   .topbar-left{ gap:14px; }
   .topbar-item.hide-mobile{ display:none; }
@@ -1386,10 +1480,12 @@ footer.site-footer::before{
       <ul class="nav-menu" id="navMenu">
         <li><a href="#" class="nav-link active" data-nav="home">Beranda</a></li>
         <li><a href="#" class="nav-link" data-nav="about">Tentang</a></li>
-        <li><a href="#" class="nav-link" data-nav="services">Layanan</a></li>
-        <li><a href="#" class="nav-link" data-nav="materials">Material</a></li>
-        <li><a href="#" class="nav-link" data-nav="gallery">Galeri</a></li>
-        <li><a href="#" class="nav-link nav-cta" data-nav="contact">Hubungi Kami</a></li>
+        <li><a href="#" class="nav-link" data-nav="bubut">Bubut</a></li>
+        <li><a href="#" class="nav-link" data-nav="pompa">Service Pompa</a></li>
+        <li><a href="#" class="nav-link" data-nav="elektrikal">Elektrikal</a></li>
+        <li><a href="#" class="nav-link" data-nav="material">Material</a></li>
+        <li><a href="#" class="nav-link" data-nav="galeri">Galeri</a></li>
+        <li><a href="#" class="nav-link nav-cta" data-nav="kontak">Hubungi Kami</a></li>
       </ul>
 
       <button class="hamburger" id="hamburger" aria-label="Menu">
@@ -1418,26 +1514,26 @@ footer.site-footer::before{
           Satu mitra untuk semua kebutuhan teknis Anda.
         </p>
         <div class="hero-actions">
-          <a href="#" class="btn btn-primary" data-nav="contact">
+          <a href="#" class="btn btn-primary" data-nav="kontak">
             Minta Penawaran
             <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
-          <a href="#" class="btn btn-ghost" data-nav="services">Lihat Layanan</a>
+          <a href="#" class="btn btn-ghost" data-nav="bubut">Lihat Layanan</a>
         </div>
 
         <div class="hero-chips">
-          <span class="hero-chip">
+          <a href="#" class="hero-chip" data-nav="bubut">
             <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm0 3a7 7 0 110 14 7 7 0 010-14z"/></svg>
             Bubut Presisi
-          </span>
-          <span class="hero-chip">
-            <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm0 3a7 7 0 110 14 7 7 0 010-14z"/></svg>
+          </a>
+          <a href="#" class="hero-chip" data-nav="pompa">
+            <svg viewBox="0 0 24 24"><path d="M12 2C9.5 2 7.4 4 7.4 6.6c0 1.8 1 3.3 2.4 4.1l-1.7 3.6c-.3.6.1 1.3.8 1.3h6.2c.7 0 1.1-.7.8-1.3l-1.7-3.6c1.5-.8 2.4-2.3 2.4-4.1C16.6 4 14.5 2 12 2z"/></svg>
             Service Pompa
-          </span>
-          <span class="hero-chip">
+          </a>
+          <a href="#" class="hero-chip" data-nav="elektrikal">
             <svg viewBox="0 0 24 24"><path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z"/></svg>
             Elektrikal
-          </span>
+          </a>
         </div>
       </div>
     </div>
@@ -1488,7 +1584,7 @@ footer.site-footer::before{
             <li>Facing, chamfering, boring</li>
             <li>Part custom sesuai gambar teknik</li>
           </ul>
-          <a href="#" class="pillar-cta" data-nav="services">
+          <a href="#" class="pillar-cta" data-nav="bubut">
             Selengkapnya
             <svg viewBox="0 0 24 24" style="width:14px;height:14px;fill:currentColor;"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
@@ -1507,7 +1603,7 @@ footer.site-footer::before{
             <li>Perbaikan impeller &amp; housing</li>
             <li>Instalasi pompa baru</li>
           </ul>
-          <a href="#" class="pillar-cta" data-nav="services">
+          <a href="#" class="pillar-cta" data-nav="pompa">
             Selengkapnya
             <svg viewBox="0 0 24 24" style="width:14px;height:14px;fill:currentColor;"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
@@ -1526,7 +1622,7 @@ footer.site-footer::before{
             <li>Pemasangan &amp; service motor listrik</li>
             <li>Perbaikan rangkaian kontrol</li>
           </ul>
-          <a href="#" class="pillar-cta" data-nav="services">
+          <a href="#" class="pillar-cta" data-nav="elektrikal">
             Selengkapnya
             <svg viewBox="0 0 24 24" style="width:14px;height:14px;fill:currentColor;"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
@@ -1535,69 +1631,8 @@ footer.site-footer::before{
     </div>
   </section>
 
-  <!-- CAPABILITIES BUBUT (highlight) -->
-  <section class="section section-alt">
-    <div class="container">
-      <div class="section-head">
-        <span class="eyebrow">Kemampuan Bubut</span>
-        <h2>Layanan Pembubutan Lengkap</h2>
-        <p>Dari pengerjaan dasar hingga proses kompleks, kami menangani berbagai kebutuhan machining presisi tinggi untuk industri Anda.</p>
-      </div>
-
-      <div class="cards-grid">
-        <div class="card reveal">
-          <div class="card-icon">
-            <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm0 3a7 7 0 110 14 7 7 0 010-14zm0 3a4 4 0 100 8 4 4 0 000-8z"/></svg>
-          </div>
-          <h3>Ulir Dalam &amp; Luar</h3>
-          <p>Pembuatan ulir presisi dengan standar metrik, inchi, hingga custom thread sesuai spesifikasi teknis komponen Anda.</p>
-        </div>
-
-        <div class="card reveal">
-          <div class="card-icon">
-            <svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8v6h-2v-2.6l-6 6-4-4-4 4z"/></svg>
-          </div>
-          <h3>Pembubutan Tirus</h3>
-          <p>Pembubutan tirus dan pembentukan sudut dengan akurasi tinggi untuk komponen konis, nozzle, dan bagian mesin khusus.</p>
-        </div>
-
-        <div class="card reveal">
-          <div class="card-icon">
-            <svg viewBox="0 0 24 24"><path d="M4 4h16v2H4V4zm0 5h16v2H4V9zm0 5h16v2H4v-2zm0 5h10v2H4v-2z"/></svg>
-          </div>
-          <h3>Facing &amp; Permukaan Datar</h3>
-          <p>Pengerjaan permukaan datar pada ujung komponen untuk hasil rata sempurna, siap untuk proses lanjutan.</p>
-        </div>
-
-        <div class="card reveal">
-          <div class="card-icon">
-            <svg viewBox="0 0 24 24"><path d="M12 2l3 6 6 .9-4.5 4.3 1 6.3-5.5-3-5.5 3 1-6.3L3 8.9 9 8z"/></svg>
-          </div>
-          <h3>Chamfering</h3>
-          <p>Pembuatan sudut untuk menghilangkan tajaman, memperkuat tepi, dan mempersiapkan komponen untuk assembly.</p>
-        </div>
-
-        <div class="card reveal">
-          <div class="card-icon">
-            <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm0 2a8 8 0 110 16 8 8 0 010-16zm0 3a5 5 0 100 10 5 5 0 000-10z"/></svg>
-          </div>
-          <h3>Pembubutan Internal</h3>
-          <p>Pengerjaan diameter dalam, boring, dan pembentukan profil internal untuk komponen silinder dan housing.</p>
-        </div>
-
-        <div class="card reveal">
-          <div class="card-icon">
-            <svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 000-1.4l-1.6-1.6a1 1 0 00-1.4 0l-1.6 1.6a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l1.6-1.6zM3 17.2V21h3.8l11-11.1-3.8-3.8L3 17.2zM20.7 7a1 1 0 000-1.4l-2.3-2.3a1 1 0 00-1.4 0l-1.9 1.9 3.8 3.8L20.7 7z"/></svg>
-          </div>
-          <h3>Custom Machining</h3>
-          <p>Pengerjaan part custom sesuai gambar teknik atau sample, dari satu unit hingga produksi terbatas.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- PRECISION SPLIT -->
-  <section class="section">
+  <section class="section section-alt">
     <div class="container">
       <div class="split reveal">
         <div class="split-media" style="background-image:url('https://images.unsplash.com/photo-1581092160562-40aa08e78837?q=80&w=1200&auto=format&fit=crop')"></div>
@@ -1621,14 +1656,14 @@ footer.site-footer::before{
   </section>
 
   <!-- CTA -->
-  <section class="section section-alt">
+  <section class="section">
     <div class="container">
       <div class="cta-banner reveal">
         <div class="cta-text">
           <h3>Butuh bubut, service pompa, atau elektrikal?</h3>
           <p>Kirimkan kebutuhan Anda — gambar teknik, jenis pompa, atau instalasi listrik. Tim kami siap membantu.</p>
         </div>
-        <a href="#" class="btn btn-primary" data-nav="contact">
+        <a href="#" class="btn btn-primary" data-nav="kontak">
           Konsultasi Sekarang
           <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
@@ -1643,14 +1678,20 @@ footer.site-footer::before{
      ============================================================ -->
 <main id="page-about" class="page">
 
+  <section class="page-hero">
+    <div class="page-hero-inner">
+      <div class="breadcrumb">
+        <a href="#" data-nav="home">Beranda</a>
+        <span class="sep">›</span>
+        <span>Tentang</span>
+      </div>
+      <h1>Mitra Teknik <span class="accent">Terpadu</span></h1>
+      <p>Dinasty Sulung Teknik adalah bengkel serbaguna yang berfokus pada tiga bidang: pembubutan presisi, service pompa, dan elektrikal.</p>
+    </div>
+  </section>
+
   <section class="section">
     <div class="container">
-      <div class="section-head">
-        <span class="eyebrow">Tentang Kami</span>
-        <h2>Mitra Teknik Terpadu untuk Industri Anda</h2>
-        <p>Dinasty Sulung Teknik adalah bengkel serbaguna yang berfokus pada tiga bidang: pembubutan presisi, service pompa, dan elektrikal. Kami melayani industri, manufaktur, maintenance, dan kebutuhan rumah tangga teknis.</p>
-      </div>
-
       <div class="about-grid">
         <div class="about-media reveal">
           <div class="about-badge">
@@ -1686,7 +1727,6 @@ footer.site-footer::before{
     </div>
   </section>
 
-  <!-- PROSES KERJA -->
   <section class="section section-alt">
     <div class="container">
       <div class="section-head">
@@ -1727,7 +1767,7 @@ footer.site-footer::before{
           <h3>Siap menjadi mitra teknik Anda</h3>
           <p>Diskusikan kebutuhan Anda bersama tim kami hari ini.</p>
         </div>
-        <a href="#" class="btn btn-primary" data-nav="contact">
+        <a href="#" class="btn btn-primary" data-nav="kontak">
           Hubungi Kami
           <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
@@ -1738,80 +1778,72 @@ footer.site-footer::before{
 </main>
 
 <!-- ============================================================
-     PAGE: LAYANAN
+     PAGE: BUBUT
      ============================================================ -->
-<main id="page-services" class="page">
+<main id="page-bubut" class="page">
 
-  <!-- BUBUT -->
+  <section class="page-hero">
+    <div class="page-hero-inner">
+      <div class="breadcrumb">
+        <a href="#" data-nav="home">Beranda</a>
+        <span class="sep">›</span>
+        <span>Bubut Presisi</span>
+      </div>
+      <div class="ph-eyebrow">
+        <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm0 3a7 7 0 110 14 7 7 0 010-14z"/></svg>
+        Machining Presisi
+      </div>
+      <h1>Bubut <span class="accent">Presisi Sub-mikron</span></h1>
+      <p>Pengerjaan komponen mesin dengan akurasi tinggi untuk industri, maintenance, dan produksi terbatas. Material lengkap, hasil konsisten.</p>
+    </div>
+  </section>
+
   <section class="section">
     <div class="container">
       <div class="section-head">
-        <span class="eyebrow">Bubut Presisi</span>
+        <span class="eyebrow">Layanan Bubut</span>
         <h2>Solusi Machining untuk Berbagai Kebutuhan</h2>
         <p>Kami menangani pengerjaan bubut untuk komponen industri, maintenance, hingga produksi terbatas.</p>
       </div>
 
       <div class="cards-grid">
         <div class="card reveal">
-          <div class="card-icon">
-            <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm0 3a7 7 0 110 14 7 7 0 010-14zm0 3a4 4 0 100 8 4 4 0 000-8z"/></svg>
-          </div>
+          <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm0 3a7 7 0 110 14 7 7 0 010-14zm0 3a4 4 0 100 8 4 4 0 000-8z"/></svg></div>
           <h3>Pembubutan Silindris</h3>
           <p>Pengerjaan diameter luar dan dalam dengan akurasi tinggi untuk poros, bushing, sleeve, dan komponen putar.</p>
         </div>
-
         <div class="card reveal">
-          <div class="card-icon">
-            <svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8v6h-2v-2.6l-6 6-4-4-4 4z"/></svg>
-          </div>
+          <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8v6h-2v-2.6l-6 6-4-4-4 4z"/></svg></div>
           <h3>Pembubutan Tirus</h3>
           <p>Pembuatan profil konis dengan sudut presisi untuk nozzle, taper pin, dan komponen mesin khusus.</p>
         </div>
-
         <div class="card reveal">
-          <div class="card-icon">
-            <svg viewBox="0 0 24 24"><path d="M4 4h16v2H4V4zm0 5h16v2H4V9zm0 5h16v2H4v-2zm0 5h10v2H4v-2z"/></svg>
-          </div>
+          <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16v2H4V4zm0 5h16v2H4V9zm0 5h16v2H4v-2zm0 5h10v2H4v-2z"/></svg></div>
           <h3>Facing</h3>
           <p>Pengerjaan permukaan datar pada ujung benda kerja untuk mendapatkan kerataan dan dimensi yang tepat.</p>
         </div>
-
         <div class="card reveal">
-          <div class="card-icon">
-            <svg viewBox="0 0 24 24"><path d="M12 2l3 6 6 .9-4.5 4.3 1 6.3-5.5-3-5.5 3 1-6.3L3 8.9 9 8z"/></svg>
-          </div>
+          <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M12 2l3 6 6 .9-4.5 4.3 1 6.3-5.5-3-5.5 3 1-6.3L3 8.9 9 8z"/></svg></div>
           <h3>Chamfering</h3>
           <p>Pembuatan sudut tepi untuk keamanan, estetika, dan kesiapan assembly komponen.</p>
         </div>
-
         <div class="card reveal">
-          <div class="card-icon">
-            <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm0 2a8 8 0 110 16 8 8 0 010-16zm0 3a5 5 0 100 10 5 5 0 000-10z"/></svg>
-          </div>
+          <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm0 2a8 8 0 110 16 8 8 0 010-16zm0 3a5 5 0 100 10 5 5 0 000-10z"/></svg></div>
           <h3>Boring &amp; Internal</h3>
           <p>Pengerjaan diameter dalam, pembesaran lubang, dan pembentukan profil internal dengan presisi.</p>
         </div>
-
         <div class="card reveal">
-          <div class="card-icon">
-            <svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 000-1.4l-1.6-1.6a1 1 0 00-1.4 0l-1.6 1.6a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l1.6-1.6zM3 17.2V21h3.8l11-11.1-3.8-3.8L3 17.2zM20.7 7a1 1 0 000-1.4l-2.3-2.3a1 1 0 00-1.4 0l-1.9 1.9 3.8 3.8L20.7 7z"/></svg>
-          </div>
+          <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 000-1.4l-1.6-1.6a1 1 0 00-1.4 0l-1.6 1.6a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l1.6-1.6zM3 17.2V21h3.8l11-11.1-3.8-3.8L3 17.2zM20.7 7a1 1 0 000-1.4l-2.3-2.3a1 1 0 00-1.4 0l-1.9 1.9 3.8 3.8L20.7 7z"/></svg></div>
           <h3>Part Custom</h3>
           <p>Pengerjaan sesuai gambar teknik atau sample, dari 1 unit hingga produksi terbatas.</p>
         </div>
-
         <div class="card reveal">
-          <div class="card-icon">
-            <svg viewBox="0 0 24 24"><path d="M21 7H3V5h18v2zm0 4H3v2h18v-2zm0 6H3v2h18v-2zM8 2h8v2H8V2z"/></svg>
-          </div>
+          <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M21 7H3V5h18v2zm0 4H3v2h18v-2zm0 6H3v2h18v-2zM8 2h8v2H8V2z"/></svg></div>
           <h3>Ulir Metrik &amp; Inchi</h3>
           <p>Pembuatan ulir dalam dan luar standar metrik, inchi, hingga ulir khusus sesuai kebutuhan.</p>
         </div>
-
         <div class="card reveal">
-          <div class="card-icon">
-            <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm0 2a8 8 0 110 16 8 8 0 010-16zm0 3a5 5 0 100 10 5 5 0 000-10z"/></svg>
-          </div>
+          <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm0 2a8 8 0 110 16 8 8 0 010-16zm0 3a5 5 0 100 10 5 5 0 000-10z"/></svg></div>
           <h3>Reparasi Komponen</h3>
           <p>Perbaikan komponen mesin yang aus, retak, atau perlu re-machining agar dapat digunakan kembali.</p>
         </div>
@@ -1819,154 +1851,24 @@ footer.site-footer::before{
     </div>
   </section>
 
-  <!-- SERVICE POMPA -->
   <section class="section section-alt">
     <div class="container">
-      <div class="section-head">
-        <span class="eyebrow">Service Pompa</span>
-        <h2>Perawatan &amp; Perbaikan Pompa Industri</h2>
-        <p>Kami menangani service, overhaul, dan instalasi pompa untuk kebutuhan rumah tangga, komersial, hingga industri.</p>
-      </div>
-
-      <div class="cards-grid">
-        <div class="card reveal">
-          <div class="card-icon">
-            <svg viewBox="0 0 24 24"><path d="M12 2C9.5 2 7.4 4 7.4 6.6c0 1.8 1 3.3 2.4 4.1l-1.7 3.6c-.3.6.1 1.3.8 1.3h6.2c.7 0 1.1-.7.8-1.3l-1.7-3.6c1.5-.8 2.4-2.3 2.4-4.1C16.6 4 14.5 2 12 2zm0 3a1.6 1.6 0 110 3.2A1.6 1.6 0 0112 5zM9 17c-.6 0-1 .4-1 1s.4 1 1 1h6c.6 0 1-.4 1-1s-.4-1-1-1H9zm0 3c-.6 0-1 .4-1 1s.4 1 1 1h6c.6 0 1-.4 1-1s-.4-1-1-1H9z"/></svg>
-          </div>
-          <h3>Service &amp; Perawatan Rutin</h3>
-          <p>Pengecekan berkala, pembersihan, pelumasan, dan penyetelan pompa agar performa tetap optimal dan umur pakai lebih panjang.</p>
-        </div>
-
-        <div class="card reveal">
-          <div class="card-icon">
-            <svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 000-1.4l-1.6-1.6a1 1 0 00-1.4 0l-1.6 1.6a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l1.6-1.6zM3 17.2V21h3.8l11-11.1-3.8-3.8L3 17.2z"/></svg>
-          </div>
-          <h3>Overhaul &amp; Ganti Spare Part</h3>
-          <p>Bongkar total pompa, penggantian seal, bearing, impeller, dan komponen aus lainnya dengan spare part berkualitas.</p>
-        </div>
-
-        <div class="card reveal">
-          <div class="card-icon">
-            <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm0 3a7 7 0 110 14 7 7 0 010-14zm0 3a4 4 0 100 8 4 4 0 000-8z"/></svg>
-          </div>
-          <h3>Perbaikan Impeller &amp; Housing</h3>
-          <p>Perbaikan atau pembuatan ulang impeller dan housing pompa yang rusak, aus, atau retak — didukung kemampuan bubut presisi kami.</p>
-        </div>
-
-        <div class="card reveal">
-          <div class="card-icon">
-            <svg viewBox="0 0 24 24"><path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z"/></svg>
-          </div>
-          <h3>Instalasi Pompa Baru</h3>
-          <p>Pemasangan pompa baru lengkap dengan perpipaan, kelistrikan, dan uji fungsi hingga siap pakai.</p>
-        </div>
-
-        <div class="card reveal">
-          <div class="card-icon">
-            <svg viewBox="0 0 24 24"><path d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5c-1.4 0-2.5-1.1-2.5-2.5S10.6 6.5 12 6.5s2.5 1.1 2.5 2.5S13.4 11.5 12 11.5z"/></svg>
-          </div>
-          <h3>Pompa Air Rumah &amp; Sumur</h3>
-          <p>Service pompa air rumah tangga, pompa sumur, pompa dorong, dan pompa celup untuk kebutuhan sehari-hari.</p>
-        </div>
-
-        <div class="card reveal">
-          <div class="card-icon">
-            <svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8v6h-2v-2.6l-6 6-4-4-4 4z"/></svg>
-          </div>
-          <h3>Pompa Industri &amp; Transfer</h3>
-          <p>Penanganan pompa industri, pompa transfer, pompa chemical, dan pompa sentrifugal untuk kebutuhan pabrik.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ELEKTRIKAL -->
-  <section class="section">
-    <div class="container">
-      <div class="section-head">
-        <span class="eyebrow">Elektrikal</span>
-        <h2>Instalasi &amp; Perbaikan Kelistrikan</h2>
-        <p>Melayani pemasangan, perawatan, dan perbaikan sistem kelistrikan untuk rumah, bengkel, dan industri kecil–menengah.</p>
-      </div>
-
-      <div class="cards-grid">
-        <div class="card reveal">
-          <div class="card-icon">
-            <svg viewBox="0 0 24 24"><path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z"/></svg>
-          </div>
-          <h3>Instalasi Listrik Baru</h3>
-          <p>Pemasangan instalasi listrik baru untuk rumah, bengkel, ruko, atau industri kecil sesuai standar keamanan.</p>
-        </div>
-
-        <div class="card reveal">
-          <div class="card-icon">
-            <svg viewBox="0 0 24 24"><path d="M4 4h16v2H4V4zm0 5h16v2H4V9zm0 5h16v2H4v-2zm0 5h10v2H4v-2z"/></svg>
-          </div>
-          <h3>Perbaikan &amp; Maintenance Panel</h3>
-          <p>Perbaikan panel listrik, pengecekan MCB, penggantian komponen panel, dan perawatan berkala.</p>
-        </div>
-
-        <div class="card reveal">
-          <div class="card-icon">
-            <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm0 2a8 8 0 110 16 8 8 0 010-16zm0 3a5 5 0 100 10 5 5 0 000-10z"/></svg>
-          </div>
-          <h3>Motor Listrik</h3>
-          <p>Pemasangan, perawatan, dan perbaikan motor listrik — termasuk rewinding untuk motor yang terbakar.</p>
-        </div>
-
-        <div class="card reveal">
-          <div class="card-icon">
-            <svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 000-1.4l-1.6-1.6a1 1 0 00-1.4 0l-1.6 1.6a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l1.6-1.6zM3 17.2V21h3.8l11-11.1-3.8-3.8L3 17.2z"/></svg>
-          </div>
-          <h3>Rangkaian Kontrol</h3>
-          <p>Perakitan dan perbaikan rangkaian kontrol untuk mesin, pompa, atau sistem otomatis sederhana.</p>
-        </div>
-
-        <div class="card reveal">
-          <div class="card-icon">
-            <svg viewBox="0 0 24 24"><path d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5c-1.4 0-2.5-1.1-2.5-2.5S10.6 6.5 12 6.5s2.5 1.1 2.5 2.5S13.4 11.5 12 11.5z"/></svg>
-          </div>
-          <h3>Penerangan &amp; Stop Kontak</h3>
-          <p>Pemasangan titik lampu, stop kontak, saklar, dan aksesori kelistrikan lainnya dengan rapi dan aman.</p>
-        </div>
-
-        <div class="card reveal">
-          <div class="card-icon">
-            <svg viewBox="0 0 24 24"><path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z"/></svg>
-          </div>
-          <h3>Perbaikan Korsleting</h3>
-          <p>Deteksi dan perbaikan gangguan korsleting, arus pendek, atau kebocoran arus pada instalasi listrik.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section section-alt">
-    <div class="container">
-      <div class="section-head">
-        <span class="eyebrow">Keunggulan</span>
-        <h2>Mengapa Memilih Kami</h2>
-      </div>
-      <div class="process-grid">
-        <div class="process-item reveal">
-          <div class="process-num">✓</div>
-          <h4>Teknisi Berpengalaman</h4>
-          <p>Ditangani langsung oleh tenaga ahli yang memahami karakter material, pompa, dan sistem kelistrikan.</p>
-        </div>
-        <div class="process-item reveal">
-          <div class="process-num">✓</div>
-          <h4>Layanan Terpadu</h4>
-          <p>Bubut, pompa, dan elektrikal dalam satu atap — hemat waktu dan biaya koordinasi.</p>
-        </div>
-        <div class="process-item reveal">
-          <div class="process-num">✓</div>
-          <h4>Harga Kompetitif</h4>
-          <p>Penawaran transparan sesuai tingkat kesulitan dan volume pengerjaan.</p>
-        </div>
-        <div class="process-item reveal">
-          <div class="process-num">✓</div>
-          <h4>Garansi Pengerjaan</h4>
-          <p>Kami memastikan hasil sesuai spesifikasi yang disepakati di awal.</p>
+      <div class="split reveal">
+        <div class="split-media" style="background-image:url('https://images.unsplash.com/photo-1581092160562-40aa08e78837?q=80&w=1200&auto=format&fit=crop')"></div>
+        <div class="split-body">
+          <span class="eyebrow">Standar Kualitas</span>
+          <h3>Toleransi hingga <span class="accent">Presisi Sub-mikron</span></h3>
+          <p>Produk bubut yang dihasilkan mampu memenuhi standar kritis dengan toleransi hingga presisi sub-mikron.</p>
+          <ul class="split-list">
+            <li>Kontrol kualitas berlapis di setiap tahap produksi</li>
+            <li>Pengukuran presisi dengan alat ukur terkalibrasi</li>
+            <li>Finishing surface sesuai standar industri</li>
+            <li>Dokumentasi hasil untuk kebutuhan traceability</li>
+          </ul>
+          <a href="#" class="btn btn-gold" data-nav="material">
+            Lihat Material
+            <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
         </div>
       </div>
     </div>
@@ -1976,11 +1878,228 @@ footer.site-footer::before{
     <div class="container">
       <div class="cta-banner reveal">
         <div class="cta-text">
-          <h3>Butuh layanan bubut, pompa, atau elektrikal?</h3>
-          <p>Sampaikan kebutuhan Anda, kami bantu carikan solusi terbaiknya.</p>
+          <h3>Butuh jasa bubut presisi?</h3>
+          <p>Kirimkan gambar teknik atau sample Anda. Kami berikan estimasi biaya dan waktu pengerjaan.</p>
         </div>
-        <a href="#" class="btn btn-primary" data-nav="contact">
+        <a href="#" class="btn btn-primary" data-nav="kontak">
           Minta Penawaran
+          <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============================================================
+     PAGE: SERVICE POMPA
+     ============================================================ -->
+<main id="page-pompa" class="page">
+
+  <section class="page-hero">
+    <div class="page-hero-inner">
+      <div class="breadcrumb">
+        <a href="#" data-nav="home">Beranda</a>
+        <span class="sep">›</span>
+        <span>Service Pompa</span>
+      </div>
+      <div class="ph-eyebrow">
+        <svg viewBox="0 0 24 24"><path d="M12 2C9.5 2 7.4 4 7.4 6.6c0 1.8 1 3.3 2.4 4.1l-1.7 3.6c-.3.6.1 1.3.8 1.3h6.2c.7 0 1.1-.7.8-1.3l-1.7-3.6c1.5-.8 2.4-2.3 2.4-4.1C16.6 4 14.5 2 12 2z"/></svg>
+        Perawatan &amp; Perbaikan
+      </div>
+      <h1>Service Pompa <span class="accent">Industri &amp; Rumah Tangga</span></h1>
+      <p>Perawatan rutin, overhaul, perbaikan, hingga instalasi pompa baru. Ditangani teknisi berpengalaman dengan spare part berkualitas.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Layanan Service Pompa</span>
+        <h2>Solusi Lengkap untuk Semua Jenis Pompa</h2>
+        <p>Kami menangani service, overhaul, dan instalasi pompa untuk kebutuhan rumah tangga, komersial, hingga industri.</p>
+      </div>
+
+      <div class="cards-grid">
+        <div class="card reveal">
+          <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M12 2C9.5 2 7.4 4 7.4 6.6c0 1.8 1 3.3 2.4 4.1l-1.7 3.6c-.3.6.1 1.3.8 1.3h6.2c.7 0 1.1-.7.8-1.3l-1.7-3.6c1.5-.8 2.4-2.3 2.4-4.1C16.6 4 14.5 2 12 2zm0 3a1.6 1.6 0 110 3.2A1.6 1.6 0 0112 5zM9 17c-.6 0-1 .4-1 1s.4 1 1 1h6c.6 0 1-.4 1-1s-.4-1-1-1H9zm0 3c-.6 0-1 .4-1 1s.4 1 1 1h6c.6 0 1-.4 1-1s-.4-1-1-1H9z"/></svg></div>
+          <h3>Service &amp; Perawatan Rutin</h3>
+          <p>Pengecekan berkala, pembersihan, pelumasan, dan penyetelan pompa agar performa tetap optimal dan umur pakai lebih panjang.</p>
+        </div>
+        <div class="card reveal">
+          <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 000-1.4l-1.6-1.6a1 1 0 00-1.4 0l-1.6 1.6a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l1.6-1.6zM3 17.2V21h3.8l11-11.1-3.8-3.8L3 17.2z"/></svg></div>
+          <h3>Overhaul &amp; Ganti Spare Part</h3>
+          <p>Bongkar total pompa, penggantian seal, bearing, impeller, dan komponen aus lainnya dengan spare part berkualitas.</p>
+        </div>
+        <div class="card reveal">
+          <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm0 3a7 7 0 110 14 7 7 0 010-14zm0 3a4 4 0 100 8 4 4 0 000-8z"/></svg></div>
+          <h3>Perbaikan Impeller &amp; Housing</h3>
+          <p>Perbaikan atau pembuatan ulang impeller dan housing pompa yang rusak, aus, atau retak — didukung kemampuan bubut presisi kami.</p>
+        </div>
+        <div class="card reveal">
+          <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z"/></svg></div>
+          <h3>Instalasi Pompa Baru</h3>
+          <p>Pemasangan pompa baru lengkap dengan perpipaan, kelistrikan, dan uji fungsi hingga siap pakai.</p>
+        </div>
+        <div class="card reveal">
+          <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5c-1.4 0-2.5-1.1-2.5-2.5S10.6 6.5 12 6.5s2.5 1.1 2.5 2.5S13.4 11.5 12 11.5z"/></svg></div>
+          <h3>Pompa Air Rumah &amp; Sumur</h3>
+          <p>Service pompa air rumah tangga, pompa sumur, pompa dorong, dan pompa celup untuk kebutuhan sehari-hari.</p>
+        </div>
+        <div class="card reveal">
+          <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8v6h-2v-2.6l-6 6-4-4-4 4z"/></svg></div>
+          <h3>Pompa Industri &amp; Transfer</h3>
+          <p>Penanganan pompa industri, pompa transfer, pompa chemical, dan pompa sentrifugal untuk kebutuhan pabrik.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Tanda Pompa Perlu Service</span>
+        <h2>Kenali Gejala Kerusakan Pompa</h2>
+        <p>Semakin cepat ditangani, semakin kecil biaya perbaikannya.</p>
+      </div>
+      <div class="process-grid">
+        <div class="process-item reveal">
+          <div class="process-num">!</div>
+          <h4>Debit Air Menurun</h4>
+          <p>Air yang keluar lebih kecil dari biasanya — tanda impeller kotor, aus, atau ada kebocoran.</p>
+        </div>
+        <div class="process-item reveal">
+          <div class="process-num">!</div>
+          <h4>Suara Berisik</h4>
+          <p>Bunyi kasar atau bergetar berlebihan menandakan bearing mulai aus atau ada misalignment.</p>
+        </div>
+        <div class="process-item reveal">
+          <div class="process-num">!</div>
+          <h4>Bocor di Seal</h4>
+          <p>Adanya tetesan air di sekitar seal atau housing menandakan perlu penggantian seal.</p>
+        </div>
+        <div class="process-item reveal">
+          <div class="process-num">!</div>
+          <h4>Motor Cepat Panas</h4>
+          <p>Pompa cepat panas atau sering trip — bisa jadi masalah kelistrikan atau overload.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="cta-banner reveal">
+        <div class="cta-text">
+          <h3>Pompa Anda bermasalah?</h3>
+          <p>Konsultasikan gratis — sampaikan merk, tipe, dan gejala yang muncul. Kami bantu diagnosa awal.</p>
+        </div>
+        <a href="#" class="btn btn-primary" data-nav="kontak">
+          Konsultasi Pompa
+          <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============================================================
+     PAGE: ELEKTRIKAL
+     ============================================================ -->
+<main id="page-elektrikal" class="page">
+
+  <section class="page-hero">
+    <div class="page-hero-inner">
+      <div class="breadcrumb">
+        <a href="#" data-nav="home">Beranda</a>
+        <span class="sep">›</span>
+        <span>Elektrikal</span>
+      </div>
+      <div class="ph-eyebrow">
+        <svg viewBox="0 0 24 24"><path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z"/></svg>
+        Instalasi &amp; Perbaikan
+      </div>
+      <h1>Elektrikal <span class="accent">Profesional</span></h1>
+      <p>Instalasi, perbaikan, dan perawatan sistem kelistrikan untuk rumah, bengkel, dan industri kecil–menengah.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Layanan Elektrikal</span>
+        <h2>Solusi Kelistrikan yang Aman &amp; Rapi</h2>
+        <p>Melayani pemasangan, perawatan, dan perbaikan sistem kelistrikan dengan standar keamanan yang benar.</p>
+      </div>
+
+      <div class="cards-grid">
+        <div class="card reveal">
+          <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z"/></svg></div>
+          <h3>Instalasi Listrik Baru</h3>
+          <p>Pemasangan instalasi listrik baru untuk rumah, bengkel, ruko, atau industri kecil sesuai standar keamanan.</p>
+        </div>
+        <div class="card reveal">
+          <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16v2H4V4zm0 5h16v2H4V9zm0 5h16v2H4v-2zm0 5h10v2H4v-2z"/></svg></div>
+          <h3>Perbaikan &amp; Maintenance Panel</h3>
+          <p>Perbaikan panel listrik, pengecekan MCB, penggantian komponen panel, dan perawatan berkala.</p>
+        </div>
+        <div class="card reveal">
+          <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm0 2a8 8 0 110 16 8 8 0 010-16zm0 3a5 5 0 100 10 5 5 0 000-10z"/></svg></div>
+          <h3>Motor Listrik</h3>
+          <p>Pemasangan, perawatan, dan perbaikan motor listrik — termasuk rewinding untuk motor yang terbakar.</p>
+        </div>
+        <div class="card reveal">
+          <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 000-1.4l-1.6-1.6a1 1 0 00-1.4 0l-1.6 1.6a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l1.6-1.6zM3 17.2V21h3.8l11-11.1-3.8-3.8L3 17.2z"/></svg></div>
+          <h3>Rangkaian Kontrol</h3>
+          <p>Perakitan dan perbaikan rangkaian kontrol untuk mesin, pompa, atau sistem otomatis sederhana.</p>
+        </div>
+        <div class="card reveal">
+          <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5c-1.4 0-2.5-1.1-2.5-2.5S10.6 6.5 12 6.5s2.5 1.1 2.5 2.5S13.4 11.5 12 11.5z"/></svg></div>
+          <h3>Penerangan &amp; Stop Kontak</h3>
+          <p>Pemasangan titik lampu, stop kontak, saklar, dan aksesori kelistrikan lainnya dengan rapi dan aman.</p>
+        </div>
+        <div class="card reveal">
+          <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z"/></svg></div>
+          <h3>Perbaikan Korsleting</h3>
+          <p>Deteksi dan perbaikan gangguan korsleting, arus pendek, atau kebocoran arus pada instalasi listrik.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <div class="split reveal">
+        <div class="split-media" style="background-image:url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=1200&auto=format&fit=crop')"></div>
+        <div class="split-body">
+          <span class="eyebrow">Kenapa Pilih Kami</span>
+          <h3>Pengerjaan <span class="accent">Aman &amp; Rapi</span></h3>
+          <p>Setiap pekerjaan elektrikal dilakukan dengan memperhatikan standar keamanan dan kerapian instalasi, agar aman jangka panjang dan mudah dirawat.</p>
+          <ul class="split-list">
+            <li>Menggunakan material &amp; komponen standar SNI</li>
+            <li>Perapian kabel dan penandaan jalur yang jelas</li>
+            <li>Pengujian fungsi sebelum serah terima</li>
+            <li>Konsultasi gratis untuk diagnosa awal</li>
+          </ul>
+          <a href="#" class="btn btn-gold" data-nav="kontak">
+            Konsultasi Elektrikal
+            <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="cta-banner reveal">
+        <div class="cta-text">
+          <h3>Butuh jasa elektrikal?</h3>
+          <p>Konsultasikan kebutuhan instalasi, perbaikan, atau maintenance kelistrikan Anda hari ini.</p>
+        </div>
+        <a href="#" class="btn btn-primary" data-nav="kontak">
+          Hubungi Kami
           <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
       </div>
@@ -1992,55 +2111,42 @@ footer.site-footer::before{
 <!-- ============================================================
      PAGE: MATERIAL
      ============================================================ -->
-<main id="page-materials" class="page">
+<main id="page-material" class="page">
+
+  <section class="page-hero">
+    <div class="page-hero-inner">
+      <div class="breadcrumb">
+        <a href="#" data-nav="home">Beranda</a>
+        <span class="sep">›</span>
+        <span>Material</span>
+      </div>
+      <h1>Keahlian <span class="accent">Material</span></h1>
+      <p>Kami berpengalaman dalam pembubutan berbagai jenis logam, dari material umum hingga material dengan karakter khusus.</p>
+    </div>
+  </section>
 
   <section class="section">
     <div class="container">
-      <div class="section-head">
-        <span class="eyebrow">Material</span>
-        <h2>Keahlian Material yang Kami Tangani</h2>
-        <p>Kami berpengalaman dalam pembubutan berbagai jenis logam, dari material umum hingga material dengan karakter khusus.</p>
-      </div>
-
       <div class="mat-grid">
         <div class="mat-card reveal">
           <div class="mat-visual" style="background-image:url('https://www.idealtata.co.id/wp-content/uploads/2025/08/4.-Keunggulan-Stainless-Steel-Dibanding-Besi.webp')"></div>
-          <div class="mat-body">
-            <h4>Baja</h4>
-            <span>Carbon &amp; Alloy Steel</span>
-          </div>
+          <div class="mat-body"><h4>Baja</h4><span>Carbon &amp; Alloy Steel</span></div>
         </div>
-
         <div class="mat-card reveal">
           <div class="mat-visual" style="background-image:url('https://cdn-ilcjahl.nitrocdn.com/rISTsRVCliZocmivdTDTSVrxrSNwkubX/assets/images/optimized/rev-e891a89/eagletube.com/wp-content/uploads/2015/07/Depositphotos_18849747_s-20151-300x300.jpg')"></div>
-          <div class="mat-body">
-            <h4>Stainless Steel</h4>
-            <span>Tahan Korosi</span>
-          </div>
+          <div class="mat-body"><h4>Stainless Steel</h4><span>Tahan Korosi</span></div>
         </div>
-
         <div class="mat-card reveal">
           <div class="mat-visual" style="background-image:url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdr_VJH75z9q8zFKAuXx87JG1KKIJmeswxb2OKvegNfntveR9Dza7CrZmW&s=10')"></div>
-          <div class="mat-body">
-            <h4>Aluminium</h4>
-            <span>Ringan &amp; Presisi</span>
-          </div>
+          <div class="mat-body"><h4>Aluminium</h4><span>Ringan &amp; Presisi</span></div>
         </div>
-
         <div class="mat-card reveal">
           <div class="mat-visual" style="background-image:url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYINLxTyQP8-ZyV2b052N8p_vCx535u0WDw2S402iCylYhtq4JYl9cRvao&s=10')"></div>
-          <div class="mat-body">
-            <h4>Kuningan</h4>
-            <span>Brass</span>
-          </div>
+          <div class="mat-body"><h4>Kuningan</h4><span>Brass</span></div>
         </div>
-
         <div class="mat-card reveal">
           <div class="mat-visual" style="background-image:url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3SvLNATOhDQ3YiKrDOoIWZxeqFHKtmguBDQEKH9aVObjD6Khg6qyKk8Q&s=10')"></div>
-          <div class="mat-body">
-            <h4>Perunggu</h4>
-            <span>Bronze</span>
-          </div>
+          <div class="mat-body"><h4>Perunggu</h4><span>Bronze</span></div>
         </div>
       </div>
     </div>
@@ -2056,30 +2162,22 @@ footer.site-footer::before{
 
       <div class="cards-grid">
         <div class="card reveal">
-          <div class="card-icon">
-            <svg viewBox="0 0 24 24"><path d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5c-1.4 0-2.5-1.1-2.5-2.5S10.6 6.5 12 6.5s2.5 1.1 2.5 2.5S13.4 11.5 12 11.5z"/></svg>
-          </div>
+          <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7z"/></svg></div>
           <h3>Ketahanan Korosi</h3>
           <p>Stainless steel menjadi pilihan untuk komponen yang terpapar kelembapan, bahan kimia, atau lingkungan outdoor.</p>
         </div>
         <div class="card reveal">
-          <div class="card-icon">
-            <svg viewBox="0 0 24 24"><path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z"/></svg>
-          </div>
+          <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z"/></svg></div>
           <h3>Kekuatan &amp; Beban</h3>
           <p>Baja karbon dan alloy dipilih untuk komponen dengan beban tinggi dan kebutuhan kekuatan struktural.</p>
         </div>
         <div class="card reveal">
-          <div class="card-icon">
-            <svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 100 18 9 9 0 000-18zm0 2a7 7 0 110 14 7 7 0 010-14z"/></svg>
-          </div>
+          <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 100 18 9 9 0 000-18zm0 2a7 7 0 110 14 7 7 0 010-14z"/></svg></div>
           <h3>Berat Ringan</h3>
           <p>Aluminium cocok untuk aplikasi yang membutuhkan bobot ringan tanpa mengorbankan kekuatan.</p>
         </div>
         <div class="card reveal">
-          <div class="card-icon">
-            <svg viewBox="0 0 24 24"><path d="M12 2l3 6 6 .9-4.5 4.3 1 6.3-5.5-3-5.5 3 1-6.3L3 8.9 9 8z"/></svg>
-          </div>
+          <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M12 2l3 6 6 .9-4.5 4.3 1 6.3-5.5-3-5.5 3 1-6.3L3 8.9 9 8z"/></svg></div>
           <h3>Konduktivitas &amp; Gesekan</h3>
           <p>Kuningan dan perunggu ideal untuk komponen yang membutuhkan sifat anti-gesek dan konduktif.</p>
         </div>
@@ -2094,7 +2192,7 @@ footer.site-footer::before{
           <h3>Tidak yakin material mana yang tepat?</h3>
           <p>Konsultasikan kebutuhan komponen Anda, kami bantu rekomendasikan material yang sesuai.</p>
         </div>
-        <a href="#" class="btn btn-primary" data-nav="contact">
+        <a href="#" class="btn btn-primary" data-nav="kontak">
           Konsultasi Material
           <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
@@ -2107,16 +2205,22 @@ footer.site-footer::before{
 <!-- ============================================================
      PAGE: GALERI
      ============================================================ -->
-<main id="page-gallery" class="page">
+<main id="page-galeri" class="page">
+
+  <section class="page-hero">
+    <div class="page-hero-inner">
+      <div class="breadcrumb">
+        <a href="#" data-nav="home">Beranda</a>
+        <span class="sep">›</span>
+        <span>Galeri</span>
+      </div>
+      <h1>Galeri <span class="accent">Pengerjaan</span></h1>
+      <p>Sebagian dokumentasi pengerjaan komponen, service pompa, dan pekerjaan elektrikal kami.</p>
+    </div>
+  </section>
 
   <section class="section">
     <div class="container">
-      <div class="section-head">
-        <span class="eyebrow">Galeri</span>
-        <h2>Hasil Pengerjaan &amp; Aktivitas Bengkel</h2>
-        <p>Sebagian dokumentasi pengerjaan komponen, service pompa, dan pekerjaan elektrikal kami.</p>
-      </div>
-
       <div class="gallery-grid">
         <div class="gallery-item reveal" style="background-image:url('https://images.unsplash.com/photo-1565043666747-69f6646db940?q=80&w=800&auto=format&fit=crop')">
           <div class="gallery-caption">Pembubutan Poros</div>
@@ -2164,16 +2268,22 @@ footer.site-footer::before{
 <!-- ============================================================
      PAGE: KONTAK
      ============================================================ -->
-<main id="page-contact" class="page">
+<main id="page-kontak" class="page">
+
+  <section class="page-hero">
+    <div class="page-hero-inner">
+      <div class="breadcrumb">
+        <a href="#" data-nav="home">Beranda</a>
+        <span class="sep">›</span>
+        <span>Hubungi Kami</span>
+      </div>
+      <h1>Hubungi <span class="accent">Dinasty Sulung Teknik</span></h1>
+      <p>Kirimkan kebutuhan Anda — bubut, service pompa, atau elektrikal. Kami akan merespons secepatnya.</p>
+    </div>
+  </section>
 
   <section class="section">
     <div class="container">
-      <div class="section-head">
-        <span class="eyebrow">Kontak</span>
-        <h2>Hubungi Dinasty Sulung Teknik</h2>
-        <p>Kirimkan kebutuhan Anda — bubut, service pompa, atau elektrikal. Kami akan merespons secepatnya.</p>
-      </div>
-
       <div class="contact-grid">
         <div class="contact-card reveal">
           <h3>Informasi Kontak</h3>
@@ -2318,22 +2428,22 @@ footer.site-footer::before{
       <div class="footer-col">
         <h4>Navigasi</h4>
         <ul>
-          <li><a href="#" data-nav="home">Beranda</a></li>
-          <li><a href="#" data-nav="about">Tentang</a></li>
-          <li><a href="#" data-nav="services">Layanan</a></li>
-          <li><a href="#" data-nav="materials">Material</a></li>
-          <li><a href="#" data-nav="gallery">Galeri</a></li>
+          <li><a data-nav="home">Beranda</a></li>
+          <li><a data-nav="about">Tentang</a></li>
+          <li><a data-nav="bubut">Bubut Presisi</a></li>
+          <li><a data-nav="pompa">Service Pompa</a></li>
+          <li><a data-nav="elektrikal">Elektrikal</a></li>
         </ul>
       </div>
 
       <div class="footer-col">
         <h4>Layanan</h4>
         <ul>
-          <li><a href="#" data-nav="services">Bubut Presisi</a></li>
-          <li><a href="#" data-nav="services">Service Pompa</a></li>
-          <li><a href="#" data-nav="services">Elektrikal</a></li>
-          <li><a href="#" data-nav="services">Part Custom</a></li>
-          <li><a href="#" data-nav="services">Reparasi Komponen</a></li>
+          <li><a data-nav="bubut">Bubut Presisi</a></li>
+          <li><a data-nav="pompa">Service Pompa</a></li>
+          <li><a data-nav="elektrikal">Elektrikal</a></li>
+          <li><a data-nav="material">Material</a></li>
+          <li><a data-nav="galeri">Galeri</a></li>
         </ul>
       </div>
 
@@ -2366,7 +2476,7 @@ footer.site-footer::before{
 /* ============================================================
    MULTI-PAGE NAVIGATION
    ============================================================ */
-const pages = ['home','about','services','materials','gallery','contact'];
+const pages = ['home','about','bubut','pompa','elektrikal','material','galeri','kontak'];
 
 function showPage(name){
   if(!pages.includes(name)) name = 'home';
