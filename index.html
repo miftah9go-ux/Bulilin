@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dinasty Sulung Teknik - Presisi Engineering</title>
+    <!-- Menggunakan Font Google untuk tampilan yang lebih baik -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* --- Reset & Variabel Dasar --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #112a45;
+            --secondary-blue: #1a3b5c;
+            --accent-green: #3d7a4b;
+            --accent-green-hover: #2e5c39;
+            --text-dark: #333333;
+            --text-light: #ffffff;
+            --bg-light: #f8f9fa;
+            --border-color: #e0e0e0;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: var(--text-dark);
+            background-color: #e5e5e5; /* Latar belakang luar */
+            display: flex;
+            justify-content: center;
+            padding: 10px 0;
+        }
+
+        /* --- Kontainer Utama --- */
+        .website-container {
+            max-width: 1100px;
+            width: 100%;
+            background-color: #ffffff;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            border-radius: 8px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* --- Header (Hanya Logo, Tanpa Menu) --- */
+        header {
+            background-color: var(--primary-blue);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            color: var(--text-light);
+            border-bottom: 2px solid var(--accent-green);
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        /* --- CSS untuk Gambar Logo (DIPERBESAR) --- */
+        .logo-icon {
+            width: 60px;  /* Dari 40px menjadi 60px */
+            height: 60px;
+            object-fit: contain;
+            background-color: transparent;
+        }
+
+        .logo-text h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 22px; /* Sedikit diperbesar agar seimbang */
+            font-weight: 700;
+            line-height: 1.1;
+            color: #ffffff;
+        }
+
+        .logo-text p {
+            font-size: 10px;
+            letter-spacing: 1px;
+            color: #a0b4c7;
+            margin-top: 2px;
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            position: relative;
+            height: 380px;
+            background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3SoHZnR35VPBSM_5Bm43W0vpLuWAD-kp0BFm4Natahw&s=10');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+        }
+
+        .hero-overlay {
+            background: linear-gradient(to top, rgba(17, 42, 69, 0.95) 0%, rgba(17, 42, 69, 0.8) 50%, rgba(17, 42, 69, 0) 100%);
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: center;
+            padding: 0 15px 40px 15px;
+            text-align: center;
+        }
+
+        .hero h2 {
+            font-family: 'Montserrat', sans-serif;
+            color: #d4af37;
+            font-size: 32px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.6);
+            line-height: 1.2;
+        }
+
+        .hero p {
+            color: #e0e0e0;
+            font-size: 14px;
+            margin-bottom: 20px;
+            max-width: 700px;
+        }
+
+        .btn-primary {
+            background-color: var(--accent-green);
+            color: white;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 15px;
+            transition: background 0.3s, transform 0.2s;
+            border: 1px solid #4c8a5b;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent-green-hover);
+            transform: translateY(-2px);
+        }
+
+        /* --- Capabilities & Materials Section --- */
+        .features-section {
+            display: flex;
+            padding: 40px 20px;
+            gap: 40px;
+            background-color: var(--bg-light);
+        }
+
+        .capabilities, .materials {
+            flex: 1;
+        }
+
+        .features-section h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 20px;
+            color: var(--primary-blue);
+            margin-bottom: 25px;
+            text-align: center;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .features-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 3px;
+            background-color: var(--accent-green);
+        }
+
+        /* Grid Kapabilitas */
+        .cap-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px 10px;
+            text-align: center;
+        }
+
+        .cap-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .cap-icon {
+            width: 50px;
+            height: 50px;
+            background-color: #cbdbe8;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--primary-blue);
+            font-size: 24px;
+            transition: background 0.3s;
+        }
+
+        .cap-item:hover .cap-icon {
+            background-color: var(--accent-green);
+            color: white;
+        }
+
+        /* CSS untuk Gambar Ikon Kapabilitas */
+        .cap-img {
+            width: 35px;
+            height: 35px;
+            object-fit: contain;
+        }
+
+        .cap-item h4 {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin-bottom: 4px;
+        }
+
+        .cap-item p {
+            font-size: 9px;
+            color: #666;
+            line-height: 1.3;
+            padding: 0 2px;
+        }
+
+        /* Grid Material */
+        .mat-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            text-align: center;
+            gap: 15px;
+        }
+
+        .mat-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 60px; /* Lebar tetap agar rapi */
+        }
+
+        .mat-swatch {
+            width: 50px;
+            height: 50px;
+            border-radius: 6px;
+            margin-bottom: 8px;
+            box-shadow: inset 0 0 8px rgba(0,0,0,0.3), 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        /* CSS untuk Gambar Ikon Material */
+        .mat-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 6px;
+            object-fit: cover;
+            margin-bottom: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        /* Warna Material (Gradasi Logam) */
+        .swatch-steel { background: linear-gradient(135deg, #a0a0a0, #707070); }
+        .swatch-stainless { background: linear-gradient(135deg, #d0d0d0, #a0a0a0); }
+        .swatch-alum { background: linear-gradient(135deg, #e0e0e0, #b0b0b0); }
+        .swatch-brass { background: linear-gradient(135deg, #e5c07b, #c19a4b); }
+        .swatch-bronze { background: linear-gradient(135deg, #cd7f32, #a05a1c); }
+
+        .mat-item h4 {
+            font-size: 10px;
+            font-weight: 700;
+            color: var(--primary-blue);
+            line-height: 1.2;
+        }
+
+        /* --- Precision Section --- */
+        .precision-section {
+            display: flex;
+            background-color: #ffffff;
+            padding: 40px 20px;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .precision-image {
+            flex: 1;
+            height: 250px;
+            background-image: url('https://images.unsplash.com/photo-1581092160562-40aa08e78837?q=80&w=800&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            border-radius: 6px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            width: 100%;
+        }
+
+        .precision-content {
+            flex: 1;
+            background-color: var(--primary-blue);
+            color: white;
+            padding: 30px;
+            border-radius: 8px;
+            position: relative;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            width: 100%;
+        }
+
+        .precision-content::before {
+            content: '';
+            position: absolute;
+            left: -20px;
+            top: 50%;
+            transform: translateY(-50%);
+            border-width: 20px 20px 20px 0;
+            border-style: solid;
+            border-color: transparent var(--primary-blue) transparent transparent;
+        }
+
+        .precision-content h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 22px;
+            color: #d4af37;
+            margin-bottom: 12px;
+            line-height: 1.3;
+        }
+
+        .precision-content p {
+            font-size: 13px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            color: #cbdbe8;
+        }
+
+        .btn-small {
+            background-color: var(--accent-green);
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 13px;
+            font-weight: 600;
+            display: inline-block;
+            transition: background 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-small:hover {
+            background-color: var(--accent-green-hover);
+        }
+
+        /* --- Footer --- */
+        footer {
+            background-color: #0d1f33;
+            color: #a0b4c7;
+            padding: 40px 20px;
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1fr;
+            gap: 25px;
+            font-size: 12px;
+        }
+
+        .footer-logo .logo-icon {
+            margin-bottom: 10px;
+            width: 55px;  /* Logo footer sedikit lebih besar */
+            height: 55px;
+        }
+
+        .footer-logo h1 {
+            font-family: 'Montserrat', sans-serif;
+            color: #ffffff;
+            font-size: 16px;
+            margin-bottom: 2px;
+        }
+
+        .footer-logo p {
+            font-size: 9px;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+        }
+
+        .footer-col h4 {
+            color: #d4af37;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 13px;
+            margin-bottom: 15px;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 8px;
+        }
+
+        .footer-col ul li a {
+            color: #a0b4c7;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-col ul li a:hover {
+            color: #ffffff;
+        }
+
+        .footer-col p {
+            line-height: 1.6;
+            margin-bottom: 8px;
+        }
+
+        .footer-col .btn-small {
+            margin-top: 8px;
+            font-size: 11px;
+            padding: 6px 15px;
+        }
+
+        /* =========================================
+           MEDIA QUERIES (MOBILE FRIENDLY)
+           ========================================= */
+
+        /* Tablet / Layar Sedang (Max 900px) */
+        @media (max-width: 900px) {
+            .logo-icon { 
+                width: 55px;  /* Ukuran tablet */
+                height: 55px; 
+            }
+            .features-section { 
+                flex-direction: column; 
+                padding: 30px 20px; 
+                gap: 30px; 
+            }
+            .cap-grid { 
+                grid-template-columns: repeat(3, 1fr); 
+            }
+            .mat-grid { 
+                gap: 15px; 
+            }
+            .precision-section { 
+                flex-direction: column; 
+                padding: 30px 20px; 
+            }
+            .precision-content::before { 
+                display: none; /* Hilangkan segitiga di layar kecil */
+            }
+            .precision-content { 
+                padding: 25px; 
+            }
+            footer { 
+                grid-template-columns: 1fr 1fr; 
+                padding: 30px 20px; 
+            }
+        }
+
+        /* HP / Layar Kecil (Max 600px) */
+        @media (max-width: 600px) {
+            body { 
+                padding: 0; /* Hilangkan padding luar agar full screen */
+            }
+            .website-container { 
+                border-radius: 0; /* Hilangkan sudut melengkung di HP */
+            }
+            header { 
+                padding: 15px; 
+            }
+            .logo-icon { 
+                width: 45px;  /* Ukuran HP */
+                height: 45px; 
+            }
+            .logo-text h1 { 
+                font-size: 16px; 
+            }
+            .logo-text p { 
+                font-size: 8px; 
+            }
+            
+            /* Hero di HP */
+            .hero { 
+                height: 320px; 
+            }
+            .hero h2 { 
+                font-size: 24px; 
+                letter-spacing: 0px;
+            }
+            .hero p { 
+                font-size: 12px; 
+                padding: 0 10px;
+            }
+            .btn-primary {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+
+            /* Kapabilitas di HP - Dibuat 2 Kolom agar Ringkas */
+            .cap-grid { 
+                grid-template-columns: repeat(2, 1fr); 
+                gap: 15px;
+            }
+            .cap-icon {
+                width: 45px;
+                height: 45px;
+                font-size: 20px;
+            }
+            .cap-img {
+                width: 30px;
+                height: 30px;
+            }
+            .cap-item h4 {
+                font-size: 11px;
+            }
+            .cap-item p {
+                font-size: 9px;
+            }
+
+            /* Material di HP */
+            .mat-item {
+                width: 50px;
+            }
+            .mat-swatch {
+                width: 45px;
+                height: 45px;
+            }
+            .mat-img {
+                width: 45px;
+                height: 45px;
+            }
+            .mat-item h4 {
+                font-size: 9px;
+            }
+
+            /* Precision di HP */
+            .precision-image { 
+                height: 180px; 
+            }
+            .precision-content h3 { 
+                font-size: 18px; 
+            }
+            .precision-content p {
+                font-size: 12px;
+            }
+
+            /* Footer di HP - 1 Kolom */
+            footer { 
+                grid-template-columns: 1fr; 
+                text-align: center;
+                padding: 30px 15px;
+            }
+            .footer-logo .logo-icon {
+                width: 50px;
+                height: 50px;
+                margin: 0 auto 10px auto;
+            }
+            .footer-col h4 {
+                margin-top: 10px;
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="website-container">
+        
+        <!-- Header (Hanya Logo, Tanpa Menu Navigasi) -->
+        <header>
+            <div class="logo-area">
+                <!-- Gambar logo menggunakan img.jpg dari folder root -->
+                <img src="img.jpg" alt="Logo Dinasty Sulung" class="logo-icon">
+                <div class="logo-text">
+                    <h1>Dinasty Sulung</h1>
+                    <p>TEKNIK - PRECISION ENGINEERING</p>
+                </div>
+            </div>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-overlay">
+                <h2>Menguasai<br>Pembubutan Presisi</h2>
+                <p>Dinasty Sulung Teknik - Keunggulan Bengkel Bubut untuk Komponen Kritis Anda.</p>
+                <a href="#" class="btn-primary">Minta Penawaran</a>
+            </div>
+        </section>
+
+        <!-- Features Section (Capabilities & Materials) -->
+        <section class="features-section">
+            <!-- Capabilities -->
+            <div class="capabilities">
+                <h3>Kemampuan Bubut Kami</h3>
+                <div class="cap-grid">
+                    <!-- Internal Threading Menggunakan Gambar -->
+                    <div class="cap-item">
+                        <div class="cap-icon">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-Mwm77YTva1mM8wU5bBpovDy5ODL_kf2M9fFHLlZvlQ&s=10" alt="Ulir Dalam" class="cap-img">
+                        </div>
+                        <h4>Ulir Dalam</h4>
+                        <p>Komponen bubut dan pembuatan ulir dalam.</p>
+                    </div>
+                    
+                    <!-- Taper Turning Menggunakan Gambar -->
+                    <div class="cap-item">
+                        <div class="cap-icon">
+                            <img src="https://d2qmpkxixrzf8g.cloudfront.net/Extres/Img/wp-content/uploads/2025/09/Step-Turning-1.jpg" alt="Pembubutan Tirus" class="cap-img">
+                        </div>
+                        <h4>Pembubutan Tirus</h4>
+                        <p>Pembubutan tirus atau pembentukan sudut.</p>
+                    </div>
+                    
+                    <div class="cap-item">
+                        <div class="cap-icon">🔩</div>
+                        <h4>Facing</h4>
+                        <p>Pengerjaan permukaan datar pada komponen.</p>
+                    </div>
+                    <div class="cap-item">
+                        <div class="cap-icon">📏</div>
+                        <h4>Pembubutan Tirus</h4>
+                        <p>Pembubutan tirus dan pembentukan konis.</p>
+                    </div>
+                    <div class="cap-item">
+                        <div class="cap-icon">🔄</div>
+                        <h4>Pembubutan</h4>
+                        <p>Pembentukan efektif untuk komponen internal.</p>
+                    </div>
+                    <div class="cap-item">
+                        <div class="cap-icon">✂️</div>
+                        <h4>Chamfering</h4>
+                        <p>Pembuatan sudut untuk komponen kritis.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Materials -->
+            <div class="materials">
+                <h3>Keahlian Material</h3>
+                <div class="mat-grid">
+                    <!-- Steel Menggunakan Gambar -->
+                    <div class="mat-item">
+                        <img src="https://www.idealtata.co.id/wp-content/uploads/2025/08/4.-Keunggulan-Stainless-Steel-Dibanding-Besi.webp" alt="Baja" class="mat-img">
+                        <h4>Baja</h4>
+                    </div>
+                    
+                    <!-- Stainless Steel Menggunakan Gambar -->
+                    <div class="mat-item">
+                        <img src="https://cdn-ilcjahl.nitrocdn.com/rISTsRVCliZocmivdTDTSVrxrSNwkubX/assets/images/optimized/rev-e891a89/eagletube.com/wp-content/uploads/2015/07/Depositphotos_18849747_s-20151-300x300.jpg" alt="Stainless Steel" class="mat-img">
+                        <h4>Stainless<br>Steel</h4>
+                    </div>
+                    
+                    <!-- Aluminum Menggunakan Gambar -->
+                    <div class="mat-item">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdr_VJH75z9q8zFKAuXx87JG1KKIJmeswxb2OKvegNfntveR9Dza7CrZmW&s=10" alt="Aluminium" class="mat-img">
+                        <h4>Aluminium</h4>
+                    </div>
+                    
+                    <!-- Brass Menggunakan Gambar -->
+                    <div class="mat-item">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYINLxTyQP8-ZyV2b052N8p_vCx535u0WDw2S402iCylYhtq4JYl9cRvao&s=10" alt="Kuningan" class="mat-img">
+                        <h4>Kuningan</h4>
+                    </div>
+                    
+                    <!-- Bronze Menggunakan Gambar -->
+                    <div class="mat-item">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3SvLNATOhDQ3YiKrDOoIWZxeqFHKtmguBDQEKH9aVObjD6Khg6qyKk8Q&s=10" alt="Perunggu" class="mat-img">
+                        <h4>Perunggu</h4>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Precision Section -->
+        <section class="precision-section">
+            <div class="precision-image"></div>
+            <div class="precision-content">
+                <h3>Toleransi hingga<br>Presisi Sub-mikron</h3>
+                <p>Produk bubut yang dihasilkan mampu memenuhi standar kritis dengan toleransi hingga presisi sub-mikron, sesuai dengan ekspektasi dan kebutuhan komponen vital Anda.</p>
+                <a href="#" class="btn-small">Pelajari Lebih Lanjut</a>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <div class="footer-logo">
+                <!-- Gambar logo di footer menggunakan img.jpg dari folder root -->
+                <img src="img.jpg" alt="Logo Dinasty Sulung" class="logo-icon">
+                <h1>Dinasty Sulung</h1>
+                <p>TEKNIK - PRECISION ENGINEERING</p>
+            </div>
+            <div class="footer-col">
+                <h4>Info Kontak</h4>
+                <p><strong>Alamat</strong><br>Jalan raya KH.syafi'i no 2,<br>Pongangan - Manyar, Gresik</p>
+                <p><strong>Telepon</strong><br>088214612468<br>085396666209</p>
+                <p><strong>Email</strong><br>dinastysulungtechnikbengkel@gmail.com</p>
+            </div>
+            <div class="footer-col">
+                <h4>Tautan Cepat</h4>
+                <ul>
+                    <li><a href="#">Pekerjaan Bubut</a></li>
+                    <li><a href="#">Milling</a></li>
+                    <li><a href="#">Peralatan</a></li>
+                    <li><a href="#">Proyek</a></li>
+                    <li><a href="#">Kontak</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Teknologi Terbaru</h4>
+                <p>Teknologi Terbaru - pembaruan sistem, kualitas terjamin, dan komponen presisi tinggi untuk kebutuhan industri Anda.</p>
+                <a href="#" class="btn-small">Pelajari Lebih Lanjut</a>
+            </div>
+        </footer>
+
+    </div>
+
+</body>
+</html>
