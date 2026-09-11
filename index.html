@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dinasty Sulung Teknik — Precision Engineering</title>
-<meta name="description" content="Bengkel bubut presisi tinggi untuk komponen industri kritis. Toleransi sub-mikron, material lengkap, pengerjaan profesional.">
+<title>Dinasty Sulung Teknik — Precision Engineering & Service Pompa</title>
+<meta name="description" content="Bengkel bubut presisi, service pompa industri, dan instalasi elektrikal. Toleransi sub-mikron, material lengkap, pengerjaan profesional di Gresik.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
@@ -224,7 +224,7 @@ header.site-header.scrolled{ box-shadow:var(--shadow-md); }
    ============================================================ */
 .hero{
   position:relative;
-  min-height:560px;
+  min-height:600px;
   display:flex;
   align-items:center;
   overflow:hidden;
@@ -258,7 +258,7 @@ header.site-header.scrolled{ box-shadow:var(--shadow-md); }
   position:relative;
   z-index:2;
   padding:100px 0 110px;
-  max-width:760px;
+  max-width:800px;
 }
 .hero-eyebrow{
   display:inline-flex;
@@ -304,11 +304,39 @@ header.site-header.scrolled{ box-shadow:var(--shadow-md); }
 .hero p.lead{
   font-size:17px;
   color:var(--steel-300);
-  max-width:580px;
+  max-width:620px;
   margin-bottom:38px;
   line-height:1.75;
 }
 .hero-actions{ display:flex; gap:14px; flex-wrap:wrap; }
+
+/* Hero service chips */
+.hero-chips{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:34px;
+}
+.hero-chip{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:8px 14px;
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:20px;
+  font-size:12.5px;
+  color:var(--steel-100);
+  font-weight:500;
+  backdrop-filter:blur(6px);
+  transition:all var(--transition);
+}
+.hero-chip:hover{
+  background:rgba(212,175,55,.12);
+  border-color:rgba(212,175,55,.35);
+  color:var(--gold-400);
+}
+.hero-chip svg{ width:14px; height:14px; fill:var(--gold-400); }
 
 .btn{
   display:inline-flex;
@@ -465,6 +493,110 @@ header.site-header.scrolled{ box-shadow:var(--shadow-md); }
   line-height:1.75;
 }
 .section-dark .section-head p{ color:var(--steel-300); }
+
+/* ============================================================
+   SERVICE CATEGORIES (3 pilar utama)
+   ============================================================ */
+.pillars{
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:24px;
+}
+.pillar{
+  background:var(--white);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  padding:34px 28px;
+  transition:all var(--transition);
+  position:relative;
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+}
+.pillar::before{
+  content:'';
+  position:absolute;
+  top:0; left:0; right:0;
+  height:4px;
+  background:linear-gradient(90deg, var(--gold-500), var(--green-500));
+  transform:scaleX(0);
+  transform-origin:left;
+  transition:transform var(--transition);
+}
+.pillar:hover{
+  transform:translateY(-6px);
+  box-shadow:var(--shadow-lg);
+  border-color:transparent;
+}
+.pillar:hover::before{ transform:scaleX(1); }
+
+.pillar-icon{
+  width:64px; height:64px;
+  border-radius:16px;
+  background:linear-gradient(135deg, var(--navy-800), var(--navy-600));
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin-bottom:22px;
+  transition:all var(--transition);
+  box-shadow:0 4px 14px rgba(21,42,69,.22);
+}
+.pillar-icon svg{ width:30px; height:30px; fill:var(--gold-400); transition:transform var(--transition); }
+.pillar:hover .pillar-icon{
+  background:linear-gradient(135deg, var(--green-600), var(--green-500));
+  box-shadow:0 8px 22px rgba(47,125,79,.3);
+}
+.pillar:hover .pillar-icon svg{ fill:var(--white); transform:scale(1.08); }
+
+.pillar h3{
+  font-size:19px;
+  margin-bottom:10px;
+  font-weight:700;
+}
+.pillar > p{
+  font-size:14px;
+  color:var(--ink-500);
+  line-height:1.7;
+  margin-bottom:20px;
+}
+.pillar-list{
+  list-style:none;
+  margin-bottom:24px;
+  display:grid;
+  gap:10px;
+}
+.pillar-list li{
+  display:flex;
+  align-items:flex-start;
+  gap:10px;
+  font-size:13px;
+  color:var(--ink-700);
+  line-height:1.55;
+}
+.pillar-list li::before{
+  content:'';
+  width:16px; height:16px;
+  border-radius:50%;
+  background:rgba(61,154,98,.15);
+  border:1.5px solid var(--green-500);
+  flex-shrink:0;
+  margin-top:2px;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%233d9a62' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E");
+  background-size:10px;
+  background-position:center;
+  background-repeat:no-repeat;
+}
+.pillar-cta{
+  margin-top:auto;
+  font-size:13.5px;
+  font-weight:600;
+  color:var(--green-600);
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  transition:gap var(--transition), color var(--transition);
+}
+.pillar:hover .pillar-cta{ gap:11px; color:var(--green-500); }
 
 /* ============================================================
    CARDS / CAPABILITIES
@@ -1126,6 +1258,7 @@ footer.site-footer::before{
   .footer-grid{ grid-template-columns:1fr 1fr; gap:32px; }
   .contact-grid{ grid-template-columns:1fr; }
   .about-grid{ grid-template-columns:1fr; gap:36px; }
+  .pillars{ grid-template-columns:1fr; }
 }
 
 @media (max-width:860px){
@@ -1150,7 +1283,7 @@ footer.site-footer::before{
   .nav-cta{ text-align:center; margin-top:12px; }
   .hamburger{ display:flex; z-index:1002; }
 
-  .hero{ min-height:520px; }
+  .hero{ min-height:560px; }
   .hero-inner{ padding:80px 0 100px; }
   .stats-grid{ grid-template-columns:repeat(2, 1fr); }
   .stat{ border-bottom:1px solid var(--line); }
@@ -1180,11 +1313,12 @@ footer.site-footer::before{
   .brand-text h1{ font-size:16px; }
   .brand-text span{ font-size:8.5px; letter-spacing:.12em; }
 
-  .hero{ min-height:480px; }
+  .hero{ min-height:520px; }
   .hero-inner{ padding:64px 0 90px; }
   .hero p.lead{ font-size:15px; }
   .hero-actions{ flex-direction:column; align-items:stretch; }
   .hero-actions .btn{ width:100%; }
+  .hero-chips{ justify-content:center; }
 
   .stats-grid{ grid-template-columns:1fr; }
   .stat{ border-right:none; border-bottom:1px solid var(--line); }
@@ -1192,6 +1326,7 @@ footer.site-footer::before{
 
   .section-head{ margin-bottom:40px; }
   .card{ padding:26px 22px; }
+  .pillar{ padding:28px 22px; }
   .split-body{ padding:34px 24px; }
   .form-panel{ padding:30px 22px; }
   .contact-card{ padding:32px 24px; }
@@ -1244,7 +1379,7 @@ footer.site-footer::before{
         <img src="https://raw.githubusercontent.com/miftah9go-ux/Bulilin/refs/heads/main/Img.jpg" alt="Logo Dinasty Sulung Teknik" class="brand-logo">
         <div class="brand-text">
           <h1>Dinasty Sulung</h1>
-          <span>Teknik · Precision Engineering</span>
+          <span>Teknik · Bubut · Pompa · Elektrikal</span>
         </div>
       </a>
 
@@ -1275,11 +1410,12 @@ footer.site-footer::before{
     <div class="hero-grid"></div>
     <div class="container">
       <div class="hero-inner">
-        <div class="hero-eyebrow">Bengkel Bubut Presisi · Gresik</div>
-        <h2>Menguasai <span class="accent">Pembubutan Presisi</span> untuk Komponen Kritis</h2>
+        <div class="hero-eyebrow">Bubut Presisi · Service Pompa · Elektrikal · Gresik</div>
+        <h2>Solusi <span class="accent">Teknik Presisi</span> untuk Industri Anda</h2>
         <p class="lead">
-          Dinasty Sulung Teknik menghadirkan keunggulan machining dengan toleransi hingga presisi sub-mikron.
-          Dipercaya industri untuk komponen vital, produksi terbatas, hingga part custom dengan hasil konsisten.
+          Dinasty Sulung Teknik menghadirkan layanan terpadu: pembubutan presisi sub-mikron,
+          service &amp; perawatan pompa industri, serta instalasi dan perbaikan elektrikal.
+          Satu mitra untuk semua kebutuhan teknis Anda.
         </p>
         <div class="hero-actions">
           <a href="#" class="btn btn-primary" data-nav="contact">
@@ -1287,6 +1423,21 @@ footer.site-footer::before{
             <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
           <a href="#" class="btn btn-ghost" data-nav="services">Lihat Layanan</a>
+        </div>
+
+        <div class="hero-chips">
+          <span class="hero-chip">
+            <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm0 3a7 7 0 110 14 7 7 0 010-14z"/></svg>
+            Bubut Presisi
+          </span>
+          <span class="hero-chip">
+            <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm0 3a7 7 0 110 14 7 7 0 010-14z"/></svg>
+            Service Pompa
+          </span>
+          <span class="hero-chip">
+            <svg viewBox="0 0 24 24"><path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z"/></svg>
+            Elektrikal
+          </span>
         </div>
       </div>
     </div>
@@ -1300,7 +1451,7 @@ footer.site-footer::before{
         <div class="stat-label">Tahun Pengalaman</div>
       </div>
       <div class="stat reveal">
-        <div class="stat-num">500<span class="unit">+</span></div>
+        <div class="stat-num">800<span class="unit">+</span></div>
         <div class="stat-label">Proyek Selesai</div>
       </div>
       <div class="stat reveal">
@@ -1314,11 +1465,81 @@ footer.site-footer::before{
     </div>
   </div>
 
-  <!-- CAPABILITIES -->
+  <!-- 3 PILAR LAYANAN UTAMA -->
   <section class="section">
     <div class="container">
       <div class="section-head">
-        <span class="eyebrow">Kemampuan Kami</span>
+        <span class="eyebrow">Layanan Utama</span>
+        <h2>Tiga Pilar Keahlian Kami</h2>
+        <p>Satu bengkel, tiga keahlian. Kami menangani kebutuhan machining, pompa, dan kelistrikan dalam satu atap.</p>
+      </div>
+
+      <div class="pillars">
+        <!-- PILAR 1: BUBUT -->
+        <div class="pillar reveal">
+          <div class="pillar-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm0 3a7 7 0 110 14 7 7 0 010-14zm0 3a4 4 0 100 8 4 4 0 000-8z"/></svg>
+          </div>
+          <h3>Bubut Presisi</h3>
+          <p>Pengerjaan komponen mesin dengan toleransi hingga sub-mikron untuk industri, maintenance, dan produksi terbatas.</p>
+          <ul class="pillar-list">
+            <li>Pembubutan silindris &amp; tirus</li>
+            <li>Ulir dalam &amp; luar</li>
+            <li>Facing, chamfering, boring</li>
+            <li>Part custom sesuai gambar teknik</li>
+          </ul>
+          <a href="#" class="pillar-cta" data-nav="services">
+            Selengkapnya
+            <svg viewBox="0 0 24 24" style="width:14px;height:14px;fill:currentColor;"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+
+        <!-- PILAR 2: SERVICE POMPA -->
+        <div class="pillar reveal">
+          <div class="pillar-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2C9.5 2 7.4 4 7.4 6.6c0 1.8 1 3.3 2.4 4.1l-1.7 3.6c-.3.6.1 1.3.8 1.3h6.2c.7 0 1.1-.7.8-1.3l-1.7-3.6c1.5-.8 2.4-2.3 2.4-4.1C16.6 4 14.5 2 12 2zm0 3a1.6 1.6 0 110 3.2A1.6 1.6 0 0112 5zM9 17c-.6 0-1 .4-1 1s.4 1 1 1h6c.6 0 1-.4 1-1s-.4-1-1-1H9zm0 3c-.6 0-1 .4-1 1s.4 1 1 1h6c.6 0 1-.4 1-1s-.4-1-1-1H9z"/></svg>
+          </div>
+          <h3>Service Pompa</h3>
+          <p>Perawatan, perbaikan, dan overhaul pompa industri — mulai dari pompa air, pompa celup, hingga pompa industri.</p>
+          <ul class="pillar-list">
+            <li>Service &amp; perawatan rutin</li>
+            <li>Overhaul &amp; ganti seal/bearing</li>
+            <li>Perbaikan impeller &amp; housing</li>
+            <li>Instalasi pompa baru</li>
+          </ul>
+          <a href="#" class="pillar-cta" data-nav="services">
+            Selengkapnya
+            <svg viewBox="0 0 24 24" style="width:14px;height:14px;fill:currentColor;"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+
+        <!-- PILAR 3: ELEKTRIKAL -->
+        <div class="pillar reveal">
+          <div class="pillar-icon">
+            <svg viewBox="0 0 24 24"><path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z"/></svg>
+          </div>
+          <h3>Elektrikal</h3>
+          <p>Instalasi, perbaikan, dan perawatan sistem kelistrikan untuk bengkel, rumah, dan industri kecil–menengah.</p>
+          <ul class="pillar-list">
+            <li>Instalasi listrik baru</li>
+            <li>Perbaikan &amp; maintenance panel</li>
+            <li>Pemasangan &amp; service motor listrik</li>
+            <li>Perbaikan rangkaian kontrol</li>
+          </ul>
+          <a href="#" class="pillar-cta" data-nav="services">
+            Selengkapnya
+            <svg viewBox="0 0 24 24" style="width:14px;height:14px;fill:currentColor;"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CAPABILITIES BUBUT (highlight) -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Kemampuan Bubut</span>
         <h2>Layanan Pembubutan Lengkap</h2>
         <p>Dari pengerjaan dasar hingga proses kompleks, kami menangani berbagai kebutuhan machining presisi tinggi untuk industri Anda.</p>
       </div>
@@ -1376,7 +1597,7 @@ footer.site-footer::before{
   </section>
 
   <!-- PRECISION SPLIT -->
-  <section class="section section-alt">
+  <section class="section">
     <div class="container">
       <div class="split reveal">
         <div class="split-media" style="background-image:url('https://images.unsplash.com/photo-1581092160562-40aa08e78837?q=80&w=1200&auto=format&fit=crop')"></div>
@@ -1400,12 +1621,12 @@ footer.site-footer::before{
   </section>
 
   <!-- CTA -->
-  <section class="section">
+  <section class="section section-alt">
     <div class="container">
       <div class="cta-banner reveal">
         <div class="cta-text">
-          <h3>Punya komponen yang butuh presisi tinggi?</h3>
-          <p>Kirimkan gambar teknik atau sample Anda. Tim kami siap memberikan estimasi biaya dan waktu pengerjaan.</p>
+          <h3>Butuh bubut, service pompa, atau elektrikal?</h3>
+          <p>Kirimkan kebutuhan Anda — gambar teknik, jenis pompa, atau instalasi listrik. Tim kami siap membantu.</p>
         </div>
         <a href="#" class="btn btn-primary" data-nav="contact">
           Konsultasi Sekarang
@@ -1426,8 +1647,8 @@ footer.site-footer::before{
     <div class="container">
       <div class="section-head">
         <span class="eyebrow">Tentang Kami</span>
-        <h2>Mitra Presisi untuk Industri Anda</h2>
-        <p>Dinasty Sulung Teknik adalah bengkel bubut yang berfokus pada pengerjaan komponen presisi untuk kebutuhan industri, manufaktur, dan maintenance.</p>
+        <h2>Mitra Teknik Terpadu untuk Industri Anda</h2>
+        <p>Dinasty Sulung Teknik adalah bengkel serbaguna yang berfokus pada tiga bidang: pembubutan presisi, service pompa, dan elektrikal. Kami melayani industri, manufaktur, maintenance, dan kebutuhan rumah tangga teknis.</p>
       </div>
 
       <div class="about-grid">
@@ -1439,8 +1660,8 @@ footer.site-footer::before{
         </div>
         <div class="about-text reveal">
           <h2>Dedikasi pada Kualitas &amp; Ketepatan</h2>
-          <p>Berbasis di Pongangan, Manyar, Gresik, kami melayani berbagai kebutuhan machining mulai dari komponen mesin, spare part industri, hingga part custom sesuai gambar teknik.</p>
-          <p>Setiap pengerjaan dilakukan dengan pendekatan teliti: mulai dari analisis gambar, pemilihan material, proses machining, hingga quality control. Kami percaya bahwa presisi bukan sekadar angka, tetapi komitmen.</p>
+          <p>Berbasis di Pongangan, Manyar, Gresik, kami melayani berbagai kebutuhan teknik mulai dari komponen mesin, spare part industri, perbaikan pompa air &amp; industri, hingga instalasi dan perbaikan kelistrikan.</p>
+          <p>Setiap pekerjaan dilakukan dengan pendekatan teliti: mulai dari analisis kebutuhan, pemilihan material/komponen, proses pengerjaan, hingga quality control. Kami percaya bahwa presisi dan keandalan bukan sekadar angka, tetapi komitmen.</p>
 
           <div class="value-list">
             <div class="value-item">
@@ -1448,12 +1669,12 @@ footer.site-footer::before{
               <p>Toleransi hingga sub-mikron untuk komponen kritis.</p>
             </div>
             <div class="value-item">
-              <h4>Tepat Waktu</h4>
-              <p>Produksi terencana dengan estimasi waktu yang jelas.</p>
+              <h4>Layanan Terpadu</h4>
+              <p>Bubut, pompa, dan elektrikal dalam satu atap.</p>
             </div>
             <div class="value-item">
-              <h4>Material Lengkap</h4>
-              <p>Baja, stainless, aluminium, kuningan, hingga perunggu.</p>
+              <h4>Teknisi Berpengalaman</h4>
+              <p>Ditangani langsung oleh tenaga ahli di bidangnya.</p>
             </div>
             <div class="value-item">
               <h4>Pelayanan Responsif</h4>
@@ -1477,8 +1698,8 @@ footer.site-footer::before{
       <div class="process-grid">
         <div class="process-item reveal">
           <div class="process-num">01</div>
-          <h4>Konsultasi &amp; Gambar</h4>
-          <p>Klien mengirimkan gambar teknik, sample, atau spesifikasi komponen yang dibutuhkan.</p>
+          <h4>Konsultasi Kebutuhan</h4>
+          <p>Klien menyampaikan kebutuhan: gambar teknik, jenis pompa, atau instalasi listrik yang dibutuhkan.</p>
         </div>
         <div class="process-item reveal">
           <div class="process-num">02</div>
@@ -1487,13 +1708,13 @@ footer.site-footer::before{
         </div>
         <div class="process-item reveal">
           <div class="process-num">03</div>
-          <h4>Produksi Presisi</h4>
-          <p>Pengerjaan dilakukan oleh operator berpengalaman dengan kontrol kualitas berlapis.</p>
+          <h4>Pengerjaan Profesional</h4>
+          <p>Pengerjaan dilakukan oleh teknisi berpengalaman dengan kontrol kualitas berlapis.</p>
         </div>
         <div class="process-item reveal">
           <div class="process-num">04</div>
-          <h4>QC &amp; Pengiriman</h4>
-          <p>Pengukuran akhir, finishing, pengemasan aman, lalu pengiriman ke lokasi Anda.</p>
+          <h4>QC &amp; Serah Terima</h4>
+          <p>Pengecekan akhir, pengujian fungsi, pengemasan aman, lalu serah terima ke lokasi Anda.</p>
         </div>
       </div>
     </div>
@@ -1503,8 +1724,8 @@ footer.site-footer::before{
     <div class="container">
       <div class="cta-banner reveal">
         <div class="cta-text">
-          <h3>Siap menjadi mitra presisi Anda</h3>
-          <p>Diskusikan kebutuhan komponen Anda bersama tim kami hari ini.</p>
+          <h3>Siap menjadi mitra teknik Anda</h3>
+          <p>Diskusikan kebutuhan Anda bersama tim kami hari ini.</p>
         </div>
         <a href="#" class="btn btn-primary" data-nav="contact">
           Hubungi Kami
@@ -1521,10 +1742,11 @@ footer.site-footer::before{
      ============================================================ -->
 <main id="page-services" class="page">
 
+  <!-- BUBUT -->
   <section class="section">
     <div class="container">
       <div class="section-head">
-        <span class="eyebrow">Layanan</span>
+        <span class="eyebrow">Bubut Presisi</span>
         <h2>Solusi Machining untuk Berbagai Kebutuhan</h2>
         <p>Kami menangani pengerjaan bubut untuk komponen industri, maintenance, hingga produksi terbatas.</p>
       </div>
@@ -1597,6 +1819,128 @@ footer.site-footer::before{
     </div>
   </section>
 
+  <!-- SERVICE POMPA -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Service Pompa</span>
+        <h2>Perawatan &amp; Perbaikan Pompa Industri</h2>
+        <p>Kami menangani service, overhaul, dan instalasi pompa untuk kebutuhan rumah tangga, komersial, hingga industri.</p>
+      </div>
+
+      <div class="cards-grid">
+        <div class="card reveal">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2C9.5 2 7.4 4 7.4 6.6c0 1.8 1 3.3 2.4 4.1l-1.7 3.6c-.3.6.1 1.3.8 1.3h6.2c.7 0 1.1-.7.8-1.3l-1.7-3.6c1.5-.8 2.4-2.3 2.4-4.1C16.6 4 14.5 2 12 2zm0 3a1.6 1.6 0 110 3.2A1.6 1.6 0 0112 5zM9 17c-.6 0-1 .4-1 1s.4 1 1 1h6c.6 0 1-.4 1-1s-.4-1-1-1H9zm0 3c-.6 0-1 .4-1 1s.4 1 1 1h6c.6 0 1-.4 1-1s-.4-1-1-1H9z"/></svg>
+          </div>
+          <h3>Service &amp; Perawatan Rutin</h3>
+          <p>Pengecekan berkala, pembersihan, pelumasan, dan penyetelan pompa agar performa tetap optimal dan umur pakai lebih panjang.</p>
+        </div>
+
+        <div class="card reveal">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 000-1.4l-1.6-1.6a1 1 0 00-1.4 0l-1.6 1.6a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l1.6-1.6zM3 17.2V21h3.8l11-11.1-3.8-3.8L3 17.2z"/></svg>
+          </div>
+          <h3>Overhaul &amp; Ganti Spare Part</h3>
+          <p>Bongkar total pompa, penggantian seal, bearing, impeller, dan komponen aus lainnya dengan spare part berkualitas.</p>
+        </div>
+
+        <div class="card reveal">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm0 3a7 7 0 110 14 7 7 0 010-14zm0 3a4 4 0 100 8 4 4 0 000-8z"/></svg>
+          </div>
+          <h3>Perbaikan Impeller &amp; Housing</h3>
+          <p>Perbaikan atau pembuatan ulang impeller dan housing pompa yang rusak, aus, atau retak — didukung kemampuan bubut presisi kami.</p>
+        </div>
+
+        <div class="card reveal">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24"><path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z"/></svg>
+          </div>
+          <h3>Instalasi Pompa Baru</h3>
+          <p>Pemasangan pompa baru lengkap dengan perpipaan, kelistrikan, dan uji fungsi hingga siap pakai.</p>
+        </div>
+
+        <div class="card reveal">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5c-1.4 0-2.5-1.1-2.5-2.5S10.6 6.5 12 6.5s2.5 1.1 2.5 2.5S13.4 11.5 12 11.5z"/></svg>
+          </div>
+          <h3>Pompa Air Rumah &amp; Sumur</h3>
+          <p>Service pompa air rumah tangga, pompa sumur, pompa dorong, dan pompa celup untuk kebutuhan sehari-hari.</p>
+        </div>
+
+        <div class="card reveal">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8v6h-2v-2.6l-6 6-4-4-4 4z"/></svg>
+          </div>
+          <h3>Pompa Industri &amp; Transfer</h3>
+          <p>Penanganan pompa industri, pompa transfer, pompa chemical, dan pompa sentrifugal untuk kebutuhan pabrik.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ELEKTRIKAL -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Elektrikal</span>
+        <h2>Instalasi &amp; Perbaikan Kelistrikan</h2>
+        <p>Melayani pemasangan, perawatan, dan perbaikan sistem kelistrikan untuk rumah, bengkel, dan industri kecil–menengah.</p>
+      </div>
+
+      <div class="cards-grid">
+        <div class="card reveal">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24"><path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z"/></svg>
+          </div>
+          <h3>Instalasi Listrik Baru</h3>
+          <p>Pemasangan instalasi listrik baru untuk rumah, bengkel, ruko, atau industri kecil sesuai standar keamanan.</p>
+        </div>
+
+        <div class="card reveal">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24"><path d="M4 4h16v2H4V4zm0 5h16v2H4V9zm0 5h16v2H4v-2zm0 5h10v2H4v-2z"/></svg>
+          </div>
+          <h3>Perbaikan &amp; Maintenance Panel</h3>
+          <p>Perbaikan panel listrik, pengecekan MCB, penggantian komponen panel, dan perawatan berkala.</p>
+        </div>
+
+        <div class="card reveal">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm0 2a8 8 0 110 16 8 8 0 010-16zm0 3a5 5 0 100 10 5 5 0 000-10z"/></svg>
+          </div>
+          <h3>Motor Listrik</h3>
+          <p>Pemasangan, perawatan, dan perbaikan motor listrik — termasuk rewinding untuk motor yang terbakar.</p>
+        </div>
+
+        <div class="card reveal">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 000-1.4l-1.6-1.6a1 1 0 00-1.4 0l-1.6 1.6a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l1.6-1.6zM3 17.2V21h3.8l11-11.1-3.8-3.8L3 17.2z"/></svg>
+          </div>
+          <h3>Rangkaian Kontrol</h3>
+          <p>Perakitan dan perbaikan rangkaian kontrol untuk mesin, pompa, atau sistem otomatis sederhana.</p>
+        </div>
+
+        <div class="card reveal">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5c-1.4 0-2.5-1.1-2.5-2.5S10.6 6.5 12 6.5s2.5 1.1 2.5 2.5S13.4 11.5 12 11.5z"/></svg>
+          </div>
+          <h3>Penerangan &amp; Stop Kontak</h3>
+          <p>Pemasangan titik lampu, stop kontak, saklar, dan aksesori kelistrikan lainnya dengan rapi dan aman.</p>
+        </div>
+
+        <div class="card reveal">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24"><path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z"/></svg>
+          </div>
+          <h3>Perbaikan Korsleting</h3>
+          <p>Deteksi dan perbaikan gangguan korsleting, arus pendek, atau kebocoran arus pada instalasi listrik.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="section section-alt">
     <div class="container">
       <div class="section-head">
@@ -1606,13 +1950,13 @@ footer.site-footer::before{
       <div class="process-grid">
         <div class="process-item reveal">
           <div class="process-num">✓</div>
-          <h4>Operator Berpengalaman</h4>
-          <p>Ditangani langsung oleh tenaga ahli yang memahami karakter material dan geometri komponen.</p>
+          <h4>Teknisi Berpengalaman</h4>
+          <p>Ditangani langsung oleh tenaga ahli yang memahami karakter material, pompa, dan sistem kelistrikan.</p>
         </div>
         <div class="process-item reveal">
           <div class="process-num">✓</div>
-          <h4>Perlengkapan Memadai</h4>
-          <p>Didukung mesin bubut dan alat ukur presisi untuk berbagai dimensi pengerjaan.</p>
+          <h4>Layanan Terpadu</h4>
+          <p>Bubut, pompa, dan elektrikal dalam satu atap — hemat waktu dan biaya koordinasi.</p>
         </div>
         <div class="process-item reveal">
           <div class="process-num">✓</div>
@@ -1632,7 +1976,7 @@ footer.site-footer::before{
     <div class="container">
       <div class="cta-banner reveal">
         <div class="cta-text">
-          <h3>Butuh layanan machining tertentu?</h3>
+          <h3>Butuh layanan bubut, pompa, atau elektrikal?</h3>
           <p>Sampaikan kebutuhan Anda, kami bantu carikan solusi terbaiknya.</p>
         </div>
         <a href="#" class="btn btn-primary" data-nav="contact">
@@ -1770,7 +2114,7 @@ footer.site-footer::before{
       <div class="section-head">
         <span class="eyebrow">Galeri</span>
         <h2>Hasil Pengerjaan &amp; Aktivitas Bengkel</h2>
-        <p>Sebagian dokumentasi pengerjaan komponen dan suasana kerja di bengkel kami.</p>
+        <p>Sebagian dokumentasi pengerjaan komponen, service pompa, dan pekerjaan elektrikal kami.</p>
       </div>
 
       <div class="gallery-grid">
@@ -1827,7 +2171,7 @@ footer.site-footer::before{
       <div class="section-head">
         <span class="eyebrow">Kontak</span>
         <h2>Hubungi Dinasty Sulung Teknik</h2>
-        <p>Kirimkan kebutuhan Anda melalui form, telepon, atau WhatsApp. Kami akan merespons secepatnya.</p>
+        <p>Kirimkan kebutuhan Anda — bubut, service pompa, atau elektrikal. Kami akan merespons secepatnya.</p>
       </div>
 
       <div class="contact-grid">
@@ -1899,19 +2243,37 @@ footer.site-footer::before{
               <label>Jenis Layanan</label>
               <select name="layanan">
                 <option value="">— Pilih layanan —</option>
-                <option>Pembubutan Silindris</option>
-                <option>Pembubutan Tirus</option>
-                <option>Facing</option>
-                <option>Chamfering</option>
-                <option>Boring / Internal</option>
-                <option>Part Custom</option>
-                <option>Reparasi Komponen</option>
+                <optgroup label="Bubut Presisi">
+                  <option>Pembubutan Silindris</option>
+                  <option>Pembubutan Tirus</option>
+                  <option>Facing</option>
+                  <option>Chamfering</option>
+                  <option>Boring / Internal</option>
+                  <option>Part Custom</option>
+                  <option>Reparasi Komponen</option>
+                </optgroup>
+                <optgroup label="Service Pompa">
+                  <option>Service &amp; Perawatan Rutin Pompa</option>
+                  <option>Overhaul &amp; Ganti Spare Part</option>
+                  <option>Perbaikan Impeller / Housing</option>
+                  <option>Instalasi Pompa Baru</option>
+                  <option>Pompa Air Rumah / Sumur</option>
+                  <option>Pompa Industri / Transfer</option>
+                </optgroup>
+                <optgroup label="Elektrikal">
+                  <option>Instalasi Listrik Baru</option>
+                  <option>Perbaikan / Maintenance Panel</option>
+                  <option>Motor Listrik</option>
+                  <option>Rangkaian Kontrol</option>
+                  <option>Penerangan &amp; Stop Kontak</option>
+                  <option>Perbaikan Korsleting</option>
+                </optgroup>
                 <option>Lainnya</option>
               </select>
             </div>
             <div class="form-field full">
               <label>Detail Kebutuhan <span class="req">*</span></label>
-              <textarea name="pesan" required placeholder="Jelaskan komponen, material, dimensi, jumlah, dan target waktu..."></textarea>
+              <textarea name="pesan" required placeholder="Jelaskan kebutuhan Anda: komponen/material/dimensi (untuk bubut), jenis &amp; merk pompa (untuk service pompa), atau jenis pekerjaan listrik..."></textarea>
             </div>
             <div class="form-field full">
               <button type="submit" class="btn btn-primary" style="width:100%;">
@@ -1949,8 +2311,8 @@ footer.site-footer::before{
       <div class="footer-brand">
         <img src="https://raw.githubusercontent.com/miftah9go-ux/Bulilin/refs/heads/main/Img.jpg" alt="Logo Dinasty Sulung Teknik" class="brand-logo">
         <h1>Dinasty Sulung</h1>
-        <span>Teknik · Precision Engineering</span>
-        <p>Bengkel bubut presisi untuk komponen industri, maintenance, dan produksi terbatas. Berlokasi di Pongangan, Manyar, Gresik.</p>
+        <span>Teknik · Bubut · Pompa · Elektrikal</span>
+        <p>Bengkel serbaguna: pembubutan presisi, service pompa industri, dan instalasi elektrikal. Berlokasi di Pongangan, Manyar, Gresik.</p>
       </div>
 
       <div class="footer-col">
@@ -1967,9 +2329,9 @@ footer.site-footer::before{
       <div class="footer-col">
         <h4>Layanan</h4>
         <ul>
-          <li><a href="#" data-nav="services">Pembubutan Silindris</a></li>
-          <li><a href="#" data-nav="services">Pembubutan Tirus</a></li>
-          <li><a href="#" data-nav="services">Facing</a></li>
+          <li><a href="#" data-nav="services">Bubut Presisi</a></li>
+          <li><a href="#" data-nav="services">Service Pompa</a></li>
+          <li><a href="#" data-nav="services">Elektrikal</a></li>
           <li><a href="#" data-nav="services">Part Custom</a></li>
           <li><a href="#" data-nav="services">Reparasi Komponen</a></li>
         </ul>
@@ -1990,7 +2352,7 @@ footer.site-footer::before{
 
     <div class="footer-bottom">
       <span>© <span id="year"></span> Dinasty Sulung Teknik. All rights reserved.</span>
-      <span>Precision Engineering · Gresik</span>
+      <span>Bubut · Pompa · Elektrikal · Gresik</span>
     </div>
   </div>
 </footer>
@@ -2020,7 +2382,6 @@ function showPage(name){
   window.scrollTo({ top:0, behavior:'smooth' });
   history.replaceState(null, '', '#' + name);
 
-  // re-trigger reveal animations for the new page
   setTimeout(initReveal, 60);
 }
 
