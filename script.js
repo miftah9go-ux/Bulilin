@@ -1,0 +1,492 @@
+/* ============================================================
+   MULTI-PAGE NAVIGATION
+   ============================================================ */
+const pages = ['home','about','bubut','pompa','elektrikal','material','galeri','kontak'];
+
+function showPage(name){
+  if(!pages.includes(name)) name = 'home';
+
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  const target = document.getElementById('page-' + name);
+  if(target) target.classList.add('active');
+
+  document.querySelectorAll('.nav-link').forEach(link => {
+    link.classList.toggle('active', link.dataset.nav === name);
+  });
+
+  window.scrollTo({ top:0, behavior:'smooth' });
+  history.replaceState(null, '', '#' + name);
+
+  setTimeout(initReveal, 60);
+}
+
+document.addEventListener('click', e => {
+  const navEl = e.target.closest('[data-nav]');
+  if(navEl){
+    e.preventDefault();
+    const name = navEl.dataset.nav;
+    showPage(name);
+    closeMenu();
+  }
+});
+
+/* ============================================================
+   HAMBURGER MENU
+   ============================================================ */
+const hamburger = document.getElementById('hamburger');
+const navMenu = document.getElementById('navMenu');
+
+function closeMenu(){
+  navMenu.classList.remove('open');
+  hamburger.classList.remove('open');
+}
+
+hamburger.addEventListener('click', () => {
+  navMenu.classList.toggle('open');
+  hamburger.classList.toggle('open');
+});
+
+document.addEventListener('click', e => {
+  if(!navMenu.contains(e.target) && !hamburger.contains(e.target)){
+    closeMenu();
+  }
+});
+
+/* ============================================================
+   HEADER SHADOW ON SCROLL
+   ============================================================ */
+const header = document.getElementById('siteHeader');
+window.addEventListener('scroll', () => {
+  header.classList.toggle('scrolled', window.scrollY > 10);
+});
+
+/* ============================================================
+   REVEAL ON SCROLL
+   ============================================================ */
+let revealObserver;
+function initReveal(){
+  const items = document.querySelectorAll('.page.active .reveal');
+  if(revealObserver) revealObserver.disconnect();
+
+  revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add('visible');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold:0.12, rootMargin:'0px 0px -40px 0px' });
+
+  items.forEach((item, i) => {
+    item.style.transitionDelay = (i % 6) * 0.06 + 's';
+    revealObserver.observe(item);
+  });
+}
+
+/* ============================================================
+   CONTACT FORM — Kirim via WhatsApp
+   ============================================================ */
+function handleSubmit(e){
+  e.preventDefault();
+  const form = e.target;
+  const data = new FormData(form);
+
+  const nama    = data.get('nama')?.trim() || '-';
+  const telepon = data.get('telepon')?.trim() || '-';
+  const email   = data.get('email')?.trim() || '-';
+  const layanan = data.get('layanan')?.trim() || '-';
+  const pesan   = data.get('pesan')?.trim() || '-';
+
+  const text =
+    `Halo Dinasty Sulung Teknik,%0A%0A` +
+    `Nama: ${encodeURIComponent(nama)}%0A` +
+    `Telepon: ${encodeURIComponent(telepon)}%0A` +
+    `Email: ${encodeURIComponent(email)}%0A` +
+    `Layanan: ${encodeURIComponent(layanan)}%0A%0A` +
+    `Detail:%0A${encodeURIComponent(pesan)}`;
+
+  window.open(`https://wa.me/6288214612468?text=${text}`, '_blank');
+  form.reset();
+
+  const btn = form.querySelector('button[type="submit"]');
+  const original = btn.innerHTML;
+  btn.innerHTML = '✓ Terkirim — Membuka WhatsApp...';
+  btn.style.background = 'var(--green-500)';
+  setTimeout(() => {
+    btn.innerHTML = original;
+    btn.style.background = '';
+  }, 2600);
+}
+
+/* ============================================================
+   GALERI SUPABASE — VIEW PUBLIK + ADMIN (UPLOAD/HAPUS)
+   ============================================================ */
+(function(){
+  /* ============ KONFIGURASI ============ */
+  const ADMIN_PASSWORD = 'dinastysulung';
+  const SESSION_KEY = 'dst_admin_logged_in';
+
+  /* ============ STATE ============ */
+  let galleryItems = [];
+  let deleteMode = false;
+  let isLoggedIn = false;
+
+  /* ============ ELEMENT REFS ============ */
+  const galleryGrid        = document.getElementById('galleryGrid');
+  const galleryStatus      = document.getElementById('galleryStatus');
+  const gallerySearch      = document.getElementById('gallerySearch');
+  const btnRefresh         = document.getElementById('btnRefreshGallery');
+  const btnToggleDelete    = document.getElementById('btnToggleDelete');
+  const btnLock            = document.getElementById('btnLock');
+  const adminUploadSection = document.getElementById('adminUploadSection');
+
+  // Modal login
+  const loginModal   = document.getElementById('loginModal');
+  const modalClose   = document.getElementById('modalClose');
+  const loginForm    = document.getElementById('loginForm');
+  const loginPassword= document.getElementById('loginPassword');
+  const btnLogin     = document.getElementById('btnLogin');
+  const loginStatus  = document.getElementById('loginStatus');
+
+  // Form upload
+  const uploadForm     = document.getElementById('uploadForm');
+  const uploadJudul    = document.getElementById('uploadJudul');
+  const uploadKategori = document.getElementById('uploadKategori');
+  const uploadFile     = document.getElementById('uploadFile');
+  const uploadPreview  = document.getElementById('uploadPreview');
+  const btnUpload      = document.getElementById('btnUpload');
+  const btnResetUpload = document.getElementById('btnResetUpload');
+  const uploadStatus   = document.getElementById('uploadStatus');
+
+  const btnLogout = document.getElementById('btnLogout');
+
+  if(!galleryGrid) return;
+
+  /* ============ HELPER STATUS ============ */
+  function setStatus(el, msg, type){
+    if(!el) return;
+    el.textContent = msg || '';
+    el.className = 'upload-status' + (type ? ' ' + type : '');
+    el.style.display = msg ? 'block' : 'none';
+  }
+
+  /* ============================================================
+     AUTH — LOGIN / LOGOUT
+     ============================================================ */
+  function openModal(){
+    loginModal.classList.add('open');
+    loginModal.setAttribute('aria-hidden', 'false');
+    setStatus(loginStatus, '', '');
+    loginForm.reset();
+    setTimeout(() => loginPassword?.focus(), 200);
+  }
+
+  function closeModal(){
+    loginModal.classList.remove('open');
+    loginModal.setAttribute('aria-hidden', 'true');
+  }
+
+  function enterAdmin(){
+    isLoggedIn = true;
+    sessionStorage.setItem(SESSION_KEY, '1');
+    adminUploadSection.style.display = 'block';
+    btnToggleDelete.style.display = 'inline-flex';
+    btnLock.classList.add('logged-in');
+    btnLock.querySelector('.lock-ico').textContent = '🔓';
+    btnLock.querySelector('.lock-text').textContent = 'Admin (Login)';
+    closeModal();
+    renderGallery();
+
+    // Scroll ke form upload
+    setTimeout(() => {
+      adminUploadSection.scrollIntoView({ behavior:'smooth', block:'start' });
+    }, 250);
+  }
+
+  function exitAdmin(){
+    isLoggedIn = false;
+    deleteMode = false;
+    sessionStorage.removeItem(SESSION_KEY);
+    adminUploadSection.style.display = 'none';
+    btnToggleDelete.style.display = 'none';
+    btnToggleDelete.textContent = '🗑️ Mode Hapus: OFF';
+    btnToggleDelete.classList.remove('active');
+    btnLock.classList.remove('logged-in');
+    btnLock.querySelector('.lock-ico').textContent = '🔒';
+    btnLock.querySelector('.lock-text').textContent = 'Admin';
+    uploadForm?.reset();
+    if(uploadPreview) uploadPreview.style.display = 'none';
+    setStatus(uploadStatus, '', '');
+    renderGallery();
+  }
+
+  btnLock?.addEventListener('click', () => {
+    if(isLoggedIn){
+      if(confirm('Anda sudah login sebagai admin.\n\nLogout sekarang?')){
+        exitAdmin();
+      }
+    } else {
+      openModal();
+    }
+  });
+
+  modalClose?.addEventListener('click', closeModal);
+
+  loginModal?.addEventListener('click', (e) => {
+    if(e.target === loginModal) closeModal();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if(e.key === 'Escape' && loginModal.classList.contains('open')) closeModal();
+  });
+
+  loginForm?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const input = loginPassword.value.trim();
+
+    if(!input){
+      setStatus(loginStatus, '⚠️ Password tidak boleh kosong.', 'err');
+      return;
+    }
+
+    btnLogin.disabled = true;
+    btnLogin.textContent = '⏳ Memeriksa...';
+
+    setTimeout(() => {
+      if(input === ADMIN_PASSWORD){
+        setStatus(loginStatus, '✅ Login berhasil!', 'ok');
+        setTimeout(() => {
+          enterAdmin();
+          btnLogin.disabled = false;
+          btnLogin.textContent = '🔓 Masuk';
+        }, 500);
+      } else {
+        setStatus(loginStatus, '❌ Password salah. Coba lagi.', 'err');
+        loginPassword.value = '';
+        loginPassword.focus();
+        btnLogin.disabled = false;
+        btnLogin.textContent = '🔓 Masuk';
+      }
+    }, 350);
+  });
+
+  btnLogout?.addEventListener('click', () => {
+    if(!confirm('Yakin ingin logout dari panel admin?')) return;
+    exitAdmin();
+  });
+
+  /* Auto-login jika sudah pernah login di tab ini */
+  if(sessionStorage.getItem(SESSION_KEY) === '1'){
+    isLoggedIn = true;
+    adminUploadSection.style.display = 'block';
+    btnToggleDelete.style.display = 'inline-flex';
+    btnLock.classList.add('logged-in');
+    btnLock.querySelector('.lock-ico').textContent = '🔓';
+    btnLock.querySelector('.lock-text').textContent = 'Admin (Login)';
+  }
+
+  /* ============================================================
+     PREVIEW FILE
+     ============================================================ */
+  uploadFile?.addEventListener('change', () => {
+    const file = uploadFile.files[0];
+    if(!file){ uploadPreview.style.display = 'none'; return; }
+    const reader = new FileReader();
+    reader.onload = e => {
+      uploadPreview.src = e.target.result;
+      uploadPreview.style.display = 'block';
+    };
+    reader.readAsDataURL(file);
+  });
+
+  /* ============================================================
+     SUBMIT UPLOAD
+     ============================================================ */
+  uploadForm?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if(!isLoggedIn){
+      setStatus(uploadStatus, '⚠️ Silakan login dulu.', 'err');
+      return;
+    }
+
+    const judul    = uploadJudul.value.trim();
+    const kategori = uploadKategori.value;
+    const file     = uploadFile.files[0];
+
+    if(!judul){ setStatus(uploadStatus, '⚠️ Judul wajib diisi.', 'err'); return; }
+    if(!file){ setStatus(uploadStatus, '⚠️ Pilih gambar dulu.', 'err'); return; }
+
+    btnUpload.disabled = true;
+    btnUpload.innerHTML = '⏳ Mengupload...';
+    setStatus(uploadStatus, 'Mengupload ke Supabase...', 'info');
+
+    try {
+      await uploadGambarGaleri(file, judul, kategori);
+      setStatus(uploadStatus, '✅ Berhasil upload!', 'ok');
+      uploadForm.reset();
+      uploadPreview.style.display = 'none';
+      await loadGallery();
+      setTimeout(() => setStatus(uploadStatus, '', ''), 2200);
+    } catch(err){
+      console.error(err);
+      setStatus(uploadStatus, '❌ Gagal: ' + (err.message || err), 'err');
+    } finally {
+      btnUpload.disabled = false;
+      btnUpload.innerHTML = '⬆️ Upload ke Galeri';
+    }
+  });
+
+  btnResetUpload?.addEventListener('click', () => {
+    uploadForm.reset();
+    uploadPreview.style.display = 'none';
+    setStatus(uploadStatus, '', '');
+  });
+
+  /* ============================================================
+     LOAD GALLERY
+     ============================================================ */
+  async function loadGallery(){
+    setStatus(galleryStatus, 'Memuat galeri...', 'info');
+    try {
+      galleryItems = await ambilSemuaGambar();
+      renderGallery();
+      setStatus(galleryStatus, `✅ ${galleryItems.length} gambar dimuat.`, 'ok');
+      setTimeout(() => setStatus(galleryStatus, '', ''), 1600);
+    } catch(err){
+      console.error(err);
+      setStatus(galleryStatus, '❌ Gagal memuat: ' + (err.message || err), 'err');
+    }
+  }
+
+  /* ============================================================
+     RENDER GALLERY
+     ============================================================ */
+  function renderGallery(){
+    const q = (gallerySearch?.value || '').toLowerCase().trim();
+    const filtered = q
+      ? galleryItems.filter(it =>
+          it.judul.toLowerCase().includes(q) ||
+          it.kategori.toLowerCase().includes(q))
+      : galleryItems;
+
+    if(filtered.length === 0){
+      galleryGrid.innerHTML = '<div class="gallery-empty">📭 Belum ada gambar' +
+        (q ? ' yang cocok dengan pencarian.' : '.') + '</div>';
+      return;
+    }
+
+    galleryGrid.innerHTML = filtered.map(item => `
+      <div class="gallery-card ${deleteMode ? 'delete-mode' : ''}" data-file="${item.fileName}">
+        <div class="gallery-thumb" style="background-image:url('${item.url}')">
+          <span class="gallery-cat">${escapeHtml(item.kategori)}</span>
+        </div>
+        <div class="gallery-info">
+          <h4>${escapeHtml(item.judul)}</h4>
+          <span class="gallery-date">📅 ${item.tanggal}</span>
+        </div>
+        ${isLoggedIn ? `<button class="gallery-delete" data-file="${item.fileName}" title="Hapus gambar">🗑️</button>` : ''}
+      </div>
+    `).join('');
+
+    galleryGrid.querySelectorAll('.gallery-thumb').forEach(el => {
+      el.addEventListener('click', (e) => {
+        if(deleteMode) return;
+        const file = e.currentTarget.parentElement.dataset.file;
+        const item = galleryItems.find(i => i.fileName === file);
+        if(item) window.open(item.url, '_blank');
+      });
+    });
+
+    galleryGrid.querySelectorAll('.gallery-delete').forEach(btn => {
+      btn.addEventListener('click', async (e) => {
+        e.stopPropagation();
+        if(!isLoggedIn){
+          alert('⚠️ Silakan login dulu untuk menghapus.');
+          return;
+        }
+
+        const fileName = btn.dataset.file;
+        const item = galleryItems.find(i => i.fileName === fileName);
+
+        if(!confirm(`Hapus gambar:\n"${item?.judul || fileName}"?\n\nTindakan ini tidak bisa dibatalkan.`)) return;
+
+        btn.disabled = true;
+        btn.textContent = '⏳';
+        setStatus(galleryStatus, 'Menghapus...', 'info');
+
+        try {
+          await hapusGambar(fileName);
+          galleryItems = galleryItems.filter(i => i.fileName !== fileName);
+          renderGallery();
+          setStatus(galleryStatus, '🗑️ Gambar berhasil dihapus.', 'ok');
+          setTimeout(() => setStatus(galleryStatus, '', ''), 1600);
+        } catch(err){
+          console.error(err);
+          setStatus(galleryStatus, '❌ Gagal hapus: ' + (err.message || err), 'err');
+          btn.disabled = false;
+          btn.textContent = '🗑️';
+        }
+      });
+    });
+  }
+
+  function escapeHtml(s){
+    return String(s).replace(/[&<>"']/g, c => ({
+      '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
+    }[c]));
+  }
+
+  /* ============================================================
+     SEARCH / REFRESH / DELETE MODE
+     ============================================================ */
+  gallerySearch?.addEventListener('input', renderGallery);
+
+  btnRefresh?.addEventListener('click', () => {
+    btnRefresh.disabled = true;
+    btnRefresh.textContent = '⏳ Memuat...';
+    loadGallery().finally(() => {
+      btnRefresh.disabled = false;
+      btnRefresh.textContent = '🔄 Refresh';
+    });
+  });
+
+  btnToggleDelete?.addEventListener('click', () => {
+    if(!isLoggedIn){
+      alert('⚠️ Silakan login dulu.');
+      return;
+    }
+    deleteMode = !deleteMode;
+    btnToggleDelete.textContent = '🗑️ Mode Hapus: ' + (deleteMode ? 'ON' : 'OFF');
+    btnToggleDelete.classList.toggle('active', deleteMode);
+    renderGallery();
+  });
+
+  /* ============================================================
+     AUTO LOAD ketika halaman Galeri dibuka
+     ============================================================ */
+  const observer = new MutationObserver(() => {
+    const galeriPage = document.getElementById('page-galeri');
+    if(galeriPage && galeriPage.classList.contains('active') && galleryItems.length === 0){
+      loadGallery();
+    }
+  });
+
+  document.querySelectorAll('.page').forEach(p => {
+    observer.observe(p, { attributes:true, attributeFilter:['class'] });
+  });
+
+  if(document.getElementById('page-galeri')?.classList.contains('active')){
+    loadGallery();
+  }
+})();
+
+/* ============================================================
+   INIT
+   ============================================================ */
+document.getElementById('year').textContent = new Date().getFullYear();
+
+window.addEventListener('DOMContentLoaded', () => {
+  const hash = location.hash.replace('#','');
+  if(pages.includes(hash)) showPage(hash);
+  initReveal();
+});
