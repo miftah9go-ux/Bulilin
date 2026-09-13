@@ -197,7 +197,6 @@ function handleSubmit(e){
     closeModal();
     renderGallery();
 
-    // Scroll ke form upload
     setTimeout(() => {
       adminUploadSection.scrollIntoView({ behavior:'smooth', block:'start' });
     }, 250);
@@ -478,6 +477,217 @@ function handleSubmit(e){
   if(document.getElementById('page-galeri')?.classList.contains('active')){
     loadGallery();
   }
+})();
+
+/* ============================================================
+   HOME SLIDER GALERI — Otomatis dari Supabase
+   ============================================================ */
+(function(){
+  const track    = document.getElementById('homeSliderTrack');
+  const btnPrev  = document.getElementById('sliderPrev');
+  const btnNext  = document.getElementById('sliderNext');
+  const dotsWrap = document.getElementById('sliderDots');
+
+  if(!track) return;
+
+  let slides     = [];
+  let currentIdx = 0;
+  let autoTimer  = null;
+  let isLoaded   = false;
+
+  /* ====== LOAD DATA DARI SUPABASE ====== */
+  async function loadSliderData(){
+    if(isLoaded) return;
+    try {
+      const items = await ambilSemuaGambar();
+      renderSlides(items);
+      isLoaded = true;
+    } catch(err){
+      console.error('Slider error:', err);
+      track.innerHTML = '<div class="slider-empty">📭 Belum ada gambar. Tambahkan lewat halaman Galeri.</div>';
+      if(btnPrev) btnPrev.style.display = 'none';
+      if(btnNext) btnNext.style.display = 'none';
+    }
+  }
+
+  /* ====== RENDER SLIDES ====== */
+  function renderSlides(items){
+    if(!items || items.length === 0){
+      track.innerHTML = '<div class="slider-empty">📭 Belum ada gambar. Tambahkan lewat halaman Galeri.</div>';
+      if(btnPrev) btnPrev.style.display = 'none';
+      if(btnNext) btnNext.style.display = 'none';
+      return;
+    }
+
+    // Ambil max 10 item terbaru
+    const list = items.slice(0, 10);
+
+    track.innerHTML = list.map(item => `
+      <div class="slide-item" data-url="${item.url}" style="background-image:url('${item.url}')">
+        <span class="slide-cat">${escapeHtmlSlider(item.kategori)}</span>
+        <div class="slide-info">
+          <h4>${escapeHtmlSlider(item.judul)}</h4>
+          <span>📅 ${item.tanggal}</span>
+        </div>
+      </div>
+    `).join('');
+
+    // Klik → buka gambar
+    track.querySelectorAll('.slide-item').forEach(el => {
+      el.addEventListener('click', () => {
+        window.open(el.dataset.url, '_blank');
+      });
+    });
+
+    // Buat dots
+    buildDots(list.length);
+    updateNavButtons();
+
+    // Auto slide
+    startAutoSlide();
+
+    // Pause saat hover
+    track.addEventListener('mouseenter', stopAutoSlide);
+    track.addEventListener('mouseleave', startAutoSlide);
+
+    // Update dots saat scroll manual
+    track.addEventListener('scroll', debounce(onScroll, 100));
+  }
+
+  function escapeHtmlSlider(s){
+    return String(s || '').replace(/[&<>"']/g, c => ({
+      '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
+    }[c]));
+  }
+
+  /* ====== DOTS ====== */
+  function buildDots(count){
+    if(!dotsWrap) return;
+    dotsWrap.innerHTML = '';
+    for(let i = 0; i < count; i++){
+      const dot = document.createElement('button');
+      dot.className = 'slider-dot' + (i === 0 ? ' active' : '');
+      dot.setAttribute('aria-label', 'Slide ' + (i + 1));
+      dot.addEventListener('click', () => {
+        goToSlide(i);
+        restartAutoSlide();
+      });
+      dotsWrap.appendChild(dot);
+    }
+  }
+
+  function updateDots(idx){
+    if(!dotsWrap) return;
+    dotsWrap.querySelectorAll('.slider-dot').forEach((d, i) => {
+      d.classList.toggle('active', i === idx);
+    });
+  }
+
+  /* ====== NAVIGASI ====== */
+  function getSlideWidth(){
+    const first = track.querySelector('.slide-item');
+    if(!first) return 0;
+    const gap = 20;
+    return first.offsetWidth + gap;
+  }
+
+  function goToSlide(idx){
+    const slidesAll = track.querySelectorAll('.slide-item');
+    if(slidesAll.length === 0) return;
+
+    idx = Math.max(0, Math.min(idx, slidesAll.length - 1));
+    currentIdx = idx;
+
+    const w = getSlideWidth();
+    track.scrollTo({ left: idx * w, behavior: 'smooth' });
+    updateDots(idx);
+    updateNavButtons();
+  }
+
+  function nextSlide(){
+    const total = track.querySelectorAll('.slide-item').length;
+    if(total === 0) return;
+    if(currentIdx >= total - 1){
+      goToSlide(0); // loop ke awal
+    } else {
+      goToSlide(currentIdx + 1);
+    }
+  }
+
+  function prevSlide(){
+    const total = track.querySelectorAll('.slide-item').length;
+    if(total === 0) return;
+    if(currentIdx <= 0){
+      goToSlide(total - 1); // loop ke akhir
+    } else {
+      goToSlide(currentIdx - 1);
+    }
+  }
+
+  btnNext?.addEventListener('click', () => { nextSlide(); restartAutoSlide(); });
+  btnPrev?.addEventListener('click', () => { prevSlide(); restartAutoSlide(); });
+
+  function updateNavButtons(){
+    if(btnPrev) btnPrev.disabled = false;
+    if(btnNext) btnNext.disabled = false;
+  }
+
+  /* ====== AUTO SLIDE ====== */
+  function startAutoSlide(){
+    stopAutoSlide();
+    autoTimer = setInterval(nextSlide, 4000); // ganti tiap 4 detik
+  }
+  function stopAutoSlide(){
+    if(autoTimer){ clearInterval(autoTimer); autoTimer = null; }
+  }
+  function restartAutoSlide(){
+    stopAutoSlide();
+    startAutoSlide();
+  }
+
+  /* ====== SYNC DOT SAAT SCROLL MANUAL ====== */
+  function onScroll(){
+    const w = getSlideWidth();
+    if(!w) return;
+    const idx = Math.round(track.scrollLeft / w);
+    if(idx !== currentIdx){
+      currentIdx = idx;
+      updateDots(idx);
+    }
+  }
+
+  function debounce(fn, delay){
+    let t;
+    return function(...args){
+      clearTimeout(t);
+      t = setTimeout(() => fn.apply(this, args), delay);
+    };
+  }
+
+  /* ====== TRIGGER SAAT HALAMAN BERANDA AKTIF ====== */
+  const homeObserver = new MutationObserver(() => {
+    const homePage = document.getElementById('page-home');
+    if(homePage && homePage.classList.contains('active')){
+      loadSliderData();
+      if(isLoaded) startAutoSlide();
+    } else {
+      stopAutoSlide();
+    }
+  });
+
+  document.querySelectorAll('.page').forEach(p => {
+    homeObserver.observe(p, { attributes: true, attributeFilter: ['class'] });
+  });
+
+  // Load pertama jika langsung di beranda
+  if(document.getElementById('page-home')?.classList.contains('active')){
+    loadSliderData();
+  }
+
+  // Re-init saat resize
+  window.addEventListener('resize', debounce(() => {
+    if(isLoaded) goToSlide(currentIdx);
+  }, 200));
 })();
 
 /* ============================================================
