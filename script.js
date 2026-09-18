@@ -24,8 +24,7 @@ document.addEventListener('click', e => {
   const navEl = e.target.closest('[data-nav]');
   if(navEl){
     e.preventDefault();
-    const name = navEl.dataset.nav;
-    showPage(name);
+    showPage(navEl.dataset.nav);
     closeMenu();
   }
 });
@@ -56,9 +55,25 @@ document.addEventListener('click', e => {
    HEADER SHADOW ON SCROLL
    ============================================================ */
 const header = document.getElementById('siteHeader');
+let lastScroll = 0;
 window.addEventListener('scroll', () => {
-  header.classList.toggle('scrolled', window.scrollY > 10);
-});
+  const y = window.scrollY;
+  header.classList.toggle('scrolled', y > 10);
+  lastScroll = y;
+}, { passive: true });
+
+/* ============================================================
+   SCROLL PROGRESS BAR
+   ============================================================ */
+const scrollProgress = document.getElementById('scrollProgress');
+function updateScrollProgress(){
+  const h = document.documentElement;
+  const max = h.scrollHeight - h.clientHeight;
+  const pct = max > 0 ? (h.scrollTop / max) * 100 : 0;
+  if(scrollProgress) scrollProgress.style.width = pct + '%';
+}
+window.addEventListener('scroll', updateScrollProgress, { passive: true });
+window.addEventListener('resize', updateScrollProgress);
 
 /* ============================================================
    REVEAL ON SCROLL
@@ -81,6 +96,114 @@ function initReveal(){
     item.style.transitionDelay = (i % 6) * 0.06 + 's';
     revealObserver.observe(item);
   });
+}
+
+/* ============================================================
+   COUNT-UP ANIMATION untuk STATS
+   ============================================================ */
+function animateCounter(el, target, duration = 1800){
+  const start = performance.now();
+  const decimals = parseInt(el.dataset.decimals) || 0;
+  const suffix = el.dataset.suffix || '';
+  const isDecimal = decimals > 0;
+
+  function tick(now){
+    const progress = Math.min((now - start) / duration, 1);
+    const eased = 1 - Math.pow(1 - progress, 3);
+    const value = target * eased;
+
+    const formatted = isDecimal
+      ? value.toFixed(decimals)
+      : Math.floor(value).toLocaleString('id-ID');
+
+    el.textContent = formatted + suffix;
+
+    if(progress < 1) requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+}
+
+const statObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if(e.isIntersecting){
+      const el = e.target.querySelector('.stat-num');
+      if(el && !el.dataset.animated){
+        const target = parseFloat(el.dataset.target);
+        animateCounter(el, target);
+        el.dataset.animated = '1';
+      }
+      statObserver.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.5 });
+
+document.querySelectorAll('.stat').forEach(s => statObserver.observe(s));
+
+/* ============================================================
+   MAGNETIC BUTTONS + RIPPLE EFFECT
+   ============================================================ */
+function initMagneticButtons(){
+  const buttons = document.querySelectorAll('.btn-primary, .btn-gold, .btn-ghost');
+
+  buttons.forEach(btn => {
+    btn.addEventListener('mousemove', (e) => {
+      const rect = btn.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width / 2;
+      const y = e.clientY - rect.top - rect.height / 2;
+
+      btn.style.setProperty('--mx', (e.clientX - rect.left) + 'px');
+      btn.style.setProperty('--my', (e.clientY - rect.top) + 'px');
+
+      btn.style.transform = `translate(${x * 0.08}px, ${y * 0.08}px) translateY(-2px)`;
+    });
+
+    btn.addEventListener('mouseleave', () => {
+      btn.style.transform = '';
+    });
+  });
+}
+
+/* ============================================================
+   CARD TILT EFFECT (Premium Micro-interaction)
+   ============================================================ */
+function initCardTilt(){
+  const cards = document.querySelectorAll('.pillar, .card, .testi-card');
+  const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+  if(isTouchDevice) return;
+
+  cards.forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      const rotateX = ((y - centerY) / centerY) * -2;
+      const rotateY = ((x - centerX) / centerX) * 2;
+
+      card.style.transform = `translateY(-8px) perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+    });
+
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = '';
+    });
+  });
+}
+
+/* ============================================================
+   HERO PARALLAX SUBTLE
+   ============================================================ */
+function initHeroParallax(){
+  const hero = document.querySelector('.hero');
+  const heroBg = document.querySelector('.hero-bg');
+  if(!hero || !heroBg) return;
+
+  window.addEventListener('scroll', () => {
+    const scrolled = window.scrollY;
+    if(scrolled < window.innerHeight){
+      heroBg.style.transform = `scale(1.08) translateY(${scrolled * 0.15}px)`;
+    }
+  }, { passive: true });
 }
 
 /* ============================================================
@@ -111,7 +234,7 @@ function handleSubmit(e){
   const btn = form.querySelector('button[type="submit"]');
   const original = btn.innerHTML;
   btn.innerHTML = '✓ Terkirim — Membuka WhatsApp...';
-  btn.style.background = 'var(--green-500)';
+  btn.style.background = 'linear-gradient(135deg, #3d9a62, #4fb377)';
   setTimeout(() => {
     btn.innerHTML = original;
     btn.style.background = '';
@@ -119,19 +242,16 @@ function handleSubmit(e){
 }
 
 /* ============================================================
-   GALERI SUPABASE — VIEW PUBLIK + ADMIN (UPLOAD/HAPUS)
+   GALERI SUPABASE — VIEW PUBLIK + ADMIN
    ============================================================ */
 (function(){
-  /* ============ KONFIGURASI ============ */
   const ADMIN_PASSWORD = 'dinastysulung';
   const SESSION_KEY = 'dst_admin_logged_in';
 
-  /* ============ STATE ============ */
   let galleryItems = [];
   let deleteMode = false;
   let isLoggedIn = false;
 
-  /* ============ ELEMENT REFS ============ */
   const galleryGrid        = document.getElementById('galleryGrid');
   const galleryStatus      = document.getElementById('galleryStatus');
   const gallerySearch      = document.getElementById('gallerySearch');
@@ -140,7 +260,6 @@ function handleSubmit(e){
   const btnLock            = document.getElementById('btnLock');
   const adminUploadSection = document.getElementById('adminUploadSection');
 
-  // Modal login
   const loginModal   = document.getElementById('loginModal');
   const modalClose   = document.getElementById('modalClose');
   const loginForm    = document.getElementById('loginForm');
@@ -148,7 +267,6 @@ function handleSubmit(e){
   const btnLogin     = document.getElementById('btnLogin');
   const loginStatus  = document.getElementById('loginStatus');
 
-  // Form upload
   const uploadForm     = document.getElementById('uploadForm');
   const uploadJudul    = document.getElementById('uploadJudul');
   const uploadKategori = document.getElementById('uploadKategori');
@@ -162,7 +280,6 @@ function handleSubmit(e){
 
   if(!galleryGrid) return;
 
-  /* ============ HELPER STATUS ============ */
   function setStatus(el, msg, type){
     if(!el) return;
     el.textContent = msg || '';
@@ -170,9 +287,6 @@ function handleSubmit(e){
     el.style.display = msg ? 'block' : 'none';
   }
 
-  /* ============================================================
-     AUTH — LOGIN / LOGOUT
-     ============================================================ */
   function openModal(){
     loginModal.classList.add('open');
     loginModal.setAttribute('aria-hidden', 'false');
@@ -230,11 +344,9 @@ function handleSubmit(e){
   });
 
   modalClose?.addEventListener('click', closeModal);
-
   loginModal?.addEventListener('click', (e) => {
     if(e.target === loginModal) closeModal();
   });
-
   document.addEventListener('keydown', (e) => {
     if(e.key === 'Escape' && loginModal.classList.contains('open')) closeModal();
   });
@@ -274,7 +386,6 @@ function handleSubmit(e){
     exitAdmin();
   });
 
-  /* Auto-login jika sudah pernah login di tab ini */
   if(sessionStorage.getItem(SESSION_KEY) === '1'){
     isLoggedIn = true;
     adminUploadSection.style.display = 'block';
@@ -284,9 +395,6 @@ function handleSubmit(e){
     btnLock.querySelector('.lock-text').textContent = 'Admin (Login)';
   }
 
-  /* ============================================================
-     PREVIEW FILE
-     ============================================================ */
   uploadFile?.addEventListener('change', () => {
     const file = uploadFile.files[0];
     if(!file){ uploadPreview.style.display = 'none'; return; }
@@ -298,9 +406,6 @@ function handleSubmit(e){
     reader.readAsDataURL(file);
   });
 
-  /* ============================================================
-     SUBMIT UPLOAD
-     ============================================================ */
   uploadForm?.addEventListener('submit', async (e) => {
     e.preventDefault();
     if(!isLoggedIn){
@@ -341,9 +446,6 @@ function handleSubmit(e){
     setStatus(uploadStatus, '', '');
   });
 
-  /* ============================================================
-     LOAD GALLERY
-     ============================================================ */
   async function loadGallery(){
     setStatus(galleryStatus, 'Memuat galeri...', 'info');
     try {
@@ -357,9 +459,6 @@ function handleSubmit(e){
     }
   }
 
-  /* ============================================================
-     RENDER GALLERY
-     ============================================================ */
   function renderGallery(){
     const q = (gallerySearch?.value || '').toLowerCase().trim();
     const filtered = q
@@ -435,9 +534,6 @@ function handleSubmit(e){
     }[c]));
   }
 
-  /* ============================================================
-     SEARCH / REFRESH / DELETE MODE
-     ============================================================ */
   gallerySearch?.addEventListener('input', renderGallery);
 
   btnRefresh?.addEventListener('click', () => {
@@ -460,9 +556,6 @@ function handleSubmit(e){
     renderGallery();
   });
 
-  /* ============================================================
-     AUTO LOAD ketika halaman Galeri dibuka
-     ============================================================ */
   const observer = new MutationObserver(() => {
     const galeriPage = document.getElementById('page-galeri');
     if(galeriPage && galeriPage.classList.contains('active') && galleryItems.length === 0){
@@ -480,7 +573,7 @@ function handleSubmit(e){
 })();
 
 /* ============================================================
-   HOME SLIDER GALERI — Otomatis dari Supabase
+   HOME SLIDER GALERI
    ============================================================ */
 (function(){
   const track    = document.getElementById('homeSliderTrack');
@@ -490,12 +583,12 @@ function handleSubmit(e){
 
   if(!track) return;
 
-  let slides     = [];
   let currentIdx = 0;
   let autoTimer  = null;
   let isLoaded   = false;
 
-  /* ====== LOAD DATA DARI SUPABASE ====== */
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
   async function loadSliderData(){
     if(isLoaded) return;
     try {
@@ -510,7 +603,6 @@ function handleSubmit(e){
     }
   }
 
-  /* ====== RENDER SLIDES ====== */
   function renderSlides(items){
     if(!items || items.length === 0){
       track.innerHTML = '<div class="slider-empty">📭 Belum ada gambar. Tambahkan lewat halaman Galeri.</div>';
@@ -519,7 +611,6 @@ function handleSubmit(e){
       return;
     }
 
-    // Ambil max 10 item terbaru
     const list = items.slice(0, 10);
 
     track.innerHTML = list.map(item => `
@@ -532,26 +623,27 @@ function handleSubmit(e){
       </div>
     `).join('');
 
-    // Klik → buka gambar
     track.querySelectorAll('.slide-item').forEach(el => {
       el.addEventListener('click', () => {
         window.open(el.dataset.url, '_blank');
       });
     });
 
-    // Buat dots
     buildDots(list.length);
     updateNavButtons();
 
-    // Auto slide
-    startAutoSlide();
+    if(!prefersReducedMotion){
+      startAutoSlide();
+      track.addEventListener('mouseenter', stopAutoSlide);
+      track.addEventListener('mouseleave', startAutoSlide);
+    }
 
-    // Pause saat hover
-    track.addEventListener('mouseenter', stopAutoSlide);
-    track.addEventListener('mouseleave', startAutoSlide);
-
-    // Update dots saat scroll manual
     track.addEventListener('scroll', debounce(onScroll, 100));
+
+    document.addEventListener('visibilitychange', () => {
+      if(document.hidden) stopAutoSlide();
+      else if(!prefersReducedMotion) startAutoSlide();
+    });
   }
 
   function escapeHtmlSlider(s){
@@ -560,7 +652,6 @@ function handleSubmit(e){
     }[c]));
   }
 
-  /* ====== DOTS ====== */
   function buildDots(count){
     if(!dotsWrap) return;
     dotsWrap.innerHTML = '';
@@ -583,11 +674,10 @@ function handleSubmit(e){
     });
   }
 
-  /* ====== NAVIGASI ====== */
   function getSlideWidth(){
     const first = track.querySelector('.slide-item');
     if(!first) return 0;
-    const gap = 20;
+    const gap = 22;
     return first.offsetWidth + gap;
   }
 
@@ -608,7 +698,7 @@ function handleSubmit(e){
     const total = track.querySelectorAll('.slide-item').length;
     if(total === 0) return;
     if(currentIdx >= total - 1){
-      goToSlide(0); // loop ke awal
+      goToSlide(0);
     } else {
       goToSlide(currentIdx + 1);
     }
@@ -618,7 +708,7 @@ function handleSubmit(e){
     const total = track.querySelectorAll('.slide-item').length;
     if(total === 0) return;
     if(currentIdx <= 0){
-      goToSlide(total - 1); // loop ke akhir
+      goToSlide(total - 1);
     } else {
       goToSlide(currentIdx - 1);
     }
@@ -632,20 +722,18 @@ function handleSubmit(e){
     if(btnNext) btnNext.disabled = false;
   }
 
-  /* ====== AUTO SLIDE ====== */
   function startAutoSlide(){
     stopAutoSlide();
-    autoTimer = setInterval(nextSlide, 4000); // ganti tiap 4 detik
+    autoTimer = setInterval(nextSlide, 4000);
   }
   function stopAutoSlide(){
     if(autoTimer){ clearInterval(autoTimer); autoTimer = null; }
   }
   function restartAutoSlide(){
     stopAutoSlide();
-    startAutoSlide();
+    if(!prefersReducedMotion) startAutoSlide();
   }
 
-  /* ====== SYNC DOT SAAT SCROLL MANUAL ====== */
   function onScroll(){
     const w = getSlideWidth();
     if(!w) return;
@@ -664,12 +752,11 @@ function handleSubmit(e){
     };
   }
 
-  /* ====== TRIGGER SAAT HALAMAN BERANDA AKTIF ====== */
   const homeObserver = new MutationObserver(() => {
     const homePage = document.getElementById('page-home');
     if(homePage && homePage.classList.contains('active')){
       loadSliderData();
-      if(isLoaded) startAutoSlide();
+      if(isLoaded && !prefersReducedMotion) startAutoSlide();
     } else {
       stopAutoSlide();
     }
@@ -679,12 +766,10 @@ function handleSubmit(e){
     homeObserver.observe(p, { attributes: true, attributeFilter: ['class'] });
   });
 
-  // Load pertama jika langsung di beranda
   if(document.getElementById('page-home')?.classList.contains('active')){
     loadSliderData();
   }
 
-  // Re-init saat resize
   window.addEventListener('resize', debounce(() => {
     if(isLoaded) goToSlide(currentIdx);
   }, 200));
@@ -699,4 +784,8 @@ window.addEventListener('DOMContentLoaded', () => {
   const hash = location.hash.replace('#','');
   if(pages.includes(hash)) showPage(hash);
   initReveal();
+  initMagneticButtons();
+  updateScrollProgress();
+  initCardTilt();
+  initHeroParallax();
 });

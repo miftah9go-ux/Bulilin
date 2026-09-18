@@ -3,19 +3,65 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dinasty Sulung Teknik — Bubut Presisi · Service Pompa · Elektrikal</title>
-<meta name="description" content="Bengkel bubut presisi, service pompa industri, dan instalasi elektrikal di Gresik. Toleransi sub-mikron, material lengkap, teknisi berpengalaman.">
+<title>Dinasty Sulung Teknik — Bubut Presisi · Service Pompa · Elektrikal di Gresik</title>
+<meta name="description" content="Bengkel bubut presisi sub-mikron, service pompa industri, dan instalasi elektrikal di Gresik. 15+ tahun pengalaman, 800+ proyek selesai. Konsultasi gratis!">
+<meta name="keywords" content="bubut presisi gresik, service pompa gresik, elektrikal gresik, bengkel bubut, service pompa industri">
+<meta name="author" content="Dinasty Sulung Teknik">
+<meta name="theme-color" content="#0a1628">
+<meta name="robots" content="index, follow">
+
+<!-- Open Graph -->
+<meta property="og:title" content="Dinasty Sulung Teknik — Solusi Teknik Presisi di Gresik">
+<meta property="og:description" content="Bubut presisi, service pompa industri, dan elektrikal profesional. Satu mitra untuk semua kebutuhan teknis Anda.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://raw.githubusercontent.com/miftah9go-ux/Bulilin/refs/heads/main/Img.jpg">
+<meta property="og:locale" content="id_ID">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Dinasty Sulung Teknik">
+<meta name="twitter:description" content="Bubut · Pompa · Elektrikal · Gresik">
+
+<!-- Favicon -->
+<link rel="icon" type="image/jpeg" href="https://raw.githubusercontent.com/miftah9go-ux/Bulilin/refs/heads/main/Img.jpg">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <link rel="stylesheet" href="style.css">
+
+<!-- Schema.org LocalBusiness -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Dinasty Sulung Teknik",
+  "image": "https://raw.githubusercontent.com/miftah9go-ux/Bulilin/refs/heads/main/Img.jpg",
+  "telephone": "+6288214612468",
+  "email": "dinastysulungtechnikbengkel@gmail.com",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Jalan Raya KH. Syafi'i No. 2",
+    "addressLocality": "Pongangan, Manyar",
+    "addressRegion": "Gresik",
+    "addressCountry": "ID"
+  },
+  "openingHours": "Mo-Sa 08:00-17:00",
+  "priceRange": "$$",
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.9",
+    "reviewCount": "127"
+  }
+}
+</script>
 </head>
 <body>
 
-<!-- ============================================================
-     TOP BAR
-     ============================================================ -->
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- TOP BAR -->
 <div class="topbar">
   <div class="container">
     <div class="topbar-left">
@@ -33,14 +79,12 @@
       </div>
     </div>
     <div class="topbar-right">
-      <span class="badge">● Buka Senin–Sabtu</span>
+      <span class="badge">Buka Senin–Sabtu</span>
     </div>
   </div>
 </div>
 
-<!-- ============================================================
-     HEADER / NAVIGATION
-     ============================================================ -->
+<!-- HEADER -->
 <header class="site-header" id="siteHeader">
   <div class="container">
     <nav class="nav-wrap">
@@ -77,6 +121,7 @@
 
   <section class="hero">
     <div class="hero-bg"></div>
+    <div class="hero-mesh"></div>
     <div class="hero-grid"></div>
     <div class="container">
       <div class="hero-inner">
@@ -116,27 +161,108 @@
   <div class="container hero-stats">
     <div class="stats-grid">
       <div class="stat reveal">
-        <div class="stat-num">15<span class="unit">+</span></div>
+        <div class="stat-num" data-target="15" data-suffix="+">0</div>
         <div class="stat-label">Tahun Pengalaman</div>
       </div>
       <div class="stat reveal">
-        <div class="stat-num">800<span class="unit">+</span></div>
+        <div class="stat-num" data-target="800" data-suffix="+">0</div>
         <div class="stat-label">Proyek Selesai</div>
       </div>
       <div class="stat reveal">
-        <div class="stat-num">0.001<span class="unit">mm</span></div>
-        <div class="stat-label">Toleransi Presisi</div>
+        <div class="stat-num" data-target="0.001" data-decimals="3">0</div>
+        <div class="stat-label">Toleransi Presisi (mm)</div>
       </div>
       <div class="stat reveal">
-        <div class="stat-num">98<span class="unit">%</span></div>
+        <div class="stat-num" data-target="98" data-suffix="%">0</div>
         <div class="stat-label">Kepuasan Klien</div>
       </div>
     </div>
   </div>
 
-  <!-- ============================================================
-       SLIDER GALERI OTOMATIS
-       ============================================================ -->
+  <!-- TRUST SECTION -->
+  <section class="section" style="padding-top:80px;padding-bottom:40px;">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Dipercaya Oleh</span>
+        <h2>Klien Industri &amp; UMKM</h2>
+        <p>Kami telah dipercaya berbagai perusahaan manufaktur, bengkel, dan pelaku usaha di Gresik dan sekitarnya.</p>
+      </div>
+
+      <div class="trust-grid reveal">
+        <div class="trust-item">
+          <div style="font-size:32px;margin-bottom:10px;">🏭</div>
+          <strong style="display:block;font-size:14px;color:var(--navy-900);font-weight:700;">Manufaktur</strong>
+          <span style="font-size:11.5px;color:var(--ink-300);font-weight:600;letter-spacing:.05em;text-transform:uppercase;">Industri Besar</span>
+        </div>
+        <div class="trust-item">
+          <div style="font-size:32px;margin-bottom:10px;">⚙️</div>
+          <strong style="display:block;font-size:14px;color:var(--navy-900);font-weight:700;">Bengkel Mesin</strong>
+          <span style="font-size:11.5px;color:var(--ink-300);font-weight:600;letter-spacing:.05em;text-transform:uppercase;">Partner Teknis</span>
+        </div>
+        <div class="trust-item">
+          <div style="font-size:32px;margin-bottom:10px;">🏢</div>
+          <strong style="display:block;font-size:14px;color:var(--navy-900);font-weight:700;">Kontraktor</strong>
+          <span style="font-size:11.5px;color:var(--ink-300);font-weight:600;letter-spacing:.05em;text-transform:uppercase;">Proyek Bangunan</span>
+        </div>
+        <div class="trust-item">
+          <div style="font-size:32px;margin-bottom:10px;">🏠</div>
+          <strong style="display:block;font-size:14px;color:var(--navy-900);font-weight:700;">Rumah Tangga</strong>
+          <span style="font-size:11.5px;color:var(--ink-300);font-weight:600;letter-spacing:.05em;text-transform:uppercase;">Service Harian</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONI -->
+  <section class="section" style="padding-top:20px;background:var(--white);">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Testimoni</span>
+        <h2>Apa Kata Klien Kami</h2>
+        <p>Kepuasan klien adalah prioritas utama kami.</p>
+      </div>
+
+      <div class="testi-grid">
+        <div class="testi-card reveal">
+          <div style="color:var(--gold-500);font-size:18px;margin-bottom:14px;letter-spacing:2px;">★★★★★</div>
+          <p style="font-size:14px;line-height:1.75;color:var(--ink-700);margin-bottom:22px;font-style:italic;">"Hasil bubut presisi, toleransi sesuai gambar teknik. Komunikasi cepat dan pengerjaan tepat waktu. Sudah beberapa kali order dan selalu puas."</p>
+          <div style="display:flex;align-items:center;gap:12px;">
+            <div style="width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--navy-700),var(--navy-600));display:flex;align-items:center;justify-content:center;color:var(--gold-400);font-weight:700;font-size:15px;">A</div>
+            <div>
+              <strong style="display:block;font-size:13.5px;color:var(--navy-900);font-weight:700;">Pak Ahmad</strong>
+              <span style="font-size:11.5px;color:var(--ink-300);font-weight:600;">Manajer Produksi</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="testi-card reveal">
+          <div style="color:var(--gold-500);font-size:18px;margin-bottom:14px;letter-spacing:2px;">★★★★★</div>
+          <p style="font-size:14px;line-height:1.75;color:var(--ink-700);margin-bottom:22px;font-style:italic;">"Pompa pabrik kami sempat mati total, tim Dinasty datang cepat, diagnosa tepat, dan ganti spare part hari itu juga. Recommended!"</p>
+          <div style="display:flex;align-items:center;gap:12px;">
+            <div style="width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--green-600),var(--green-500));display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:15px;">S</div>
+            <div>
+              <strong style="display:block;font-size:13.5px;color:var(--navy-900);font-weight:700;">Bu Sari</strong>
+              <span style="font-size:11.5px;color:var(--ink-300);font-weight:600;">Pemilik Pabrik</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="testi-card reveal">
+          <div style="color:var(--gold-500);font-size:18px;margin-bottom:14px;letter-spacing:2px;">★★★★★</div>
+          <p style="font-size:14px;line-height:1.75;color:var(--ink-700);margin-bottom:22px;font-style:italic;">"Instalasi listrik bengkel rapi, aman, dan sesuai standar. Timnya profesional dan menjelaskan dengan detail. Terima kasih!"</p>
+          <div style="display:flex;align-items:center;gap:12px;">
+            <div style="width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--gold-500),var(--gold-600));display:flex;align-items:center;justify-content:center;color:var(--navy-900);font-weight:700;font-size:15px;">B</div>
+            <div>
+              <strong style="display:block;font-size:13.5px;color:var(--navy-900);font-weight:700;">Pak Budi</strong>
+              <span style="font-size:11.5px;color:var(--ink-300);font-weight:600;">Pemilik Bengkel</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDER GALERI -->
   <section class="section home-slider-section">
     <div class="container">
       <div class="section-head">
@@ -148,7 +274,6 @@
 
     <div class="slider-wrap">
       <div class="slider-track" id="homeSliderTrack">
-        <!-- diisi via JS -->
         <div class="slider-skeleton">
           <div class="slider-skel-item"></div>
           <div class="slider-skel-item"></div>
@@ -284,7 +409,6 @@
      PAGE: TENTANG
      ============================================================ -->
 <main id="page-about" class="page">
-
   <section class="page-hero">
     <div class="page-hero-inner">
       <div class="breadcrumb">
@@ -381,14 +505,12 @@
       </div>
     </div>
   </section>
-
 </main>
 
 <!-- ============================================================
      PAGE: BUBUT
      ============================================================ -->
 <main id="page-bubut" class="page">
-
   <section class="page-hero">
     <div class="page-hero-inner">
       <div class="breadcrumb">
@@ -495,14 +617,12 @@
       </div>
     </div>
   </section>
-
 </main>
 
 <!-- ============================================================
      PAGE: SERVICE POMPA
      ============================================================ -->
 <main id="page-pompa" class="page">
-
   <section class="page-hero">
     <div class="page-hero-inner">
       <div class="breadcrumb">
@@ -608,14 +728,12 @@
       </div>
     </div>
   </section>
-
 </main>
 
 <!-- ============================================================
      PAGE: ELEKTRIKAL
      ============================================================ -->
 <main id="page-elektrikal" class="page">
-
   <section class="page-hero">
     <div class="page-hero-inner">
       <div class="breadcrumb">
@@ -712,14 +830,12 @@
       </div>
     </div>
   </section>
-
 </main>
 
 <!-- ============================================================
      PAGE: MATERIAL
      ============================================================ -->
 <main id="page-material" class="page">
-
   <section class="page-hero">
     <div class="page-hero-inner">
       <div class="breadcrumb">
@@ -806,14 +922,12 @@
       </div>
     </div>
   </section>
-
 </main>
 
 <!-- ============================================================
      PAGE: GALERI
      ============================================================ -->
 <main id="page-galeri" class="page">
-
   <section class="page-hero">
     <div class="page-hero-inner">
       <div class="breadcrumb">
@@ -826,9 +940,6 @@
     </div>
   </section>
 
-  <!-- ============================================================
-       GALLERY VIEW — Semua gambar + deskripsi (publik)
-       ============================================================ -->
   <section class="section section-alt">
     <div class="container">
       <div class="gallery-header">
@@ -838,14 +949,12 @@
           <p>Semua gambar tersimpan langsung di cloud dan tampil otomatis di sini.</p>
         </div>
 
-        <!-- Tombol Kunci Admin -->
         <button id="btnLock" class="btn btn-lock" title="Login admin untuk kelola galeri">
           <span class="lock-ico">🔒</span>
           <span class="lock-text">Admin</span>
         </button>
       </div>
 
-      <!-- Toolbar -->
       <div class="gallery-toolbar">
         <input type="text" id="gallerySearch" placeholder="🔍 Cari berdasarkan judul...">
         <button id="btnRefreshGallery" class="btn btn-outline">🔄 Refresh</button>
@@ -861,9 +970,6 @@
     </div>
   </section>
 
-  <!-- ============================================================
-       ADMIN PANEL — muncul hanya setelah login
-       ============================================================ -->
   <section class="section" id="adminUploadSection" style="display:none;">
     <div class="container">
       <div class="admin-panel">
@@ -915,7 +1021,6 @@
     </div>
   </section>
 
-  <!-- MAP -->
   <section class="section">
     <div class="container">
       <div class="section-head">
@@ -934,12 +1039,9 @@
       </div>
     </div>
   </section>
-
 </main>
 
-<!-- ============================================================
-     MODAL LOGIN ADMIN
-     ============================================================ -->
+<!-- MODAL LOGIN ADMIN -->
 <div id="loginModal" class="modal-overlay" aria-hidden="true">
   <div class="modal-box">
     <button class="modal-close" id="modalClose" aria-label="Tutup">×</button>
@@ -964,7 +1066,6 @@
      PAGE: KONTAK
      ============================================================ -->
 <main id="page-kontak" class="page">
-
   <section class="page-hero">
     <div class="page-hero-inner">
       <div class="breadcrumb">
@@ -974,6 +1075,53 @@
       </div>
       <h1>Hubungi <span class="accent">Dinasty Sulung Teknik</span></h1>
       <p>Kirimkan kebutuhan Anda — bubut, service pompa, atau elektrikal. Kami akan merespons secepatnya.</p>
+    </div>
+  </section>
+
+  <!-- QUICK CONTACT CARDS -->
+  <section style="padding:0;margin-top:-40px;position:relative;z-index:10;">
+    <div class="container">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;">
+        <a href="https://wa.me/6288214612468" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:14px;padding:20px 22px;background:#fff;border-radius:14px;box-shadow:0 12px 32px rgba(10,22,40,.1);border:1px solid var(--line);transition:all .35s;text-decoration:none;" onmouseover="this.style.transform='translateY(-6px)';this.style.boxShadow='0 20px 44px rgba(10,22,40,.16)'" onmouseout="this.style.transform='';this.style.boxShadow='0 12px 32px rgba(10,22,40,.1)'">
+          <div style="width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,#25D366,#128C7E);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg viewBox="0 0 24 24" style="width:24px;height:24px;fill:#fff;"><path d="M17.5 14.4c-.3-.1-1.7-.8-1.9-.9-.3-.1-.5-.1-.7.1-.2.3-.8.9-.9 1.1-.2.2-.3.2-.6.1-1.6-.8-2.6-1.4-3.7-3.2-.3-.5.3-.4.8-1.4.1-.2 0-.4 0-.5 0-.1-.7-1.7-.9-2.3-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5 1.8.8 2.5.9 3.4.7.5-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3zM12 2a10 10 0 00-8.6 15.1L2 22l5-1.3A10 10 0 1012 2z"/></svg>
+          </div>
+          <div>
+            <strong style="display:block;font-size:14px;color:var(--navy-900);font-weight:700;margin-bottom:2px;">Chat WhatsApp</strong>
+            <span style="font-size:12.5px;color:var(--ink-500);">Respons cepat 24/7</span>
+          </div>
+        </a>
+
+        <a href="tel:088214612468" style="display:flex;align-items:center;gap:14px;padding:20px 22px;background:#fff;border-radius:14px;box-shadow:0 12px 32px rgba(10,22,40,.1);border:1px solid var(--line);transition:all .35s;text-decoration:none;" onmouseover="this.style.transform='translateY(-6px)';this.style.boxShadow='0 20px 44px rgba(10,22,40,.16)'" onmouseout="this.style.transform='';this.style.boxShadow='0 12px 32px rgba(10,22,40,.1)'">
+          <div style="width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,var(--navy-700),var(--navy-600));display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg viewBox="0 0 24 24" style="width:22px;height:22px;fill:var(--gold-400);"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.5.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.5.1.3 0 .7-.2 1l-2.2 2.3z"/></svg>
+          </div>
+          <div>
+            <strong style="display:block;font-size:14px;color:var(--navy-900);font-weight:700;margin-bottom:2px;">Telepon Langsung</strong>
+            <span style="font-size:12.5px;color:var(--ink-500);">0882 1461 2468</span>
+          </div>
+        </a>
+
+        <a href="mailto:dinastysulungtechnikbengkel@gmail.com" style="display:flex;align-items:center;gap:14px;padding:20px 22px;background:#fff;border-radius:14px;box-shadow:0 12px 32px rgba(10,22,40,.1);border:1px solid var(--line);transition:all .35s;text-decoration:none;" onmouseover="this.style.transform='translateY(-6px)';this.style.boxShadow='0 20px 44px rgba(10,22,40,.16)'" onmouseout="this.style.transform='';this.style.boxShadow='0 12px 32px rgba(10,22,40,.1)'">
+          <div style="width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,var(--gold-500),var(--gold-600));display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg viewBox="0 0 24 24" style="width:22px;height:22px;fill:var(--navy-900);"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+          </div>
+          <div>
+            <strong style="display:block;font-size:14px;color:var(--navy-900);font-weight:700;margin-bottom:2px;">Kirim Email</strong>
+            <span style="font-size:12.5px;color:var(--ink-500);">Respon &lt; 24 jam</span>
+          </div>
+        </a>
+
+        <div style="display:flex;align-items:center;gap:14px;padding:20px 22px;background:#fff;border-radius:14px;box-shadow:0 12px 32px rgba(10,22,40,.1);border:1px solid var(--line);">
+          <div style="width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,var(--green-600),var(--green-500));display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg viewBox="0 0 24 24" style="width:22px;height:22px;fill:#fff;"><path d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5c-1.4 0-2.5-1.1-2.5-2.5S10.6 6.5 12 6.5s2.5 1.1 2.5 2.5S13.4 11.5 12 11.5z"/></svg>
+          </div>
+          <div>
+            <strong style="display:block;font-size:14px;color:var(--navy-900);font-weight:700;margin-bottom:2px;">Kunjungi Bengkel</strong>
+            <span style="font-size:12.5px;color:var(--ink-500);">Sen–Sab · 08–17 WIB</span>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -1078,7 +1226,7 @@
             </div>
             <div class="form-field full">
               <label>Detail Kebutuhan <span class="req">*</span></label>
-              <textarea name="pesan" required placeholder="Jelaskan kebutuhan Anda: komponen/material/dimensi (untuk bubut), jenis &amp; merk pompa (untuk service pompa), atau jenis pekerjaan listrik..."></textarea>
+              <textarea name="pesan" required placeholder="Jelaskan kebutuhan Anda..."></textarea>
             </div>
             <div class="form-field full">
               <button type="submit" class="btn btn-primary" style="width:100%;">
@@ -1104,12 +1252,9 @@
       </div>
     </div>
   </section>
-
 </main>
 
-<!-- ============================================================
-     FOOTER
-     ============================================================ -->
+<!-- FOOTER -->
 <footer class="site-footer">
   <div class="container">
     <div class="footer-grid">
